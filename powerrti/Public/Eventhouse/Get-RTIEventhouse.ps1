@@ -1,4 +1,4 @@
-function Get-RTIEventhouse {
+function Get-RtiEventhouse {
 #Requires -Version 7.1
 
 <#

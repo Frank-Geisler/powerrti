@@ -1,4 +1,4 @@
-function Remove-RTIEventhouse {
+function Remove-RtiEventhouse {
 #Requires -Version 7.1
 
 <#

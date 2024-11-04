@@ -1,4 +1,4 @@
-function Get-RTIWorkspace {
+function Get-RtiWorkspace {
 #Requires -Version 7.1
 
 <#

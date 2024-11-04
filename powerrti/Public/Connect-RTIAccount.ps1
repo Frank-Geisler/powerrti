@@ -1,4 +1,4 @@
-function Connect-RTIAccount {
+function Connect-RtiAccount {
 #Requires -Version 7.1
 
 <#

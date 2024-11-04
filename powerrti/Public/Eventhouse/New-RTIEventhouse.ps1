@@ -1,4 +1,4 @@
-function New-RTIEventhouse {
+function New-RtiEventhouse {
 #Requires -Version 7.1
 
 <#
