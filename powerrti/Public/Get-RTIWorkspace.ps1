@@ -12,26 +12,45 @@ function Get-RTIWorkspace {
 
 [CmdletBinding()]
     param (
-        [string]$Name
+        [string]$Name,
+
+        [string]$WorkspaceID
     )
 
 begin {
+    # Create Workspace API
+    $workspaceAPI = 'https://api.fabric.microsoft.com/v1/admin/workspaces' 
+
+    if ($PSBoundParameters.ContainsKey("Name") -and $PSBoundParameters.ContainsKey("WorkspaceID")) {
+        throw "Parameters Name and WorkspaceID cannot be used together"    
+    }
+
+    if ($PSBoundParameters.ContainsKey("WorkspaceID")) {
+        $workspaceAPI = $workspaceAPI + '/' + $WorkspaceID
+    }
 }
 
 process {
 
-# Create Workspace API
-$workspaceAPI = 'https://api.fabric.microsoft.com/v1/admin/workspaces' 
-
-# Call Eventhouse create API
-$response = Invoke-RestMethod `
+    # Call Workspace API
+    $response = Invoke-RestMethod `
                 -Headers $RTISession.headerParams `
                 -Method GET `
                 -Uri $workspaceAPI `
                 -ContentType "application/json"
 
 
-$response.Workspaces
+    if ($PSBoundParameters.ContainsKey("WorkspaceID")) {
+        $response
+    }
+    elseif ($PSBoundParameters.ContainsKey("Name")) {
+        $response.Workspaces | `
+            Where-Object { $_.Name -eq $Name }
+    }
+    else {
+        $response.Workspaces
+    }
+
 }
 
 end {}
