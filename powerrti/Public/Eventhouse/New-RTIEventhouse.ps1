@@ -17,11 +17,15 @@ function New-RTIEventhouse {
 
 [CmdletBinding()]
     param (
-        [Parameter(Mandatory=$true)]
-        [string]$Name,
 
         [Parameter(Mandatory=$true)]
-        [string]$WorkspaceID
+        [string]$WorkspaceID, 
+        
+        [Parameter(Mandatory=$true)]
+        [string]$EventhouseName,
+
+        [string]$EventhouseDescription
+
     )
 
 begin {
@@ -32,12 +36,13 @@ begin {
 
     # Create body of request
     $body = @{
-    'displayName' = $Name
+    'displayName' = $EventhouseName
+    'description' = $EventhouseDescription
     } | ConvertTo-Json `
             -Depth 1
 
-    # Create Eventhouse API
-    $eventhouseAPI = "https://api.fabric.microsoft.com/v1/workspaces/$WorkspaceId/eventhouses" 
+    # Create Eventhouse API URL
+    $eventhouseApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventhouses" 
     }
 
 process {
@@ -46,7 +51,7 @@ process {
     $response = Invoke-RestMethod `
                         -Headers $RTISession.headerParams `
                         -Method POST `
-                        -Uri $eventhouseAPI `
+                        -Uri $eventhouseApiUrl `
                         -Body ($body) `
                         -ContentType "application/json"
 
