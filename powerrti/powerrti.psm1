@@ -5,7 +5,7 @@ of Microsoft Fabric.
 #>
 $scriptRoot = $PSScriptRoot + '\Public'
 
-Get-ChildItem $scriptRoot *.ps1 | ForEach-Object {
+Get-ChildItem $scriptRoot *.ps1 -Recurse | ForEach-Object {
     . $_.FullName
 }
 
