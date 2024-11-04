@@ -28,6 +28,7 @@ begin {
     # Check if session is established - if not throw error
     if ($null -eq $RTISession.headerParams) {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
+    }
 
     # Create body of request
     $body = @{
@@ -38,7 +39,6 @@ begin {
     # Create Eventhouse API
     $eventhouseAPI = "https://api.fabric.microsoft.com/v1/workspaces/$WorkspaceId/eventhouses" 
     }
-}
 
 process {
 
