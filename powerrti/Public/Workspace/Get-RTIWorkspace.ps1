@@ -18,8 +18,10 @@ function Get-RTIWorkspace {
     )
 
 begin {
-    # Create Workspace API
-    $workspaceAPI = 'https://api.fabric.microsoft.com/v1/admin/workspaces' 
+
+    # Check if session is established - if not throw error
+    if ($null -eq $RTISession.headerParams) {
+        throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
 
     if ($PSBoundParameters.ContainsKey("Name") -and $PSBoundParameters.ContainsKey("WorkspaceID")) {
         throw "Parameters Name and WorkspaceID cannot be used together"    
@@ -28,6 +30,9 @@ begin {
     if ($PSBoundParameters.ContainsKey("WorkspaceID")) {
         $workspaceAPI = $workspaceAPI + '/' + $WorkspaceID
     }
+
+    # Create Workspace API
+    $workspaceApiUrl = "https://api.fabric.microsoft.com/v1/admin/workspaces" 
 }
 
 process {
@@ -36,7 +41,7 @@ process {
     $response = Invoke-RestMethod `
                 -Headers $RTISession.headerParams `
                 -Method GET `
-                -Uri $workspaceAPI `
+                -Uri $workspaceApiUrl `
                 -ContentType "application/json"
 
 
