@@ -11,6 +11,9 @@ function Get-RtiEventhouse {
 .EXAMPLE
     Get-RTIEventhouse
 
+.LINK
+    https://learn.microsoft.com/en-us/rest/api/fabric/eventhouse/items/list-eventhouses?tabs=HTTP
+
 #>
 
 #TODO: Add functionality to list all Eventhouses. To do so fetch all workspaces and 
@@ -18,10 +21,12 @@ function Get-RtiEventhouse {
 
 [CmdletBinding()]
     param (
+        [Parameter(Mandatory=$true)]
+        [string]$WorkspaceId,
+
         [string]$EventhouseName,
 
-        [Parameter(Mandatory=$true)]
-        [string]$WorkspaceID
+        [string]$EventhouseId
     )
 
 begin {
@@ -32,30 +37,44 @@ begin {
     }
 
     # You can either use Name or WorkspaceID
-    if ($PSBoundParameters.ContainsKey("Name") -and $PSBoundParameters.ContainsKey("WorkspaceID")) {
-        throw "Parameters Name and WorkspaceID cannot be used together"    
+    if ($PSBoundParameters.ContainsKey("EventhouseName") -and $PSBoundParameters.ContainsKey("EventhouseID")) {
+        throw "Parameters EventhouseName and EventhouseID cannot be used together"    
     }
 
     # Create Eventhouse API
     $eventhouseAPI = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventhouses" 
 
+    $eventhouseAPIEventhouseId = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventhouses/$EventhouseId" 
+
 }
 
 process {
 
-    # Call Workspace API
-    $response = Invoke-RestMethod `
-                -Headers $RTISession.headerParams `
-                -Method GET `
-                -Uri $eventhouseAPI `
-                -ContentType "application/json"
+    if ($PSBoundParameters.ContainsKey("EventhouseId")) {
 
-    if ($PSBoundParameters.ContainsKey("EventhouseName")) {
-        $response.value | `
-            Where-Object { $_.displayName -eq $EventhouseName }
+        $response = Invoke-RestMethod `
+                    -Headers $RTISession.headerParams `
+                    -Method GET `
+                    -Uri $eventhouseAPIEventhouseId `
+                    -ContentType "application/json"
+                
+        $response
     }
     else {
-        $response.value
+        # Call Workspace API
+        $response = Invoke-RestMethod `
+                    -Headers $RTISession.headerParams `
+                    -Method GET `
+                    -Uri $eventhouseAPI `
+                    -ContentType "application/json"
+
+        if ($PSBoundParameters.ContainsKey("EventhouseName")) {
+            $response.value | `
+                Where-Object { $_.displayName -eq $EventhouseName }
+        }
+        else {
+            $response.value
+        }
     }
 
 }
