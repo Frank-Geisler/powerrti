@@ -18,7 +18,7 @@ function Get-RTIEventhouse {
 
 [CmdletBinding()]
     param (
-        [string]$Name,
+        [string]$EventhouseName,
 
         [Parameter(Mandatory=$true)]
         [string]$WorkspaceID
@@ -50,7 +50,14 @@ process {
                 -Uri $eventhouseAPI `
                 -ContentType "application/json"
 
-    $response.value
+    if ($PSBoundParameters.ContainsKey("EventhouseName")) {
+        $response.value | `
+            Where-Object { $_.displayName -eq $EventhouseName }
+    }
+    else {
+        $response.value
+    }
+
 }
 
 end {}
