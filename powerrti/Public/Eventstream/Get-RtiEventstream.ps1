@@ -18,7 +18,7 @@ function Get-RtiEventstream {
     The name of the Eventstream to retrieve. This parameter cannot be used together with EventstreamID.
 
 .PARAMETER EventstreamId
-    The Id of the Eventstream to retrieve. This parameter cannot be used together with EventstreamName. The value for WorkspaceId is a GUID. 
+    The Id of the Eventstream to retrieve. This parameter cannot be used together with EventstreamName. The value for EventstreamId is a GUID. 
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .EXAMPLE

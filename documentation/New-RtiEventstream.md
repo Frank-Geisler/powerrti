@@ -17,13 +17,18 @@ Creates a new Fabric Eventstream
 
 ### EXAMPLE 1
 ```
-New-RTIEventstream
+New-RtiEventstream
+    -WorkspaceID '12345678-1234-1234-1234-123456789012'
+    -EventstreamName 'MyEventstream'
+    -EventstreamDescription 'This is my Eventstream'
 ```
+
+This example will create a new Eventstream with the name 'MyEventstream' and the description 'This is my Eventstream'.
 
 ## PARAMETERS
 
 ### -EventstreamDescription
-{{ Fill EventstreamDescription Description }}
+The description of the Eventstream to create.
 
 ```yaml
 Type: System.String
@@ -38,7 +43,7 @@ Accept wildcard characters: False
 ```
 
 ### -EventstreamName
-{{ Fill EventstreamName Description }}
+The name of the Eventstream to create.
 
 ```yaml
 Type: System.String
@@ -68,7 +73,9 @@ Accept wildcard characters: False
 ```
 
 ### -WorkspaceID
-{{ Fill WorkspaceID Description }}
+Id of the Fabric Workspace for which the Eventstream should be created.
+The value for WorkspaceID is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
 Type: System.String

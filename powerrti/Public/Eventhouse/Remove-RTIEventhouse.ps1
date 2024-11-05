@@ -62,9 +62,6 @@ begin {
         throw "Parameters EventhouseName and EventhouseID cannot be used together"    
     }
 
-    # Create Eventhouse API URL
-    $eventhouseApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventhouses/$EventhouseId" 
-
     if ($PSBoundParameters.ContainsKey("EventhouseName")) {
         $eh = Get-RtiEventhouse `
                     -WorkspaceId $WorkspaceId `
@@ -73,6 +70,8 @@ begin {
         $EventhouseId = $eh.id
     }
 
+    # Create Eventhouse API URL
+    $eventhouseApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventhouses/$EventhouseId" 
 }
 
 process {

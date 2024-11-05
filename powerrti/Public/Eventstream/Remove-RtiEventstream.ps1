@@ -8,12 +8,32 @@ function Remove-RtiEventstream {
 .DESCRIPTION
     Removes an existing Fabric Eventhouse
 
+.PARAMETER WorkspaceId
+    Id of the Fabric Workspace for which the Eventhouse should be deleted. The value for WorkspaceId is a GUID. 
+    An example of a GUID is '12345678-1234-1234-1234-123456789012'.
+
+.PARAMETER EventstreamId
+    The Id of the Eventhouse to delete. The value for Eventstream is a GUID. 
+    An example of a GUID is '12345678-1234-1234-1234-123456789012'.
+
 .EXAMPLE
-    New-RTIWorkspace 
+    Remove-RtiEventstream `
+        -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+        -EventstreamId '12345678-1234-1234-1234-123456789012'
+
+    This example will delete the Eventstream with the Id '12345678-1234-1234-1234-123456789012' from
+    the Workspace.
+
+.EXAMPLE
+    Remove-RtiEventstream `
+        -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+        -EventstreamName 'MyEventstream'
+
+    This example will delete the Eventstream with the name 'MyEventstream' from the Workspace.
 
 #>
 
-# TODO: Add functionality to remove Eventhouse by name.
+
 
 [CmdletBinding()]
     param (
@@ -21,8 +41,9 @@ function Remove-RtiEventstream {
         [Parameter(Mandatory=$true)]
         [string]$WorkspaceId, 
         
-        [Parameter(Mandatory=$true)]
-        [string]$EventstreamId
+        [string]$EventstreamId,
+
+        [string]$EventstreamName
 
     )
 
@@ -32,10 +53,23 @@ begin {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
     }
 
-    # Create Eventhouse API URL
-    $eventhouseApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventstreams/$EventstreamId" 
-
+     # You can either use EventstreamName or EventstreamID
+    if ($PSBoundParameters.ContainsKey("EventstreamId") -and $PSBoundParameters.ContainsKey("EventstreamName")) {
+        throw "Parameters EventstreamId and EventstreamName cannot be used together"    
     }
+
+    if ($PSBoundParameters.ContainsKey("EventstreamName")) {
+        $eh = Get-RtiEventstream `
+                    -WorkspaceId $WorkspaceId `
+                    -EventstreamName $EventstreamName
+
+        $EventstreamId = $eh.id
+    }
+
+    # Create Eventhouse API URL
+    $eventstreamApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventstreams/$EventstreamId" 
+
+}
 
 process {
 
@@ -43,7 +77,7 @@ process {
     $response = Invoke-RestMethod `
                         -Headers $RTISession.headerParams `
                         -Method DELETE `
-                        -Uri $eventhouseApiUrl `
+                        -Uri $eventstreamApiUrl `
                         -ContentType "application/json"
 
     $response

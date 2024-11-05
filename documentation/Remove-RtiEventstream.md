@@ -6,8 +6,8 @@ Removes an existing Fabric Eventhouse
 ## SYNTAX
 
 ```
-Remove-RtiEventstream [-WorkspaceId] <String> [-EventstreamId] <String> [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
+Remove-RtiEventstream [-WorkspaceId] <String> [[-EventstreamId] <String>] [[-EventstreamName] <String>]
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -17,21 +17,52 @@ Removes an existing Fabric Eventhouse
 
 ### EXAMPLE 1
 ```
-New-RTIWorkspace
+Remove-RtiEventstream `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+    -EventstreamId '12345678-1234-1234-1234-123456789012'
 ```
+
+This example will delete the Eventstream with the Id '12345678-1234-1234-1234-123456789012' from
+the Workspace.
+
+### EXAMPLE 2
+```
+Remove-RtiEventstream `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+    -EventstreamName 'MyEventstream'
+```
+
+This example will delete the Eventstream with the name 'MyEventstream' from the Workspace.
 
 ## PARAMETERS
 
 ### -EventstreamId
-{{ Fill EventstreamId Description }}
+The Id of the Eventhouse to delete.
+The value for Eventstream is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -EventstreamName
+{{ Fill EventstreamName Description }}
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -53,7 +84,9 @@ Accept wildcard characters: False
 ```
 
 ### -WorkspaceId
-{{ Fill WorkspaceId Description }}
+Id of the Fabric Workspace for which the Eventhouse should be deleted.
+The value for WorkspaceId is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
 Type: System.String

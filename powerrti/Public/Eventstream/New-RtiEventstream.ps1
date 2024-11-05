@@ -8,8 +8,23 @@ function New-RtiEventstream {
 .DESCRIPTION
     Creates a new Fabric Eventstream
 
+.PARAMETER WorkspaceID  
+    Id of the Fabric Workspace for which the Eventstream should be created. The value for WorkspaceID is a GUID. 
+    An example of a GUID is '12345678-1234-1234-1234-123456789012'.
+
+.PARAMETER EventstreamName
+    The name of the Eventstream to create.
+
+.PARAMETER EventstreamDescription
+    The description of the Eventstream to create.
+
 .EXAMPLE
-    New-RTIEventstream
+    New-RtiEventstream
+        -WorkspaceID '12345678-1234-1234-1234-123456789012'
+        -EventstreamName 'MyEventstream'
+        -EventstreamDescription 'This is my Eventstream'
+
+    This example will create a new Eventstream with the name 'MyEventstream' and the description 'This is my Eventstream'.
 
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/eventstream/items/create-eventstream?tabs=HTTP
