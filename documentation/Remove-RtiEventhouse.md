@@ -6,8 +6,8 @@ Removes an existing Fabric Eventhouse
 ## SYNTAX
 
 ```
-Remove-RtiEventhouse [-WorkspaceId] <String> [-EventhouseId] <String> [-ProgressAction <ActionPreference>]
- [<CommonParameters>]
+Remove-RtiEventhouse [-WorkspaceId] <String> [[-EventhouseId] <String>] [[-EventhouseName] <String>]
+ [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -23,15 +23,34 @@ New-RTIWorkspace
 ## PARAMETERS
 
 ### -EventhouseId
-{{ Fill EventhouseId Description }}
+The Id of the Eventhouse to delete.
+The value for EventhouseId is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
+EventhouseId and EventhouseName cannot be used together.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
 Aliases:
 
-Required: True
+Required: False
 Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -EventhouseName
+The name of the Eventhouse to delete.
+EventhouseId and EventhouseName cannot be used together.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -53,7 +72,9 @@ Accept wildcard characters: False
 ```
 
 ### -WorkspaceId
-{{ Fill WorkspaceId Description }}
+Id of the Fabric Workspace for which the Eventhouse should be deleted.
+The value for WorkspaceId is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
 Type: System.String
