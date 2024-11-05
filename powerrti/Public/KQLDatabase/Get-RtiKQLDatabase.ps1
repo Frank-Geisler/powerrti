@@ -54,7 +54,44 @@ process {
                     -Method GET `
                     -Uri $KQLDatabaseAPIKQLDatabaseId `
                     -ContentType "application/json"
-                
+
+        # FGE: adding Members for convenience
+        Add-Member `
+            -MemberType NoteProperty `
+            -Name 'parentEventhouseItemId' `
+            -Value $response.properties.parentEventhouseItemId `
+            -InputObject $response
+
+        Add-Member `
+            -MemberType NoteProperty `
+            -Name 'queryServiceUri' `
+            -Value $response.properties.queryServiceUri `
+            -InputObject $response
+
+        Add-Member `
+            -MemberType NoteProperty `
+            -Name 'ingestionServiceUri' `
+            -Value $response.properties.ingestionServiceUri `
+            -InputObject $response
+
+        Add-Member `
+            -MemberType NoteProperty `
+            -Name 'databaseType' `
+            -Value $response.properties.databaseType `
+            -InputObject $response
+
+        Add-Member `
+            -MemberType NoteProperty `
+            -Name 'oneLakeStandardStoragePeriod' `
+            -Value $response.properties.oneLakeStandardStoragePeriod `
+            -InputObject $response
+
+        Add-Member `
+            -MemberType NoteProperty `
+            -Name 'oneLakeCachingPeriod' `
+            -Value $response.properties.oneLakeCachingPeriod `
+            -InputObject $response
+
         $response
     }
     else {
@@ -64,6 +101,39 @@ process {
                     -Method GET `
                     -Uri $KQLDatabaseAPI `
                     -ContentType "application/json"
+
+        # FGE: adding Members for convenience
+        foreach ($kqlDatabase in $response.value) {
+            Add-Member `
+                -MemberType NoteProperty `
+                -Name 'queryServiceUri' `
+                -Value $response.properties.queryServiceUri `
+                -InputObject $response
+
+            Add-Member `
+                -MemberType NoteProperty `
+                -Name 'ingestionServiceUri' `
+                -Value $response.properties.ingestionServiceUri `
+                -InputObject $response
+
+            Add-Member `
+                -MemberType NoteProperty `
+                -Name 'databaseType' `
+                -Value $response.properties.databaseType `
+                -InputObject $response
+
+            Add-Member `
+                -MemberType NoteProperty `
+                -Name 'oneLakeStandardStoragePeriod' `
+                -Value $response.properties.oneLakeStandardStoragePeriod `
+                -InputObject $response
+
+            Add-Member `
+                -MemberType NoteProperty `
+                -Name 'oneLakeCachingPeriod' `
+                -Value $response.properties.oneLakeCachingPeriod `
+                -InputObject $response
+        }
 
         if ($PSBoundParameters.ContainsKey("KQLDatabaseName")) {
             $response.value | `
