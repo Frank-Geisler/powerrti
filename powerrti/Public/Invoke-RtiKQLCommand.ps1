@@ -36,7 +36,6 @@ begin {
 
     # FGE: Get Kusto Database
     if ($PSBoundParameters.ContainsKey("KQLDatabaseName")) {
-        Write-Warning "Getting Kusto Database by Name"
         $kustDB = Get-RtiKQLDatabase `
                         -WorkspaceId $WorkspaceId `
                         -KQLDatabaseName $KQLDatabaseName
@@ -64,33 +63,20 @@ process {
 
     # FGE: Generate the query API URL
     $queryAPI = "$($kustDB.queryServiceUri)/v1/rest/mgmt"
-    Write-Warning "Query API: $queryAPI"
-
-    $kustDB
 
     $KQLCommand = $KQLCommand | Out-String
+
+    # FGE: It is crucial to have the .execute database script <| in the beginning, otherwise
+    #     the Kusto API will not execute the script. 
+    if (-not ($KQLCommand -match "\.execute database script <\|")) {
+        $KQLCommand = ".execute database script <| $KQLCommand"
+    }
 
     # Create body of the request
     $body = @{
     'csl' = $KQLCommand;
     'db'= $kustDB.displayName
     } | ConvertTo-Json -Depth 1
-
-
-    #     "properties": {
-    #     "Options": {
-    #         "maxmemoryconsumptionperiterator": 68719476736,
-    #         "max_memory_consumption_per_query_per_node": 68719476736,
-    #         "servertimeout": "50m"
-    #     },
-    #     "Parameters": {
-    #         "n": 10, "d": "dynamic([\"ATLANTIC SOUTH\"])"
-    #     }
-    # }
-
-    $body
-
-    $headerParams
 
     # Call Kusto API to run entities creation script
     Invoke-RestMethod `
