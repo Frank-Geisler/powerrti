@@ -26,6 +26,7 @@ function Set-RtiKQLQueryset {
         
         [string]$KQLQuerysetName,
 
+        [ValidateLength(0, 256)]
         [string]$KQLQuerysetDescription
 
     )

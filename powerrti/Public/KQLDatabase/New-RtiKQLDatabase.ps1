@@ -25,6 +25,7 @@ function New-RtiKQLDatabase {
         [Parameter(Mandatory=$true)]
         [string]$KQLDatabaseName,
 
+        [ValidateLength(0, 256)]
         [string]$KQLDatabaseDescription
 
     )

@@ -26,6 +26,7 @@ function Set-RtiEventhouse {
         
         [string]$EventhouseName,
 
+        [ValidateLength(0, 256)]
         [string]$EventhouseDescription
 
     )

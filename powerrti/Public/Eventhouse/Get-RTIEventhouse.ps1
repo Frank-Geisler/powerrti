@@ -53,10 +53,10 @@ process {
     if ($PSBoundParameters.ContainsKey("EventhouseId")) {
 
         $response = Invoke-RestMethod `
-                    -Headers $RTISession.headerParams `
-                    -Method GET `
-                    -Uri $eventhouseAPIEventhouseId `
-                    -ContentType "application/json"
+                        -Headers $RTISession.headerParams `
+                        -Method GET `
+                        -Uri $eventhouseAPIEventhouseId `
+                        -ContentType "application/json"
                 
         $response
     }

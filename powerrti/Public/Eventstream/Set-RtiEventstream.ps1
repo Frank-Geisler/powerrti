@@ -26,6 +26,7 @@ function Set-RtiEventstream {
         
         [string]$EventstreamName,
 
+        [ValidateLength(0, 256)]
         [string]$EventstreamDescription
 
     )

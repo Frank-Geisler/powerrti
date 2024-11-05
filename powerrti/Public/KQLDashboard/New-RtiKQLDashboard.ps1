@@ -1,18 +1,16 @@
-function New-RtiEventstream {
+function New-RtiKQLDashboard {
 #Requires -Version 7.1
 
 <#
 .SYNOPSIS
-    Creates a new Fabric Eventstream
+    Creates a new Fabric KQLDashboard
 
 .DESCRIPTION
-    Creates a new Fabric Eventstream
+    Creates a new Fabric KQLDashboard
 
 .EXAMPLE
-    New-RTIEventstream
+    New-RTIWorkspace 
 
-.LINK
-    https://learn.microsoft.com/en-us/rest/api/fabric/eventstream/items/create-eventstream?tabs=HTTP
 #>
 
 [CmdletBinding()]
@@ -22,10 +20,10 @@ function New-RtiEventstream {
         [string]$WorkspaceID, 
         
         [Parameter(Mandatory=$true)]
-        [string]$EventstreamName,
+        [string]$KQLDashboardName,
 
         [ValidateLength(0, 256)]
-        [string]$EventstreamDescription
+        [string]$KQLDashboardDescription
 
     )
 
@@ -37,22 +35,22 @@ begin {
 
     # Create body of request
     $body = @{
-    'displayName' = $EventstreamName
-    'description' = $EventstreamDescription
+        'displayName' = $KQLDashboardName
+        'description' = $KQLDashboardDescription
     } | ConvertTo-Json `
             -Depth 1
 
-    # Create Eventhouse API URL
-    $eventstreamApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventstreams" 
+    # Create KQLDashboard API URL
+    $KQLDashboardApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLDashboards" 
     }
 
 process {
 
-    # Call Eventhouse API
+    # Call KQLDashboard API
     $response = Invoke-RestMethod `
                         -Headers $RTISession.headerParams `
                         -Method POST `
-                        -Uri $eventstreamApiUrl `
+                        -Uri $KQLDashboardApiUrl `
                         -Body ($body) `
                         -ContentType "application/json"
 

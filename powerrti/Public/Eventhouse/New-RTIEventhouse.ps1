@@ -24,6 +24,7 @@ function New-RtiEventhouse {
         [Parameter(Mandatory=$true)]
         [string]$EventhouseName,
 
+        [ValidateLength(0, 256)]
         [string]$EventhouseDescription
 
     )

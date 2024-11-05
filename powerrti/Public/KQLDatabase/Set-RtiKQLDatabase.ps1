@@ -26,6 +26,7 @@ function Set-RtiKQLDatabase {
         
         [string]$KQLDatabaseName,
 
+        [ValidateLength(0, 256)]
         [string]$KQLDatabaseDescription
 
     )
