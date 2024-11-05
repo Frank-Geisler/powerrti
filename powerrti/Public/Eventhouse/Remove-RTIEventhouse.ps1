@@ -20,7 +20,20 @@ function Remove-RtiEventhouse {
     The name of the Eventhouse to delete. EventhouseId and EventhouseName cannot be used together.
 
 .EXAMPLE
-    New-RTIWorkspace 
+    Remove-RtiEventhouse `
+        -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+        -EventhouseId '12345678-1234-1234-1234-123456789012'
+        
+    This example will delete the Eventhouse with the Id '12345678-1234-1234-1234-123456789012' from 
+    the Workspace with the Id '12345678-1234-1234-1234-123456789012'.
+
+.EXAMPLE
+    Remove-RtiEventhouse `
+        -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+        -EventhouseName 'MyEventhouse'
+        
+    This example will delete the Eventhouse with the name 'MyEventhouse' from the Workspace with the 
+    Id '12345678-1234-1234-1234-123456789012'.
 
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/eventhouse/items/delete-eventhouse?tabs=HTTP

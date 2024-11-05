@@ -6,7 +6,7 @@ Updates Properties of an existing Fabric Eventhouse
 ## SYNTAX
 
 ```
-Set-RtiEventhouse [-WorkspaceId] <String> [-EventhouseId] <String> [[-EventhouseName] <String>]
+Set-RtiEventhouse [-WorkspaceId] <String> [-EventhouseId] <String> [[-EventhouseNewName] <String>]
  [[-EventhouseDescription] <String>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
@@ -17,13 +17,22 @@ Updates Properties of an existing Fabric Eventhouse
 
 ### EXAMPLE 1
 ```
-Set-RTIEventhouse
+Set-RtiEventhouse `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+    -EventhouseId '12345678-1234-1234-1234-123456789012' `
+    -EventhouseNewName 'MyNewEventhouse' `
+    -EventhouseDescription 'This is my new Eventhouse'
 ```
+
+This example will update the Eventhouse with the Id '12345678-1234-1234-1234-123456789012' 
+in the Workspace with the Id '12345678-1234-1234-1234-123456789012' to 
+have the name 'MyNewEventhouse' and the description 
+'This is my new Eventhouse'.
 
 ## PARAMETERS
 
 ### -EventhouseDescription
-{{ Fill EventhouseDescription Description }}
+The new description of the Eventhouse.
 
 ```yaml
 Type: System.String
@@ -38,7 +47,9 @@ Accept wildcard characters: False
 ```
 
 ### -EventhouseId
-{{ Fill EventhouseId Description }}
+The Id of the Eventhouse to update.
+The value for EventhouseId is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
 Type: System.String
@@ -52,8 +63,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -EventhouseName
-{{ Fill EventhouseName Description }}
+### -EventhouseNewName
+The new name of the Eventhouse.
 
 ```yaml
 Type: System.String
@@ -83,7 +94,9 @@ Accept wildcard characters: False
 ```
 
 ### -WorkspaceId
-{{ Fill WorkspaceId Description }}
+Id of the Fabric Workspace for which the Eventhouse should be updated.
+The value for WorkspaceId is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
 Type: System.String
@@ -105,6 +118,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+TODO: Add functionality to update Eventhouse properties using EventhouseName instead of EventhouseId
 
 ## RELATED LINKS
 

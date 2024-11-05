@@ -17,7 +17,22 @@ Removes an existing Fabric Eventhouse
 
 ### EXAMPLE 1
 ```
-New-RTIWorkspace
+Remove-RtiEventhouse `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+    -EventhouseId '12345678-1234-1234-1234-123456789012'
+    
+This example will delete the Eventhouse with the Id '12345678-1234-1234-1234-123456789012' from 
+the Workspace with the Id '12345678-1234-1234-1234-123456789012'.
+```
+
+### EXAMPLE 2
+```
+Remove-RtiEventhouse `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+    -EventhouseName 'MyEventhouse'
+    
+This example will delete the Eventhouse with the name 'MyEventhouse' from the Workspace with the 
+Id '12345678-1234-1234-1234-123456789012'.
 ```
 
 ## PARAMETERS
