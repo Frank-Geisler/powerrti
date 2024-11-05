@@ -6,7 +6,7 @@ Updates Properties of an existing Fabric Eventstream
 ## SYNTAX
 
 ```
-Set-RtiEventstream [-WorkspaceId] <String> [-EventstreamId] <String> [[-EventstreamName] <String>]
+Set-RtiEventstream [-WorkspaceId] <String> [-EventstreamId] <String> [[-EventstreamNewName] <String>]
  [[-EventstreamDescription] <String>] [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
@@ -17,13 +17,19 @@ Updates Properties of an existing Fabric Eventstream
 
 ### EXAMPLE 1
 ```
-Set-RTIEventstream
+Set-RtiEventstream `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+    -EventstreamId '12345678-1234-1234-1234-123456789012' `
+    -EventstreamNewName 'MyNewEventstream' `
+    -EventstreamDescription 'This is my new Eventstream'
 ```
+
+This example will update the Eventstream with the Id '12345678-1234-1234-1234-123456789012'.
 
 ## PARAMETERS
 
 ### -EventstreamDescription
-{{ Fill EventstreamDescription Description }}
+The new description of the Eventstream.
 
 ```yaml
 Type: System.String
@@ -38,7 +44,9 @@ Accept wildcard characters: False
 ```
 
 ### -EventstreamId
-{{ Fill EventstreamId Description }}
+The Id of the Eventstream to update.
+The value for EventstreamId is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
 Type: System.String
@@ -52,8 +60,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -EventstreamName
-{{ Fill EventstreamName Description }}
+### -EventstreamNewName
+The new name of the Eventstream.
 
 ```yaml
 Type: System.String
@@ -83,7 +91,9 @@ Accept wildcard characters: False
 ```
 
 ### -WorkspaceId
-{{ Fill WorkspaceId Description }}
+Id of the Fabric Workspace for which the Eventstream should be updated.
+The value for WorkspaceId is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
 Type: System.String
@@ -105,8 +115,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+TODO: Add functionality to update Eventstream properties using EventstreamName instead of EventstreamId
 
 ## RELATED LINKS
-
-[https://learn.microsoft.com/en-us/rest/api/fabric/Eventstream/items/create-Eventstream?tabs=HTTP](https://learn.microsoft.com/en-us/rest/api/fabric/Eventstream/items/create-Eventstream?tabs=HTTP)
-

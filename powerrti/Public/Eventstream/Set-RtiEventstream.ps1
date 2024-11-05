@@ -8,11 +8,31 @@ function Set-RtiEventstream {
 .DESCRIPTION
     Updates Properties of an existing Fabric Eventstream
 
-.EXAMPLE
-    Set-RTIEventstream 
+.PARAMETER WorkspaceId
+    Id of the Fabric Workspace for which the Eventstream should be updated. The value for WorkspaceId is a GUID. 
+    An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
-.LINK
-    https://learn.microsoft.com/en-us/rest/api/fabric/Eventstream/items/create-Eventstream?tabs=HTTP
+.PARAMETER EventstreamId
+    The Id of the Eventstream to update. The value for EventstreamId is a GUID. 
+    An example of a GUID is '12345678-1234-1234-1234-123456789012'.
+
+.PARAMETER EventstreamNewName
+    The new name of the Eventstream.
+
+.PARAMETER EventstreamDescription
+    The new description of the Eventstream.
+
+.EXAMPLE
+    Set-RtiEventstream `
+        -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+        -EventstreamId '12345678-1234-1234-1234-123456789012' `
+        -EventstreamNewName 'MyNewEventstream' `
+        -EventstreamDescription 'This is my new Eventstream'
+
+    This example will update the Eventstream with the Id '12345678-1234-1234-1234-123456789012'. 
+    
+.NOTES
+    TODO: Add functionality to update Eventstream properties using EventstreamName instead of EventstreamId
 #>
 
 [CmdletBinding()]
@@ -24,7 +44,7 @@ function Set-RtiEventstream {
         [Parameter(Mandatory=$true)]
         [string]$EventstreamId, 
         
-        [string]$EventstreamName,
+        [string]$EventstreamNewName,
 
         [ValidateLength(0, 256)]
         [string]$EventstreamDescription
