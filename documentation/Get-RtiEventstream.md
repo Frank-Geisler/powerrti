@@ -11,19 +11,47 @@ Get-RtiEventstream [-WorkspaceId] <String> [[-EventstreamName] <String>] [[-Even
 ```
 
 ## DESCRIPTION
-Retrieves Fabric Eventstreams
+Retrieves Fabric Eventstreams.
+Without the EventstreamName or EventstreamID parameter, all Eventstreams are returned.
+If you want to retrieve a specific Eventstream, you can use the EventstreamName or EventstreamID parameter.
+These
+parameters cannot be used together.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-RTIEventstream
+Get-RtiEventstream `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012'
 ```
+
+This example will give you all Eventstreams in the Workspace.
+
+### EXAMPLE 2
+```
+Get-RtiEventstream `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+    -EventstreamName 'MyEventstream'
+```
+
+This example will give you all Information about the Eventstream with the name 'MyEventstream'.
+
+### EXAMPLE 3
+```
+Get-RtiEventstream `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+    -EventstreamId '12345678-1234-1234-1234-123456789012'
+```
+
+This example will give you all Information about the Eventstream with the Id '12345678-1234-1234-1234-123456789012'.
 
 ## PARAMETERS
 
 ### -EventstreamId
-{{ Fill EventstreamId Description }}
+The Id of the Eventstream to retrieve.
+This parameter cannot be used together with EventstreamName.
+The value for WorkspaceId is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
 Type: System.String
@@ -38,7 +66,8 @@ Accept wildcard characters: False
 ```
 
 ### -EventstreamName
-{{ Fill EventstreamName Description }}
+The name of the Eventstream to retrieve.
+This parameter cannot be used together with EventstreamID.
 
 ```yaml
 Type: System.String
@@ -68,7 +97,9 @@ Accept wildcard characters: False
 ```
 
 ### -WorkspaceId
-{{ Fill WorkspaceId Description }}
+Id of the Fabric Workspace for which the Eventstreams should be retrieved.
+The value for WorkspaceId is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
 Type: System.String
@@ -90,6 +121,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+TODO: Add functionality to list all Eventhouses.
+To do so fetch all workspaces and 
+      then all eventhouses in each workspace.
 
 ## RELATED LINKS
 
