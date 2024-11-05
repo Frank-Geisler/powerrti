@@ -36,7 +36,14 @@ $mamlPath = "$basepath\en-US"
 
 #----------------------------------------------------------------------------
 # 02. Import the module to be documented
+#     ATTENTION!!!!!! The module must be loaded in the PowerShell session
 #----------------------------------------------------------------------------
+
+# FGE: Remove the module from PowerShell
+Remove-Module `
+    -Name powerrti `
+    -ErrorAction SilentlyContinue
+
 Import-Module `
     -Name $modulePathName
 
@@ -49,10 +56,6 @@ New-MarkdownHelp `
     -AlphabeticParamsOrder `
     -UseFullTypeName `
     -WithModulePage `
-    -ExcludeDontShow 
-
-#----------------------------------------------------------------------------
-# 04. Update
-#----------------------------------------------------------------------------
-Update-MarkdownHelp `
-    -Path $markdownPath
+    -ExcludeDontShow `
+    -NoMetadata `
+    -Force

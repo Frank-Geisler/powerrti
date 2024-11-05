@@ -1,10 +1,3 @@
----
-external help file: powerrti-help.xml
-Module Name: powerrti
-online version: https://learn.microsoft.com/en-us/rest/api/fabric/admin/workspaces/get-workspace?tabs=HTTP
-schema: 2.0.0
----
-
 # Get-RtiWorkspace
 
 ## SYNOPSIS

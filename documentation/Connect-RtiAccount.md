@@ -1,23 +1,17 @@
----
-external help file: powerrti-help.xml
-Module Name: powerrti
-online version:
-schema: 2.0.0
----
-
 # Connect-RtiAccount
 
 ## SYNOPSIS
-Connects to the Real-Time Intelligence WebAPI.
+Connects to the Fabric WebAPI.
 
 ## SYNTAX
 
 ```
-Connect-RtiAccount [-TenantID] <String> [-ProgressAction <ActionPreference>] [<CommonParameters>]
+Connect-RtiAccount [-TenantId] <String> [-ProgressAction <ActionPreference>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Connects to the Real-Time Intelligence WebAPI.
+Connects to the Fabric WebAPI by using the cmdlet Connect-AzAccount.
+This function retrieves the authentication token for the Fabric API and sets up the headers for API calls.
 
 ## EXAMPLES
 
@@ -44,8 +38,9 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -TenantID
-{{ Fill TenantID Description }}
+### -TenantId
+The TenantId of the Azure Active Directory tenant you want to connect to
+and in which your Fabric Capacity is.
 
 ```yaml
 Type: System.String
@@ -69,3 +64,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[Connect-AzAccount https://learn.microsoft.com/de-de/powershell/module/az.accounts/connect-azaccount?view=azps-12.4.0]()
+

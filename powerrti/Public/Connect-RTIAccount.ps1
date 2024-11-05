@@ -3,20 +3,29 @@ function Connect-RtiAccount {
 
 <#
 .SYNOPSIS
-    Connects to the Real-Time Intelligence WebAPI.
+    Connects to the Fabric WebAPI.
 
 .DESCRIPTION
-    Connects to the Real-Time Intelligence WebAPI.
+    Connects to the Fabric WebAPI by using the cmdlet Connect-AzAccount.
+    This function retrieves the authentication token for the Fabric API and sets up the headers for API calls.
 
+.PARAMETER TenantId
+    The TenantId of the Azure Active Directory tenant you want to connect to
+    and in which your Fabric Capacity is.
+    
 .EXAMPLE
     Connect-RTIAccount `
         -TenantID '12345678-1234-1234-1234-123456789012'
+
+.LINK
+    Connect-AzAccount https://learn.microsoft.com/de-de/powershell/module/az.accounts/connect-azaccount?view=azps-12.4.0
+
 #>
 
 [CmdletBinding()]
     param (
         [Parameter(Mandatory=$true)]
-        [string]$TenantID
+        [string]$TenantId
     )
 
 begin {
