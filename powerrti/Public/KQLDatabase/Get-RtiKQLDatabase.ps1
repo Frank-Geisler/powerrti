@@ -60,37 +60,43 @@ process {
             -MemberType NoteProperty `
             -Name 'parentEventhouseItemId' `
             -Value $response.properties.parentEventhouseItemId `
-            -InputObject $response
+            -InputObject $response `
+            -Force
 
         Add-Member `
             -MemberType NoteProperty `
             -Name 'queryServiceUri' `
             -Value $response.properties.queryServiceUri `
-            -InputObject $response
+            -InputObject $response `
+            -Force
 
         Add-Member `
             -MemberType NoteProperty `
             -Name 'ingestionServiceUri' `
             -Value $response.properties.ingestionServiceUri `
-            -InputObject $response
+            -InputObject $response `
+            -Force
 
         Add-Member `
             -MemberType NoteProperty `
             -Name 'databaseType' `
             -Value $response.properties.databaseType `
-            -InputObject $response
+            -InputObject $response `
+            -Force
 
         Add-Member `
             -MemberType NoteProperty `
             -Name 'oneLakeStandardStoragePeriod' `
             -Value $response.properties.oneLakeStandardStoragePeriod `
-            -InputObject $response
+            -InputObject $response `
+            -Force
 
         Add-Member `
             -MemberType NoteProperty `
             -Name 'oneLakeCachingPeriod' `
             -Value $response.properties.oneLakeCachingPeriod `
-            -InputObject $response
+            -InputObject $response `
+            -Force
 
         $response
     }
@@ -108,31 +114,36 @@ process {
                 -MemberType NoteProperty `
                 -Name 'queryServiceUri' `
                 -Value $response.properties.queryServiceUri `
-                -InputObject $response
+                -InputObject $response `
+                -Force
 
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'ingestionServiceUri' `
                 -Value $response.properties.ingestionServiceUri `
-                -InputObject $response
+                -InputObject $response `
+                -Force
 
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'databaseType' `
                 -Value $response.properties.databaseType `
-                -InputObject $response
+                -InputObject $response `
+                -Force
 
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'oneLakeStandardStoragePeriod' `
                 -Value $response.properties.oneLakeStandardStoragePeriod `
-                -InputObject $response
+                -InputObject $response `
+                -Force
 
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'oneLakeCachingPeriod' `
                 -Value $response.properties.oneLakeCachingPeriod `
-                -InputObject $response
+                -InputObject $response `
+                -Force
         }
 
         if ($PSBoundParameters.ContainsKey("KQLDatabaseName")) {
