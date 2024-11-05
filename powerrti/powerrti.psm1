@@ -20,4 +20,5 @@ $RTISession = [ordered]@{
     FabricToken         = $null
     HeaderParams        = $null
     ContentType         = @{'Content-Type' = "application/json"}
+    KustoURL            = "https://api.kusto.windows.net"
 }
