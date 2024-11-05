@@ -4,8 +4,10 @@ function Connect-RtiAccount {
 <#
 .SYNOPSIS
     Connects to the Real-Time Intelligence WebAPI.
+
 .DESCRIPTION
     Connects to the Real-Time Intelligence WebAPI.
+
 .EXAMPLE
     Connect-RTIAccount `
         -TenantID '12345678-1234-1234-1234-123456789012'
@@ -29,11 +31,11 @@ process {
     $RTISession.FabricToken = (Get-AzAccessToken `
                                     -ResourceUrl $RTISession.BaseFabricUrl).Token
 
-    # Setup headers for API call
+    # Setup headers for API calls
     $RTISession.HeaderParams = @{'Authorization'="Bearer {0}" -f $RTISession.FabricToken}
-
 }
 
-end {}
+end {
+}
 
 }
