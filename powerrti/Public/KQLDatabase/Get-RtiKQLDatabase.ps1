@@ -113,36 +113,36 @@ process {
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'queryServiceUri' `
-                -Value $response.properties.queryServiceUri `
-                -InputObject $response `
+                -Value $kqlDatabase.properties.queryServiceUri `
+                -InputObject $kqlDatabase `
                 -Force
 
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'ingestionServiceUri' `
-                -Value $response.properties.ingestionServiceUri `
-                -InputObject $response `
+                -Value $kqlDatabase.properties.ingestionServiceUri `
+                -InputObject $kqlDatabase `
                 -Force
 
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'databaseType' `
-                -Value $response.properties.databaseType `
-                -InputObject $response `
+                -Value $kqlDatabase.properties.databaseType `
+                -InputObject $kqlDatabase `
                 -Force
 
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'oneLakeStandardStoragePeriod' `
-                -Value $response.properties.oneLakeStandardStoragePeriod `
-                -InputObject $response `
+                -Value $kqlDatabase.properties.oneLakeStandardStoragePeriod `
+                -InputObject $kqlDatabase `
                 -Force
 
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'oneLakeCachingPeriod' `
-                -Value $response.properties.oneLakeCachingPeriod `
-                -InputObject $response `
+                -Value $kqlDatabase.properties.oneLakeCachingPeriod `
+                -InputObject $kqlDatabase `
                 -Force
         }
 
