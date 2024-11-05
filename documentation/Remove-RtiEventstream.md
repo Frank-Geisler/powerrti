@@ -1,7 +1,7 @@
 # Remove-RtiEventstream
 
 ## SYNOPSIS
-Removes an existing Fabric Eventhouse
+Removes an existing Fabric Eventstream
 
 ## SYNTAX
 
@@ -11,7 +11,7 @@ Remove-RtiEventstream [-WorkspaceId] <String> [[-EventstreamId] <String>] [[-Eve
 ```
 
 ## DESCRIPTION
-Removes an existing Fabric Eventhouse
+Removes an existing Fabric Eventstream
 
 ## EXAMPLES
 
@@ -37,7 +37,7 @@ This example will delete the Eventstream with the name 'MyEventstream' from the 
 ## PARAMETERS
 
 ### -EventstreamId
-The Id of the Eventhouse to delete.
+The Id of the Eventstream to delete.
 The value for Eventstream is a GUID. 
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
@@ -84,7 +84,7 @@ Accept wildcard characters: False
 ```
 
 ### -WorkspaceId
-Id of the Fabric Workspace for which the Eventhouse should be deleted.
+Id of the Fabric Workspace for which the Eventstream should be deleted.
 The value for WorkspaceId is a GUID. 
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
