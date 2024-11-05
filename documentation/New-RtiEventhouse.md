@@ -17,13 +17,18 @@ Creates a new Fabric Eventhouse
 
 ### EXAMPLE 1
 ```
-New-RTIWorkspace
+New-RtiEventhouse `
+    -WorkspaceID '12345678-1234-1234-1234-123456789012' `
+    -EventhouseName 'MyEventhouse' `
+    -EventhouseDescription 'This is my Eventhouse'
 ```
+
+This example will create a new Eventhouse with the name 'MyEventhouse' and the description 'This is my Eventhouse'.
 
 ## PARAMETERS
 
 ### -EventhouseDescription
-{{ Fill EventhouseDescription Description }}
+The description of the Eventhouse to create.
 
 ```yaml
 Type: System.String
@@ -38,7 +43,7 @@ Accept wildcard characters: False
 ```
 
 ### -EventhouseName
-{{ Fill EventhouseName Description }}
+The name of the Eventhouse to create.
 
 ```yaml
 Type: System.String
@@ -68,7 +73,9 @@ Accept wildcard characters: False
 ```
 
 ### -WorkspaceID
-{{ Fill WorkspaceID Description }}
+Id of the Fabric Workspace for which the Eventhouse should be created.
+The value for WorkspaceID is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
 Type: System.String

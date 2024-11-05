@@ -8,8 +8,23 @@ function New-RtiEventhouse {
 .DESCRIPTION
     Creates a new Fabric Eventhouse
 
+.PARAMETER WorkspaceID
+    Id of the Fabric Workspace for which the Eventhouse should be created. The value for WorkspaceID is a GUID. 
+    An example of a GUID is '12345678-1234-1234-1234-123456789012'.
+
+.PARAMETER EventhouseName
+    The name of the Eventhouse to create.
+
+.PARAMETER EventhouseDescription
+    The description of the Eventhouse to create.
+
 .EXAMPLE
-    New-RTIWorkspace 
+    New-RtiEventhouse `
+        -WorkspaceID '12345678-1234-1234-1234-123456789012' `
+        -EventhouseName 'MyEventhouse' `
+        -EventhouseDescription 'This is my Eventhouse'
+
+    This example will create a new Eventhouse with the name 'MyEventhouse' and the description 'This is my Eventhouse'.
 
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/eventhouse/items/create-eventhouse?tabs=HTTP
@@ -26,7 +41,6 @@ function New-RtiEventhouse {
 
         [ValidateLength(0, 256)]
         [string]$EventhouseDescription
-
     )
 
 begin {
