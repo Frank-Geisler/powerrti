@@ -3,17 +3,17 @@ function Remove-RtiEventstream {
 
 <#
 .SYNOPSIS
-    Removes an existing Fabric Eventhouse
+    Removes an existing Fabric Eventstream
 
 .DESCRIPTION
-    Removes an existing Fabric Eventhouse
+    Removes an existing Fabric Eventstream
 
 .PARAMETER WorkspaceId
-    Id of the Fabric Workspace for which the Eventhouse should be deleted. The value for WorkspaceId is a GUID. 
+    Id of the Fabric Workspace for which the Eventstream should be deleted. The value for WorkspaceId is a GUID. 
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .PARAMETER EventstreamId
-    The Id of the Eventhouse to delete. The value for Eventstream is a GUID. 
+    The Id of the Eventstream to delete. The value for Eventstream is a GUID. 
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .EXAMPLE
