@@ -11,19 +11,47 @@ Get-RtiEventhouse [-WorkspaceId] <String> [[-EventhouseName] <String>] [[-Eventh
 ```
 
 ## DESCRIPTION
-Retrieves Fabric Eventhouses
+Retrieves Fabric Eventhouses.
+Without the EventhouseName or EventhouseID parameter, all Eventhouses are returned.
+If you want to retrieve a specific Eventhouse, you can use the EventhouseName or EventhouseID parameter.
+These
+parameters cannot be used together.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-RTIEventhouse
+Get-RTIEventhouse `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012'
 ```
+
+This example will give you all Eventhouses in the Workspace.
+
+### EXAMPLE 2
+```
+Get-RTIEventhouse `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+    -EventhouseName 'MyEventhouse'
+```
+
+This example will give you all Information about the Eventhouse with the name 'MyEventhouse'.
+
+### EXAMPLE 3
+```
+Get-RTIEventhouse `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+    -EventhouseId '12345678-1234-1234-1234-123456789012'
+```
+
+This example will give you all Information about the Eventhouse with the Id '12345678-1234-1234-1234-123456789012'.
 
 ## PARAMETERS
 
 ### -EventhouseId
-{{ Fill EventhouseId Description }}
+The Id of the Eventhouse to retrieve.
+This parameter cannot be used together with EventhouseName.
+The value for WorkspaceId is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
 Type: System.String
@@ -38,7 +66,8 @@ Accept wildcard characters: False
 ```
 
 ### -EventhouseName
-{{ Fill EventhouseName Description }}
+The name of the Eventhouse to retrieve.
+This parameter cannot be used together with EventhouseID.
 
 ```yaml
 Type: System.String
@@ -68,7 +97,9 @@ Accept wildcard characters: False
 ```
 
 ### -WorkspaceId
-{{ Fill WorkspaceId Description }}
+Id of the Fabric Workspace for which the Eventhouses should be retrieved.
+The value for WorkspaceId is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
 Type: System.String
@@ -90,6 +121,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+TODO: Add functionality to list all Eventhouses in the subscription.
+To do so fetch all workspaces 
+and then all eventhouses in each workspace.
 
 ## RELATED LINKS
 

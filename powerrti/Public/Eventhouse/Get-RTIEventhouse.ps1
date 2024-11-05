@@ -6,18 +6,50 @@ function Get-RtiEventhouse {
     Retrieves Fabric Eventhouses
 
 .DESCRIPTION
-    Retrieves Fabric Eventhouses
+    Retrieves Fabric Eventhouses. Without the EventhouseName or EventhouseID parameter, all Eventhouses are returned.
+    If you want to retrieve a specific Eventhouse, you can use the EventhouseName or EventhouseID parameter. These
+    parameters cannot be used together.
+
+.PARAMETER WorkspaceId
+    Id of the Fabric Workspace for which the Eventhouses should be retrieved. The value for WorkspaceId is a GUID. 
+    An example of a GUID is '12345678-1234-1234-1234-123456789012'.
+
+.PARAMETER EventhouseName
+    The name of the Eventhouse to retrieve. This parameter cannot be used together with EventhouseID. 
+
+.PARAMETER EventhouseId
+    The Id of the Eventhouse to retrieve. This parameter cannot be used together with EventhouseName. The value for WorkspaceId is a GUID. 
+    An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .EXAMPLE
-    Get-RTIEventhouse
+    Get-RTIEventhouse `
+        -WorkspaceId '12345678-1234-1234-1234-123456789012' 
+
+    This example will give you all Eventhouses in the Workspace.
+
+.EXAMPLE
+    Get-RTIEventhouse `
+        -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+        -EventhouseName 'MyEventhouse'
+
+    This example will give you all Information about the Eventhouse with the name 'MyEventhouse'.
+
+.EXAMPLE
+    Get-RTIEventhouse `
+        -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+        -EventhouseId '12345678-1234-1234-1234-123456789012'
+
+    This example will give you all Information about the Eventhouse with the Id '12345678-1234-1234-1234-123456789012'. 
 
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/eventhouse/items/list-eventhouses?tabs=HTTP
 
+.NOTES
+    TODO: Add functionality to list all Eventhouses in the subscription. To do so fetch all workspaces 
+    and then all eventhouses in each workspace.
 #>
 
-#TODO: Add functionality to list all Eventhouses. To do so fetch all workspaces and 
-#      then all eventhouses in each workspace.
+#
 
 [CmdletBinding()]
     param (
@@ -57,6 +89,35 @@ process {
                         -Method GET `
                         -Uri $eventhouseAPIEventhouseId `
                         -ContentType "application/json"
+
+        # FGE: adding Members for convenience
+        Add-Member `
+            -MemberType NoteProperty `
+            -Name 'queryServiceUri' `
+            -Value $response.properties.queryServiceUri `
+            -InputObject $response `
+            -Force
+
+        Add-Member `
+            -MemberType NoteProperty `
+            -Name 'ingestionServiceUri' `
+            -Value $response.properties.ingestionServiceUri `
+            -InputObject $response `
+            -Force
+
+        Add-Member `
+            -MemberType NoteProperty `
+            -Name 'databasesItemIds' `
+            -Value $response.properties.databasesItemIds `
+            -InputObject $response `
+            -Force
+
+        Add-Member `
+            -MemberType NoteProperty `
+            -Name 'minimumConsumptionUnits' `
+            -Value $response.properties.minimumConsumptionUnits `
+            -InputObject $response `
+            -Force
                 
         $response
     }
@@ -67,6 +128,37 @@ process {
                     -Method GET `
                     -Uri $eventhouseAPI `
                     -ContentType "application/json"
+
+        foreach ($eventhouse in $response.value) {
+            # FGE: adding Members for convenience
+            Add-Member `
+                -MemberType NoteProperty `
+                -Name 'queryServiceUri' `
+                -Value $eventhouse.properties.queryServiceUri `
+                -InputObject $eventhouse `
+                -Force
+
+            Add-Member `
+                -MemberType NoteProperty `
+                -Name 'ingestionServiceUri' `
+                -Value $eventhouse.properties.ingestionServiceUri `
+                -InputObject $eventhouse `
+                -Force
+
+            Add-Member `
+                -MemberType NoteProperty `
+                -Name 'databasesItemIds' `
+                -Value $eventhouse.properties.databasesItemIds `
+                -InputObject $eventhouse `
+                -Force
+
+            Add-Member `
+                -MemberType NoteProperty `
+                -Name 'minimumConsumptionUnits' `
+                -Value $eventhouse.properties.minimumConsumptionUnits `
+                -InputObject $eventhouse `
+                -Force
+        }
 
         if ($PSBoundParameters.ContainsKey("EventhouseName")) {
             $response.value | `
