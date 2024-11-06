@@ -11,7 +11,11 @@ Get-RtiKQLDashboard [-WorkspaceId] <String> [[-KQLDashboardName] <String>] [[-KQ
 ```
 
 ## DESCRIPTION
-Retrieves Fabric KQLDashboards
+Retrieves Fabric KQLDashboards.
+Without the KQLDashboardName or KQLDashboardID parameter, all KQLDashboards are returned.
+If you want to retrieve a specific KQLDashboard, you can use the KQLDashboardName or KQLDashboardID parameter.
+These
+parameters cannot be used together.
 
 ## EXAMPLES
 
@@ -23,7 +27,10 @@ Get-RTIKQLDashboard
 ## PARAMETERS
 
 ### -KQLDashboardId
-{{ Fill KQLDashboardId Description }}
+The Id of the KQLDashboard to retrieve.
+This parameter cannot be used together with KQLDashboardName.
+The value for KQLDashboardID is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
 Type: System.String
@@ -38,7 +45,8 @@ Accept wildcard characters: False
 ```
 
 ### -KQLDashboardName
-{{ Fill KQLDashboardName Description }}
+The name of the KQLDashboard to retrieve.
+This parameter cannot be used together with KQLDashboardID.
 
 ```yaml
 Type: System.String
@@ -68,7 +76,9 @@ Accept wildcard characters: False
 ```
 
 ### -WorkspaceId
-{{ Fill WorkspaceId Description }}
+Id of the Fabric Workspace for which the KQLDashboards should be retrieved.
+The value for WorkspaceId is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
 Type: System.String
@@ -90,5 +100,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+TODO: Add functionality to list all KQLDashboards.
+To do so fetch all workspaces and 
+      then all KQLDashboards in each workspace.
 
 ## RELATED LINKS

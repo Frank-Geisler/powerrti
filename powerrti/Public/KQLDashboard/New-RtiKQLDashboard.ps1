@@ -8,9 +8,24 @@ function New-RtiKQLDashboard {
 .DESCRIPTION
     Creates a new Fabric KQLDashboard
 
-.EXAMPLE
-    New-RTIWorkspace 
+.PARAMETER WorkspaceID
+    Id of the Fabric Workspace for which the KQLDashboard should be created. The value for WorkspaceID is a GUID. 
+    An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
+.PARAMETER KQLDashboardName
+    The name of the KQLDashboard to create.
+
+.PARAMETER KQLDashboardDescription
+    The description of the KQLDashboard to create.
+
+.EXAMPLE
+    New-RtiDashboard `
+        -WorkspaceID '12345678-1234-1234-1234-123456789012' `
+        -KQLDashboardName 'MyKQLDashboard' `
+        -KQLDashboardDescription 'This is my KQLDashboard'
+
+    This example will create a new KQLDashboard with the name 'MyKQLDashboard' and the description 'This is my KQLDashboard'.	
+    
 #>
 
 [CmdletBinding()]
