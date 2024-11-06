@@ -6,15 +6,49 @@ function Get-RtiKQLQueryset {
     Retrieves Fabric KQLQuerysets
 
 .DESCRIPTION
-    Retrieves Fabric KQLQuerysets
+    Retrieves Fabric KQLQuerysets. Without the KQLQuerysetName or KQLQuerysetId parameter,
+    all KQLQuerysets are returned in the given Workspace. If you want to retrieve a specific 
+    KQLQueryset, you can use the KQLQuerysetName or KQLQuerysetId parameter. These parameters
+    cannot be used together.
+
+.PARAMETER WorkspaceId
+    Id of the Fabric Workspace for which the KQLQuerysets should be retrieved. The value for WorkspaceId is a GUID. 
+    An example of a GUID is '12345678-1234-1234-1234-123456789012'. This parameter is mandatory.
+
+.PARAMETER KQLQuerysetName
+    The name of the KQLQueryset to retrieve. This parameter cannot be used together with KQLQuerysetId.
+
+.PARAMETER KQLQuerysetId
+    The Id of the KQLQueryset to retrieve. This parameter cannot be used together with KQLQuerysetName. 
+    The value for KQLQuerysetId is a GUID. An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .EXAMPLE
-    Get-RTIKQLQueryset
+    Get-RtiKQLQueryset `
+        -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+        -KQLQuerysetName 'MyKQLQueryset'
+
+    This example will retrieve the KQLQueryset with the name 'MyKQLQueryset'.
+
+.EXAMPLE
+    Get-RtiKQLQueryset `
+        -WorkspaceId '12345678-1234-1234-1234-123456789012'
+
+    This example will retrieve all KQLQuerysets in the workspace that is specified 
+    by the WorkspaceId.
+
+.EXAMPLE
+    Get-RtiKQLQueryset `
+        -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+        -KQLQuerysetId '12345678-1234-1234-1234-123456789012'
+
+    This example will retrieve the KQLQueryset with the ID '12345678-1234-1234-1234-123456789012'.
+
+.NOTES
+    TODO: Add functionality to list all KQLQuerysets. To do so fetch all workspaces and 
+        then all KQLQuerysets in each workspace.
 
 #>
 
-#TODO: Add functionality to list all KQLQuerysets. To do so fetch all workspaces and 
-#      then all KQLQuerysets in each workspace.
 
 [CmdletBinding()]
     param (

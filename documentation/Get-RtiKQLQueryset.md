@@ -11,19 +11,50 @@ Get-RtiKQLQueryset [-WorkspaceId] <String> [[-KQLQuerysetName] <String>] [[-KQLQ
 ```
 
 ## DESCRIPTION
-Retrieves Fabric KQLQuerysets
+Retrieves Fabric KQLQuerysets.
+Without the KQLQuerysetName or KQLQuerysetId parameter,
+all KQLQuerysets are returned in the given Workspace.
+If you want to retrieve a specific 
+KQLQueryset, you can use the KQLQuerysetName or KQLQuerysetId parameter.
+These parameters
+cannot be used together.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-RTIKQLQueryset
+Get-RtiKQLQueryset `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+    -KQLQuerysetName 'MyKQLQueryset'
 ```
+
+This example will retrieve the KQLQueryset with the name 'MyKQLQueryset'.
+
+### EXAMPLE 2
+```
+Get-RtiKQLQueryset `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012'
+```
+
+This example will retrieve all KQLQuerysets in the workspace that is specified 
+by the WorkspaceId.
+
+### EXAMPLE 3
+```
+Get-RtiKQLQueryset `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+    -KQLQuerysetId '12345678-1234-1234-1234-123456789012'
+```
+
+This example will retrieve the KQLQueryset with the ID '12345678-1234-1234-1234-123456789012'.
 
 ## PARAMETERS
 
 ### -KQLQuerysetId
-{{ Fill KQLQuerysetId Description }}
+The Id of the KQLQueryset to retrieve.
+This parameter cannot be used together with KQLQuerysetName. 
+The value for KQLQuerysetId is a GUID.
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
 Type: System.String
@@ -38,7 +69,8 @@ Accept wildcard characters: False
 ```
 
 ### -KQLQuerysetName
-{{ Fill KQLQuerysetName Description }}
+The name of the KQLQueryset to retrieve.
+This parameter cannot be used together with KQLQuerysetId.
 
 ```yaml
 Type: System.String
@@ -68,7 +100,10 @@ Accept wildcard characters: False
 ```
 
 ### -WorkspaceId
-{{ Fill WorkspaceId Description }}
+Id of the Fabric Workspace for which the KQLQuerysets should be retrieved.
+The value for WorkspaceId is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
+This parameter is mandatory.
 
 ```yaml
 Type: System.String
@@ -90,5 +125,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+TODO: Add functionality to list all KQLQuerysets.
+To do so fetch all workspaces and 
+    then all KQLQuerysets in each workspace.
 
 ## RELATED LINKS

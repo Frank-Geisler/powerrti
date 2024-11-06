@@ -1,7 +1,7 @@
 # Remove-RtiKQLQueryset
 
 ## SYNOPSIS
-Removes an existing Fabric Eventhouse
+Removes an existing Fabric KQLQueryset.
 
 ## SYNTAX
 
@@ -11,19 +11,25 @@ Remove-RtiKQLQueryset [-WorkspaceId] <String> [-KQLQuerysetId] <String> [-Progre
 ```
 
 ## DESCRIPTION
-Removes an existing Fabric Eventhouse
+Removes an existing Fabric KQLQueryset.
+The Eventhouse is identified by the WorkspaceId and KQLQuerysetId.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-New-RTIWorkspace
+Remove-RtiKQLQueryset `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+    -KQLQuerysetId '12345678-1234-1234-1234-123456789012'
 ```
 
 ## PARAMETERS
 
 ### -KQLQuerysetId
-{{ Fill KQLQuerysetId Description }}
+The Id of the KQLQueryset to remove.
+The value for KQLQuerysetId is a GUID.
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
+This parameter is mandatory.
 
 ```yaml
 Type: System.String
@@ -53,7 +59,10 @@ Accept wildcard characters: False
 ```
 
 ### -WorkspaceId
-{{ Fill WorkspaceId Description }}
+Id of the Fabric Workspace for which the KQLQueryset should be removed.
+The value for WorkspaceId is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
+This parameter is mandatory.
 
 ```yaml
 Type: System.String
@@ -75,5 +84,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+TODO: Add functionality to remove Eventhouse by name.
 
 ## RELATED LINKS

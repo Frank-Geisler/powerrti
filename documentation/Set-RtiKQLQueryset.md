@@ -11,19 +11,30 @@ Set-RtiKQLQueryset [-WorkspaceId] <String> [-KQLQuerysetId] <String> [[-KQLQuery
 ```
 
 ## DESCRIPTION
-Updates Properties of an existing Fabric KQLQueryset
+Updates Properties of an existing Fabric KQLQueryset.
+The KQLQueryset is identified by 
+the WorkspaceId and KQLQuerysetId.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Set-RTIKQLQueryset
+Set-RTIKQLQueryset `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+    -KQLQuerysetId '12345678-1234-1234-1234-123456789012' `
+    -KQLQuerysetNewName 'MyKQLQueryset' `
+    -KQLQuerysetDescription 'This is my KQLQueryset'
 ```
+
+This example will update the KQLQueryset.
+The KQLQueryset will have the name 'MyKQLQueryset'
+and the description 'This is my KQLQueryset'.
 
 ## PARAMETERS
 
 ### -KQLQuerysetDescription
-{{ Fill KQLQuerysetDescription Description }}
+The new description of the KQLQueryset.
+This parameter is optional.
 
 ```yaml
 Type: System.String
@@ -38,7 +49,10 @@ Accept wildcard characters: False
 ```
 
 ### -KQLQuerysetId
-{{ Fill KQLQuerysetId Description }}
+The Id of the KQLQueryset to update.
+The value for KQLQuerysetId is a GUID.
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
+This parameter is mandatory.
 
 ```yaml
 Type: System.String
@@ -53,7 +67,8 @@ Accept wildcard characters: False
 ```
 
 ### -KQLQuerysetName
-{{ Fill KQLQuerysetName Description }}
+The new name of the KQLQueryset.
+This parameter is optional.
 
 ```yaml
 Type: System.String
@@ -83,7 +98,10 @@ Accept wildcard characters: False
 ```
 
 ### -WorkspaceId
-{{ Fill WorkspaceId Description }}
+Id of the Fabric Workspace for which the KQLQueryset should be updated.
+The value for WorkspaceId is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
+This parameter is mandatory.
 
 ```yaml
 Type: System.String
