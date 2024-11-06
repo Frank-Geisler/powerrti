@@ -6,14 +6,28 @@ function Remove-RtiKQLDatabase {
     Removes an existing Fabric Eventhouse
 
 .DESCRIPTION
-    Removes an existing Fabric Eventhouse
+    Removes an existing Fabric Eventhouse. The Eventhouse is removed from the specified Workspace.
+
+.PARAMETER WorkspaceId
+    Id of the Fabric Workspace from which the Eventhouse should be removed. The value for WorkspaceId is a GUID. 
+    An example of a GUID is '12345678-1234-1234-1234-123456789012'.
+
+.PARAMETER EventhouseId
+    The Id of the Eventhouse to remove. The value for EventhouseId is a GUID. 
+    An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .EXAMPLE
-    New-RTIWorkspace 
+    Remove-RtiEventhouse `
+        -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+        -EventhouseId '12345678-1234-1234-1234-123456789012'
+        
+    This example will remove the Eventhouse with the Id '12345678-1234-1234-1234-123456789012'.
+
+.NOTES
+    TODO: Add functionality to remove Eventhouse by name.
 
 #>
 
-# TODO: Add functionality to remove Eventhouse by name.
 
 [CmdletBinding()]
     param (

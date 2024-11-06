@@ -6,10 +6,32 @@ function New-RtiKQLDatabase {
     Creates a new Fabric KQLDatabase
 
 .DESCRIPTION
-    Creates a new Fabric KQLDatabase
+    Creates a new Fabric KQLDatabase. The KQLDatabase is created in the specified Workspace and Eventhouse.
+    It will be created with the specified name and description.
+
+.PARAMETER  WorkspaceID
+    Id of the Fabric Workspace for which the KQLDatabase should be created. The value for WorkspaceID is a GUID. 
+    An example of a GUID is '12345678-1234-1234-1234-123456789012'.
+
+.PARAMETER  EventhouseID
+    Id of the Fabric Eventhouse for which the KQLDatabase should be created. The value for EventhouseID is a GUID. 
+    An example of a GUID is '12345678-1234-1234-1234-123456789012'.
+
+.PARAMETER  KQLDatabaseName
+    The name of the KQLDatabase to create. The name must be unique within the eventhouse and is a
+    mandatory parameter.
+
+.PARAMETER  KQLDatabaseDescription
+    The description of the KQLDatabase to create.
 
 .EXAMPLE
-    New-RTIWorkspace 
+    New-RtiKQLDatabase `
+        -WorkspaceID '12345678-1234-1234-1234-123456789012' `
+        -EventhouseID '12345678-1234-1234-1234-123456789012' `
+        -KQLDatabaseName 'MyKQLDatabase' `
+        -KQLDatabaseDescription 'This is my KQLDatabase'
+
+    This example will create a new KQLDatabase with the name 'MyKQLDatabase' and the description 'This is my KQLDatabase'.
 
 #>
 
@@ -36,7 +58,7 @@ begin {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
     }
 
-    # Create body of request
+    # Create body for the request
     $body = @{
         'displayName' = $KQLDatabaseName
         'description' = $KQLDatabaseDescription
@@ -63,6 +85,8 @@ process {
     $response
 }
 
-end {}
+end {
+    
+}
 
 }

@@ -11,19 +11,29 @@ New-RtiKQLDatabase [-WorkspaceID] <String> [-EventhouseID] <String> [-KQLDatabas
 ```
 
 ## DESCRIPTION
-Creates a new Fabric KQLDatabase
+Creates a new Fabric KQLDatabase.
+The KQLDatabase is created in the specified Workspace and Eventhouse.
+It will be created with the specified name and description.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-New-RTIWorkspace
+New-RtiKQLDatabase `
+    -WorkspaceID '12345678-1234-1234-1234-123456789012' `
+    -EventhouseID '12345678-1234-1234-1234-123456789012' `
+    -KQLDatabaseName 'MyKQLDatabase' `
+    -KQLDatabaseDescription 'This is my KQLDatabase'
 ```
+
+This example will create a new KQLDatabase with the name 'MyKQLDatabase' and the description 'This is my KQLDatabase'.
 
 ## PARAMETERS
 
 ### -EventhouseID
-{{ Fill EventhouseID Description }}
+Id of the Fabric Eventhouse for which the KQLDatabase should be created.
+The value for EventhouseID is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
 Type: System.String
@@ -38,7 +48,7 @@ Accept wildcard characters: False
 ```
 
 ### -KQLDatabaseDescription
-{{ Fill KQLDatabaseDescription Description }}
+The description of the KQLDatabase to create.
 
 ```yaml
 Type: System.String
@@ -53,7 +63,9 @@ Accept wildcard characters: False
 ```
 
 ### -KQLDatabaseName
-{{ Fill KQLDatabaseName Description }}
+The name of the KQLDatabase to create.
+The name must be unique within the eventhouse and is a
+mandatory parameter.
 
 ```yaml
 Type: System.String
@@ -83,7 +95,9 @@ Accept wildcard characters: False
 ```
 
 ### -WorkspaceID
-{{ Fill WorkspaceID Description }}
+Id of the Fabric Workspace for which the KQLDatabase should be created.
+The value for WorkspaceID is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
 Type: System.String

@@ -11,19 +11,33 @@ Set-RtiKQLDatabase [-WorkspaceId] <String> [-KQLDatabaseId] <String> [[-KQLDatab
 ```
 
 ## DESCRIPTION
-Updates Properties of an existing Fabric KQLDatabase
+Updates Properties of an existing Fabric KQLDatabase.
+The KQLDatabase is updated 
+in the specified Workspace.
+The KQLDatabaseId is used to identify the KQLDatabase
+that should be updated.
+The KQLDatabaseNewName and KQLDatabaseDescription are the 
+properties that can be updated.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Set-RTIKQLDatabase
+Set-RtiKQLDatabase `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+    -KQLDatabaseId '12345678-1234-1234-1234-123456789012' `
+    -KQLDatabaseNewName 'MyNewKQLDatabase' `
+    -KQLDatabaseDescription 'This is my new KQLDatabase'
 ```
+
+This example will update the KQLDatabase with the Id '12345678-1234-1234-1234-123456789012'.
+It will update the name to 'MyNewKQLDatabase' and the description to 'This is my new KQLDatabase'.
 
 ## PARAMETERS
 
 ### -KQLDatabaseDescription
-{{ Fill KQLDatabaseDescription Description }}
+The new description of the KQLDatabase.
+The description can be up to 256 characters long.
 
 ```yaml
 Type: System.String
@@ -38,7 +52,9 @@ Accept wildcard characters: False
 ```
 
 ### -KQLDatabaseId
-{{ Fill KQLDatabaseId Description }}
+The Id of the KQLDatabase to update.
+The value for KQLDatabaseId is a GUID. 
+An example of a GUID is '12345678-1234-123-1234-123456789012'.
 
 ```yaml
 Type: System.String
@@ -83,7 +99,9 @@ Accept wildcard characters: False
 ```
 
 ### -WorkspaceId
-{{ Fill WorkspaceId Description }}
+Id of the Fabric Workspace for which the KQLDatabase should be updated.
+The value for WorkspaceId is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
 Type: System.String
@@ -107,6 +125,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
-
-[https://learn.microsoft.com/en-us/rest/api/fabric/KQLDatabase/items/create-KQLDatabase?tabs=HTTP](https://learn.microsoft.com/en-us/rest/api/fabric/KQLDatabase/items/create-KQLDatabase?tabs=HTTP)
-

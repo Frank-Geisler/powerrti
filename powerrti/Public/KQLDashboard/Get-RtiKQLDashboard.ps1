@@ -27,8 +27,6 @@ function Get-RtiKQLDashboard {
 .NOTES
     TODO: Add functionality to list all KQLDashboards. To do so fetch all workspaces and 
           then all KQLDashboards in each workspace.
-
-
 #>
 
 

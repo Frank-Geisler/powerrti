@@ -11,19 +11,48 @@ Get-RtiKQLDatabase [-WorkspaceId] <String> [[-KQLDatabaseName] <String>] [[-KQLD
 ```
 
 ## DESCRIPTION
-Retrieves Fabric KQLDatabases
+Retrieves Fabric KQLDatabases.
+Without the KQLDatabaseName or KQLDatabaseID parameter, 
+all KQLDatabases are returned.
+If you want to retrieve a specific KQLDatabase, you can
+use the KQLDatabaseName or KQLDatabaseID parameter.
+These parameters cannot be used together.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
+Get-RTIKQLDatabase `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+    -KQLDatabaseName 'MyKQLDatabase'
+```
+
+This example will retrieve the KQLDatabase with the name 'MyKQLDatabase'.
+
+### EXAMPLE 2
+```
 Get-RTIKQLDatabase
 ```
+
+This example will retrieve all KQLDatabases in the workspace that is specified 
+by the WorkspaceId.
+
+### EXAMPLE 3
+```
+Get-RTIKQLDatabase `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+    -KQLDatabaseId '12345678-1234-1234-1234-123456789012'
+```
+
+This example will retrieve the KQLDatabase with the ID '12345678-1234-1234-1234-123456789012'.
 
 ## PARAMETERS
 
 ### -KQLDatabaseId
-{{ Fill KQLDatabaseId Description }}
+The Id of the KQLDatabase to retrieve.
+This parameter cannot be used together with KQLDatabaseName. 
+The value for KQLDatabaseID is a GUID.
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
 Type: System.String
@@ -38,7 +67,8 @@ Accept wildcard characters: False
 ```
 
 ### -KQLDatabaseName
-{{ Fill KQLDatabaseName Description }}
+The name of the KQLDatabase to retrieve.
+This parameter cannot be used together with KQLDatabaseID.
 
 ```yaml
 Type: System.String
@@ -68,7 +98,9 @@ Accept wildcard characters: False
 ```
 
 ### -WorkspaceId
-{{ Fill WorkspaceId Description }}
+Id of the Fabric Workspace for which the KQLDatabases should be retrieved.
+The value for WorkspaceId is a GUID. 
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
 Type: System.String
@@ -90,5 +122,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+TODO: Add functionality to list all KQLDatabases.
+To do so fetch all workspaces and 
+      then all KQLDatabases in each workspace.
 
 ## RELATED LINKS

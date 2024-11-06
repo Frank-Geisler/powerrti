@@ -6,13 +6,37 @@ function Set-RtiKQLDatabase {
     Updates Properties of an existing Fabric KQLDatabase
 
 .DESCRIPTION
-    Updates Properties of an existing Fabric KQLDatabase
+    Updates Properties of an existing Fabric KQLDatabase. The KQLDatabase is updated 
+    in the specified Workspace. The KQLDatabaseId is used to identify the KQLDatabase
+    that should be updated. The KQLDatabaseNewName and KQLDatabaseDescription are the 
+    properties that can be updated.
+
+.PARAMETER WorkspaceId
+    Id of the Fabric Workspace for which the KQLDatabase should be updated. The value for WorkspaceId is a GUID. 
+    An example of a GUID is '12345678-1234-1234-1234-123456789012'.
+
+.PARAMETER KQLDatabaseId
+    The Id of the KQLDatabase to update. The value for KQLDatabaseId is a GUID. 
+    An example of a GUID is '12345678-1234-123-1234-123456789012'.
+
+.PARAMETER KQLDatabaseNewName
+    The new name of the KQLDatabase.
+
+.PARAMETER KQLDatabaseDescription
+    The new description of the KQLDatabase. The description can be up to 256 characters long.
 
 .EXAMPLE
-    Set-RTIKQLDatabase 
+    Set-RtiKQLDatabase `
+        -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+        -KQLDatabaseId '12345678-1234-1234-1234-123456789012' `
+        -KQLDatabaseNewName 'MyNewKQLDatabase' `
+        -KQLDatabaseDescription 'This is my new KQLDatabase'
+
+    This example will update the KQLDatabase with the Id '12345678-1234-1234-1234-123456789012'.
+    It will update the name to 'MyNewKQLDatabase' and the description to 'This is my new KQLDatabase'.
 
 .LINK
-    https://learn.microsoft.com/en-us/rest/api/fabric/KQLDatabase/items/create-KQLDatabase?tabs=HTTP
+ 
 #>
 
 [CmdletBinding()]
@@ -28,7 +52,7 @@ function Set-RtiKQLDatabase {
 
         [ValidateLength(0, 256)]
         [string]$KQLDatabaseDescription
-
+        
     )
 
 begin {
