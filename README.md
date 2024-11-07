@@ -1,4 +1,4 @@
-# powerrit
+# powerrti
 
 This is a PowerShell Module that can help automate creating and managing Real-Time Intelligence Environments.
 
