@@ -56,8 +56,10 @@ function Get-RtiEventhouse {
         [Parameter(Mandatory=$true)]
         [string]$WorkspaceId,
 
+        [Alias("Name")]
         [string]$EventhouseName,
 
+        [Alias("Id")]
         [string]$EventhouseId
     )
 

@@ -36,6 +36,7 @@ function Remove-RtiKQLDatabase {
         [string]$WorkspaceId, 
         
         [Parameter(Mandatory=$true)]
+        [Alias("Id")]
         [string]$KQLDatabaseId
 
     )

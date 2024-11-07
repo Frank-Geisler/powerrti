@@ -46,7 +46,7 @@ EventhouseId and EventhouseName cannot be used together.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: False
 Position: 2
@@ -62,7 +62,7 @@ EventhouseId and EventhouseName cannot be used together.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Name
 
 Required: False
 Position: 3

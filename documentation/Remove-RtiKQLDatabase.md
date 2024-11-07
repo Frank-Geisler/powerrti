@@ -33,7 +33,7 @@ This example will remove the Eventhouse with the Id '12345678-1234-1234-1234-123
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: 2

@@ -34,7 +34,7 @@ The new description of the Eventstream.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Description
 
 Required: False
 Position: 4
@@ -51,7 +51,7 @@ An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: 2
@@ -66,7 +66,7 @@ The new name of the Eventstream.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: NewName
 
 Required: False
 Position: 3

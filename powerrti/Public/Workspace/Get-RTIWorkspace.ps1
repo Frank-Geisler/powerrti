@@ -80,16 +80,21 @@ function Get-RtiWorkspace {
 [CmdletBinding()]
     param (
 
+        [Alias("Id")]
         [string]$WorkspaceId,
 
+        [Alias("Name")]
         [string]$WorkspaceName,
 
+        [Alias("CapacityId")]
         [string]$WorkspaceCapacityId,
 
         [ValidateSet("Personal", "Workspace", "Adminworkspace")]
+        [Alias("Type")]
         [string]$WorkspaceType,
 
         [ValidateSet("active", "deleted")]
+        [Alias("State")]
         [string]$WorkspaceState
         
     )

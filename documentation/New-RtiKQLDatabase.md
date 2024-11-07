@@ -53,7 +53,7 @@ The description of the KQLDatabase to create.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Description
 
 Required: False
 Position: 4
@@ -70,7 +70,7 @@ mandatory parameter.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Name
 
 Required: True
 Position: 3

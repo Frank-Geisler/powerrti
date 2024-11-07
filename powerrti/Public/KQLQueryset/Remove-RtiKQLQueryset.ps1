@@ -34,6 +34,7 @@ function Remove-RtiKQLQueryset {
         [string]$WorkspaceId, 
         
         [Parameter(Mandatory=$true)]
+        [Alias("Id")]
         [string]$KQLQuerysetId
 
     )

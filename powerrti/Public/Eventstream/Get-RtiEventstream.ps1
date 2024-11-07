@@ -54,8 +54,10 @@ function Get-RtiEventstream {
         [Parameter(Mandatory=$true)]
         [string]$WorkspaceId,
 
+        [Alias("Name")]
         [string]$EventstreamName,
 
+        [Alias("Id")]
         [string]$EventstreamId
     )
 

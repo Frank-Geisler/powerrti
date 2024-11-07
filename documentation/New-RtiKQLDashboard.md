@@ -33,7 +33,7 @@ The description of the KQLDashboard to create.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Description
 
 Required: False
 Position: 3
@@ -48,7 +48,7 @@ The name of the KQLDashboard to create.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Name
 
 Required: True
 Position: 2

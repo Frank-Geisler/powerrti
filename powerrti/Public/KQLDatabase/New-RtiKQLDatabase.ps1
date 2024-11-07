@@ -45,9 +45,11 @@ function New-RtiKQLDatabase {
         [string]$EventhouseID, 
         
         [Parameter(Mandatory=$true)]
+        [Alias("Name")]
         [string]$KQLDatabaseName,
 
         [ValidateLength(0, 256)]
+        [Alias("Description")]
         [string]$KQLDatabaseDescription
 
     )

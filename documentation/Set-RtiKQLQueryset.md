@@ -39,7 +39,7 @@ This parameter is optional.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Description
 
 Required: False
 Position: 4
@@ -57,7 +57,7 @@ This parameter is mandatory.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: True
 Position: 2
@@ -73,7 +73,7 @@ This parameter is optional.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Name
 
 Required: False
 Position: 3

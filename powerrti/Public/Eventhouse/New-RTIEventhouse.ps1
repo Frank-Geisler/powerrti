@@ -37,9 +37,11 @@ function New-RtiEventhouse {
         [string]$WorkspaceID, 
         
         [Parameter(Mandatory=$true)]
+        [Alias("Name")]
         [string]$EventhouseName,
 
         [ValidateLength(0, 256)]
+        [Alias("Description")]
         [string]$EventhouseDescription
     )
 

@@ -44,11 +44,14 @@ function Set-RtiKQLQueryset {
         [string]$WorkspaceId, 
 
         [Parameter(Mandatory=$true)]
+        [Alias("Id")]
         [string]$KQLQuerysetId, 
         
+        [Alias("Name")]
         [string]$KQLQuerysetName,
 
         [ValidateLength(0, 256)]
+        [Alias("Description")]
         [string]$KQLQuerysetDescription
 
     )

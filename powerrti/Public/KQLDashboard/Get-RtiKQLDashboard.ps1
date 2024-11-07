@@ -35,8 +35,10 @@ function Get-RtiKQLDashboard {
         [Parameter(Mandatory=$true)]
         [string]$WorkspaceId,
 
+        [Alias("Name")]
         [string]$KQLDashboardName,
 
+        [Alias("Id")]
         [string]$KQLDashboardId
     )
 

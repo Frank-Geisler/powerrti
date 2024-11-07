@@ -96,7 +96,7 @@ An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: CapacityId
 
 Required: False
 Position: 3
@@ -113,7 +113,7 @@ An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: False
 Position: 1
@@ -129,7 +129,7 @@ This parameter cannot be used together with WorkspaceID.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Name
 
 Required: False
 Position: 2
@@ -149,7 +149,7 @@ can be used are 'active' and 'deleted'.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: State
 
 Required: False
 Position: 5
@@ -169,7 +169,7 @@ can be used are 'Personal', 'Workspace' and 'Adminworkspace'.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Type
 
 Required: False
 Position: 4

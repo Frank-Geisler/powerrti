@@ -45,8 +45,10 @@ function Remove-RtiEventhouse {
         [Parameter(Mandatory=$true)]
         [string]$WorkspaceId, 
         
+        [Alias("Id")]
         [string]$EventhouseId,
 
+        [Alias("Name")]
         [string]$EventhouseName
 
     )

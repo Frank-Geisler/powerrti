@@ -55,8 +55,10 @@ function Get-RtiKQLQueryset {
         [Parameter(Mandatory=$true)]
         [string]$WorkspaceId,
 
+        [Alias("Name")]
         [string]$KQLQuerysetName,
 
+        [Alias("Id")]
         [string]$KQLQuerysetId
     )
 

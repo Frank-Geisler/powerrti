@@ -35,7 +35,7 @@ An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Id
 
 Required: False
 Position: 3
@@ -51,7 +51,7 @@ This parameter cannot be used together with KQLDashboardID.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases:
+Aliases: Name
 
 Required: False
 Position: 2

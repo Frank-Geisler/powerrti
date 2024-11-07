@@ -41,8 +41,10 @@ function Remove-RtiEventstream {
         [Parameter(Mandatory=$true)]
         [string]$WorkspaceId, 
         
+        [Alias("Id")]
         [string]$EventstreamId,
 
+        [Alias("Name")]
         [string]$EventstreamName
 
     )

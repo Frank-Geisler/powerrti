@@ -42,11 +42,14 @@ function Set-RtiEventstream {
         [string]$WorkspaceId, 
 
         [Parameter(Mandatory=$true)]
+        [Alias("Id")]
         [string]$EventstreamId, 
         
+        [Alias("NewName")]
         [string]$EventstreamNewName,
 
         [ValidateLength(0, 256)]
+        [Alias("Description")]
         [string]$EventstreamDescription
 
     )

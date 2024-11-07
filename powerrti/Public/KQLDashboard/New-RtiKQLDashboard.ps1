@@ -35,9 +35,11 @@ function New-RtiKQLDashboard {
         [string]$WorkspaceID, 
         
         [Parameter(Mandatory=$true)]
+        [Alias("Name")]
         [string]$KQLDashboardName,
 
         [ValidateLength(0, 256)]
+        [Alias("Description")]
         [string]$KQLDashboardDescription
 
     )

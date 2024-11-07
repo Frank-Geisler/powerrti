@@ -46,10 +46,13 @@ function Set-RtiKQLDatabase {
         [string]$WorkspaceId, 
 
         [Parameter(Mandatory=$true)]
+        [Alias("Id")]
         [string]$KQLDatabaseId, 
         
+        [Alias("Name")]
         [string]$KQLDatabaseName,
 
+        [Alias("Description")]
         [ValidateLength(0, 256)]
         [string]$KQLDatabaseDescription
         

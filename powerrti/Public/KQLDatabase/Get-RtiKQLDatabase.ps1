@@ -53,8 +53,10 @@ function Get-RtiKQLDatabase {
         [Parameter(Mandatory=$true)]
         [string]$WorkspaceId,
 
+        [Alias("Name")]
         [string]$KQLDatabaseName,
 
+        [Alias("Id")]
         [string]$KQLDatabaseId
     )
 
