@@ -35,11 +35,17 @@ function Set-RtiKQLDatabase {
     This example will update the KQLDatabase with the Id '12345678-1234-1234-1234-123456789012'.
     It will update the name to 'MyNewKQLDatabase' and the description to 'This is my new KQLDatabase'.
 
+.NOTES
+
+    Revsion History:
+    
+    - 2024-11-07 - FGE: Implemented SupportShouldProcess
+
 .LINK
  
 #>
 
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess)]
     param (
 
         [Parameter(Mandatory=$true)]
@@ -86,14 +92,16 @@ begin {
 process {
 
     # Call KQLDatabase API
-    $response = Invoke-RestMethod `
-                        -Headers $RTISession.headerParams `
-                        -Method PATCH `
-                        -Uri $KQLDatabaseApiUrl `
-                        -Body ($body) `
-                        -ContentType "application/json"
+    if($PSCmdlet.ShouldProcess($EventhouseName)) {
+        $response = Invoke-RestMethod `
+                            -Headers $RTISession.headerParams `
+                            -Method PATCH `
+                            -Uri $KQLDatabaseApiUrl `
+                            -Body ($body) `
+                            -ContentType "application/json"
 
-    $response
+        $response
+    }
 }
 
 end {}

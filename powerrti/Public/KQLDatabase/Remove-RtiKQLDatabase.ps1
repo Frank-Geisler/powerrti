@@ -29,7 +29,7 @@ function Remove-RtiKQLDatabase {
 #>
 
 
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess)]
     param (
 
         [Parameter(Mandatory=$true)]
@@ -54,14 +54,16 @@ begin {
 
 process {
 
-    # Call Eventhouse API
-    $response = Invoke-RestMethod `
-                        -Headers $RTISession.headerParams `
-                        -Method DELETE `
-                        -Uri $eventhouseApiUrl `
-                        -ContentType "application/json"
+    if($PSCmdlet.ShouldProcess($KQLDatabaseId)) {
+        # Call Eventhouse API
+        $response = Invoke-RestMethod `
+                            -Headers $RTISession.headerParams `
+                            -Method DELETE `
+                            -Uri $eventhouseApiUrl `
+                            -ContentType "application/json"
 
-    $response
+        $response
+    }
 }
 
 end {}

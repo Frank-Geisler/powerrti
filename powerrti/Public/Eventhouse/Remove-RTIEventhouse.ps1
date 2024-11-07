@@ -34,12 +34,16 @@ function Remove-RtiEventhouse {
         
     This example will delete the Eventhouse with the name 'MyEventhouse' from the Workspace with the 
     Id '12345678-1234-1234-1234-123456789012'.
+.NOTES
+    Revsion History:
+    
+    - 2024-11-07 - FGE: Implemented SupportShouldProcess
 
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/eventhouse/items/delete-eventhouse?tabs=HTTP
 #>
 
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess)]
     param (
 
         [Parameter(Mandatory=$true)]
@@ -79,13 +83,15 @@ begin {
 process {
 
     # Call Eventhouse API
-    $response = Invoke-RestMethod `
-                        -Headers $RTISession.headerParams `
-                        -Method DELETE `
-                        -Uri $eventhouseApiUrl `
-                        -ContentType "application/json"
+    if($PSCmdlet.ShouldProcess($EventhouseName)) {
+        $response = Invoke-RestMethod `
+                            -Headers $RTISession.headerParams `
+                            -Method DELETE `
+                            -Uri $eventhouseApiUrl `
+                            -ContentType "application/json"
 
-    $response
+        $response
+    }
 }
 
 end {}

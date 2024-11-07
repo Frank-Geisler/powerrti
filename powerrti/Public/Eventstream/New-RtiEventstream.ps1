@@ -26,11 +26,16 @@ function New-RtiEventstream {
 
     This example will create a new Eventstream with the name 'MyEventstream' and the description 'This is my Eventstream'.
 
+.NOTES
+    Revsion History:
+    
+    - 2024-11-07 - FGE: Implemented SupportShouldProcess
+
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/eventstream/items/create-eventstream?tabs=HTTP
 #>
 
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess)]
     param (
 
         [Parameter(Mandatory=$true)]
@@ -65,15 +70,17 @@ begin {
 
 process {
 
-    # Call Eventhouse API
-    $response = Invoke-RestMethod `
-                        -Headers $RTISession.headerParams `
-                        -Method POST `
-                        -Uri $eventstreamApiUrl `
-                        -Body ($body) `
-                        -ContentType "application/json"
+    # Call Eventstream API
+    if($PSCmdlet.ShouldProcess($EventstreamName)) {
+        $response = Invoke-RestMethod `
+                            -Headers $RTISession.headerParams `
+                            -Method POST `
+                            -Uri $eventstreamApiUrl `
+                            -Body ($body) `
+                            -ContentType "application/json"
 
-    $response
+        $response
+    }
 }
 
 end {}

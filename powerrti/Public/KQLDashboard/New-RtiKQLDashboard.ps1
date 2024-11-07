@@ -25,10 +25,15 @@ function New-RtiKQLDashboard {
         -KQLDashboardDescription 'This is my KQLDashboard'
 
     This example will create a new KQLDashboard with the name 'MyKQLDashboard' and the description 'This is my KQLDashboard'.	
+
+.NOTES
+
+    Revsion History:
     
+    - 2024-11-07 - FGE: Implemented SupportShouldProcess
 #>
 
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess)]
     param (
 
         [Parameter(Mandatory=$true)]
@@ -63,15 +68,17 @@ begin {
 
 process {
 
-    # Call KQLDashboard API
-    $response = Invoke-RestMethod `
-                        -Headers $RTISession.headerParams `
-                        -Method POST `
-                        -Uri $KQLDashboardApiUrl `
-                        -Body ($body) `
-                        -ContentType "application/json"
+    if($PSCmdlet.ShouldProcess($KQLDashboardName)) {
+        # Call KQLDashboard API
+        $response = Invoke-RestMethod `
+                            -Headers $RTISession.headerParams `
+                            -Method POST `
+                            -Uri $KQLDashboardApiUrl `
+                            -Body ($body) `
+                            -ContentType "application/json"
 
-    $response
+        $response
+    }
 }
 
 end {}

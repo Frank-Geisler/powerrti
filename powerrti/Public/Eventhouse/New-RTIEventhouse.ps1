@@ -26,11 +26,17 @@ function New-RtiEventhouse {
 
     This example will create a new Eventhouse with the name 'MyEventhouse' and the description 'This is my Eventhouse'.
 
+.NOTES
+    Revsion History:
+    
+    - 2024-11-07 - FGE: Implemented SupportShouldProcess
+
+
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/eventhouse/items/create-eventhouse?tabs=HTTP
 #>
 
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess)]
     param (
 
         [Parameter(Mandatory=$true)]
@@ -65,14 +71,16 @@ begin {
 process {
 
     # Call Eventhouse API
-    $response = Invoke-RestMethod `
-                        -Headers $RTISession.headerParams `
-                        -Method POST `
-                        -Uri $eventhouseApiUrl `
-                        -Body ($body) `
-                        -ContentType "application/json"
+    if($PSCmdlet.ShouldProcess($EventhouseName)) {
+        $response = Invoke-RestMethod `
+                            -Headers $RTISession.headerParams `
+                            -Method POST `
+                            -Uri $eventhouseApiUrl `
+                            -Body ($body) `
+                            -ContentType "application/json"
 
-    $response
+        $response
+    }
 }
 
 end {}

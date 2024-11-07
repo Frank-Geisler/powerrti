@@ -37,11 +37,15 @@ function Set-RtiEventhouse {
 .NOTES
     TODO: Add functionality to update Eventhouse properties using EventhouseName instead of EventhouseId
 
+    Revsion History:
+    
+    - 2024-11-07 - FGE: Implemented SupportShouldProcess
+
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/eventhouse/items/create-eventhouse?tabs=HTTP
 #>
 
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess)]
     param (
 
         [Parameter(Mandatory=$true)]
@@ -88,14 +92,16 @@ begin {
 process {
 
     # Call Eventhouse API
-    $response = Invoke-RestMethod `
-                        -Headers $RTISession.headerParams `
-                        -Method PATCH `
-                        -Uri $eventhouseApiUrl `
-                        -Body ($body) `
-                        -ContentType "application/json"
+        if($PSCmdlet.ShouldProcess($EventhouseId)) {
+            $response = Invoke-RestMethod `
+                                -Headers $RTISession.headerParams `
+                                -Method PATCH `
+                                -Uri $eventhouseApiUrl `
+                                -Body ($body) `
+                                -ContentType "application/json"
 
-    $response
+            $response
+        }
 }
 
 end {}

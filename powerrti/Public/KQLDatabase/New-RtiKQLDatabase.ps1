@@ -33,9 +33,14 @@ function New-RtiKQLDatabase {
 
     This example will create a new KQLDatabase with the name 'MyKQLDatabase' and the description 'This is my KQLDatabase'.
 
+.NOTES
+    
+        Revsion History:
+        
+        - 2024-11-07 - FGE: Implemented SupportShouldProcess
 #>
 
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess)]
     param (
 
         [Parameter(Mandatory=$true)]
@@ -77,14 +82,16 @@ begin {
 process {
 
     # Call KQLDatabase API
-    $response = Invoke-RestMethod `
-                        -Headers $RTISession.headerParams `
-                        -Method POST `
-                        -Uri $KQLDatabaseApiUrl `
-                        -Body ($body) `
-                        -ContentType "application/json"
+    if($PSCmdlet.ShouldProcess($EventhouseName)) {
+        $response = Invoke-RestMethod `
+                            -Headers $RTISession.headerParams `
+                            -Method POST `
+                            -Uri $KQLDatabaseApiUrl `
+                            -Body ($body) `
+                            -ContentType "application/json"
 
-    $response
+        $response
+    }
 }
 
 end {

@@ -31,11 +31,17 @@ function Remove-RtiEventstream {
 
     This example will delete the Eventstream with the name 'MyEventstream' from the Workspace.
 
+.NOTES
+
+    Revsion History:
+    
+    - 2024-11-07 - FGE: Implemented SupportShouldProcess
+
 #>
 
 
 
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess)]
     param (
 
         [Parameter(Mandatory=$true)]
@@ -75,14 +81,16 @@ begin {
 
 process {
 
-    # Call Eventhouse API
-    $response = Invoke-RestMethod `
-                        -Headers $RTISession.headerParams `
-                        -Method DELETE `
-                        -Uri $eventstreamApiUrl `
-                        -ContentType "application/json"
+    # Call Eventstream API
+    if($PSCmdlet.ShouldProcess($EventstreamName)) {
+        $response = Invoke-RestMethod `
+                            -Headers $RTISession.headerParams `
+                            -Method DELETE `
+                            -Uri $eventstreamApiUrl `
+                            -ContentType "application/json"
 
-    $response
+        $response
+    }
 }
 
 end {}

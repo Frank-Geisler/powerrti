@@ -33,9 +33,13 @@ function Set-RtiEventstream {
     
 .NOTES
     TODO: Add functionality to update Eventstream properties using EventstreamName instead of EventstreamId
+
+    Revsion History:
+
+    - 2024-11-07 - FGE: Implemented SupportShouldProcess
 #>
 
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess)]
     param (
 
         [Parameter(Mandatory=$true)]
@@ -82,14 +86,16 @@ begin {
 process {
 
     # Call Eventstream API
-    $response = Invoke-RestMethod `
-                        -Headers $RTISession.headerParams `
-                        -Method PATCH `
-                        -Uri $EventstreamApiUrl `
-                        -Body ($body) `
-                        -ContentType "application/json"
+    if($PSCmdlet.ShouldProcess($EventhouseName)) {
+        $response = Invoke-RestMethod `
+                            -Headers $RTISession.headerParams `
+                            -Method PATCH `
+                            -Uri $EventstreamApiUrl `
+                            -Body ($body) `
+                            -ContentType "application/json"
 
-    $response
+        $response
+    }
 }
 
 end {}

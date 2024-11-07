@@ -33,11 +33,17 @@ function Set-RtiKQLQueryset {
     This example will update the KQLQueryset. The KQLQueryset will have the name 'MyKQLQueryset'
     and the description 'This is my KQLQueryset'.
 
+.NOTES
+
+    Revsion History:
+    
+    - 2024-11-07 - FGE: Implemented SupportShouldProcess
+
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/KQLQueryset/items/create-KQLQueryset?tabs=HTTP
 #>
 
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess)]
     param (
 
         [Parameter(Mandatory=$true)]
@@ -47,8 +53,8 @@ function Set-RtiKQLQueryset {
         [Alias("Id")]
         [string]$KQLQuerysetId, 
         
-        [Alias("Name")]
-        [string]$KQLQuerysetName,
+        [Alias("NewName")]
+        [string]$KQLQuerysetNewName,
 
         [ValidateLength(0, 256)]
         [Alias("Description")]
@@ -66,7 +72,7 @@ begin {
     $body = @{}
 
     if ($PSBoundParameters.ContainsKey("KQLQuerysetName")) {
-        $body["displayName"] = $KQLQuerysetName
+        $body["displayName"] = $KQLQuerysetNName
     }
 
     if ($PSBoundParameters.ContainsKey("KQLQuerysetDescription")) {
@@ -84,14 +90,16 @@ begin {
 process {
 
     # Call KQLQueryset API
-    $response = Invoke-RestMethod `
-                        -Headers $RTISession.headerParams `
-                        -Method PATCH `
-                        -Uri $KQLQuerysetApiUrl `
-                        -Body ($body) `
-                        -ContentType "application/json"
+        if($PSCmdlet.ShouldProcess($KQLQuerysetId)) {
+            $response = Invoke-RestMethod `
+                                -Headers $RTISession.headerParams `
+                                -Method PATCH `
+                                -Uri $KQLQuerysetApiUrl `
+                                -Body ($body) `
+                                -ContentType "application/json"
 
-    $response
+            $response
+        }
 }
 
 end {}

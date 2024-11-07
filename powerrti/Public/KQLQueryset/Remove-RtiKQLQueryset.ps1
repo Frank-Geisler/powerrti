@@ -24,10 +24,14 @@ function Remove-RtiKQLQueryset {
 .NOTES
     TODO: Add functionality to remove Eventhouse by name.
 
+    Revsion History:
+
+    - 2024-11-07 - FGE: Implemented SupportShouldProcess
+
 #>
 
 
-[CmdletBinding()]
+[CmdletBinding(SupportsShouldProcess)]
     param (
 
         [Parameter(Mandatory=$true)]
@@ -52,14 +56,16 @@ begin {
 
 process {
 
-    # Call Eventhouse API
-    $response = Invoke-RestMethod `
-                        -Headers $RTISession.headerParams `
-                        -Method DELETE `
-                        -Uri $eventhouseApiUrl `
-                        -ContentType "application/json"
+    # Call KQL Queryset API
+    if($PSCmdlet.ShouldProcess($KQLQuerysetId)) {
+        $response = Invoke-RestMethod `
+                            -Headers $RTISession.headerParams `
+                            -Method DELETE `
+                            -Uri $eventhouseApiUrl `
+                            -ContentType "application/json"
 
-    $response
+        $response
+    }
 }
 
 end {}
