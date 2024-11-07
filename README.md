@@ -1,5 +1,7 @@
 # powerrit
 
+![Power-RTI Logo](./documentation/images/powerrti_logo.png)
+
 This is a PowerShell Module that can help automate creating and managing Real-Time Intelligence Environments.
 
 ## Questions
