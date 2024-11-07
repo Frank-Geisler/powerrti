@@ -1,4 +1,4 @@
-# powerrit
+# powerrti
 
 ![Power-RTI Logo](./documentation/images/powerrti_logo.png)
 
