@@ -48,7 +48,7 @@ The name of the Eventhouse to create.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: Name
+Aliases: Name, DisplayName
 
 Required: True
 Position: 2
@@ -131,6 +131,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 Revsion History:
 
 - 2024-11-07 - FGE: Implemented SupportShouldProcess
+- 2024-11-09 - FGE: Added DisplaName as Alias for EventhouseName
 
 ## RELATED LINKS
 

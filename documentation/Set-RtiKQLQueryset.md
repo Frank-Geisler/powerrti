@@ -73,7 +73,7 @@ Accept wildcard characters: False
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: NewName
+Aliases: NewName, NewDisplayName
 
 Required: False
 Position: 3
@@ -157,6 +157,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 Revsion History:
 
 - 2024-11-07 - FGE: Implemented SupportShouldProcess
+- 2024-11-09 - FGE: Added NewDisplaName as Alias for KQLQuerysetNewName
 
 ## RELATED LINKS
 

@@ -67,7 +67,7 @@ The new name of the Eventstream.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: NewName
+Aliases: NewName, NewDisplayName
 
 Required: False
 Position: 3
@@ -152,5 +152,6 @@ TODO: Add functionality to update Eventstream properties using EventstreamName i
 Revsion History:
 
 - 2024-11-07 - FGE: Implemented SupportShouldProcess
+- 2024-11-09 - FGE: Added DisplaName as Alias for EventStreamNewName
 
 ## RELATED LINKS

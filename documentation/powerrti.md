@@ -47,6 +47,9 @@ Locale: en-US
 ### [New-RtiKQLDatabase](New-RtiKQLDatabase.md)
 {{ Fill in the Description }}
 
+### [New-RtiWorkspace](New-RtiWorkspace.md)
+{{ Fill in the Description }}
+
 ### [Remove-RtiEventhouse](Remove-RtiEventhouse.md)
 {{ Fill in the Description }}
 

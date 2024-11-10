@@ -75,7 +75,7 @@ This parameter cannot be used together with KQLQuerysetId.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: Name
+Aliases: Name, DisplayName
 
 Required: False
 Position: 2
@@ -128,5 +128,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 TODO: Add functionality to list all KQLQuerysets.
 To do so fetch all workspaces and 
     then all KQLQuerysets in each workspace.
+
+Revision History:
+    - 2024-11-09 - FGE: Added DisplaName as Alias for KQLQuerysetName
 
 ## RELATED LINKS

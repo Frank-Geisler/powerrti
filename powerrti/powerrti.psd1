@@ -85,6 +85,7 @@ CmdletsToExport = @(
     'New-RtiEventstream',
     'New-RtiKQLDashboard',
     'New-RtiKQLDatabase',
+    'New-RtiWorkspace', 
     'Remove-RtiEventhouse',
     'Remove-RtiEventstream',
     'Remove-RtiKQLDatabase',
