@@ -47,6 +47,9 @@ function Get-RtiKQLQueryset {
     TODO: Add functionality to list all KQLQuerysets. To do so fetch all workspaces and 
         then all KQLQuerysets in each workspace.
 
+    Revision History:
+        - 2024-11-09 - FGE: Added DisplaName as Alias for KQLQuerysetName
+
 #>
 
 
@@ -55,7 +58,7 @@ function Get-RtiKQLQueryset {
         [Parameter(Mandatory=$true)]
         [string]$WorkspaceId,
 
-        [Alias("Name")]
+        [Alias("Name","DisplayName")]
         [string]$KQLQuerysetName,
 
         [Alias("Id")]

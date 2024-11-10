@@ -40,6 +40,7 @@ function Set-RtiEventhouse {
     Revsion History:
     
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
+    - 2024-11-09 - FGE: Added NewDisplaName as Alias for EventhouseName    
 
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/eventhouse/items/create-eventhouse?tabs=HTTP
@@ -55,7 +56,7 @@ function Set-RtiEventhouse {
         [Alias("Id")]
         [string]$EventhouseId, 
         
-        [Alias("NewName")]
+        [Alias("NewName", "NewDisplayName")]
         [string]$EventhouseNewName,
 
         [ValidateLength(0, 256)]

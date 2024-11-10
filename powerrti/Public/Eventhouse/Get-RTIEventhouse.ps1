@@ -47,6 +47,10 @@ function Get-RtiEventhouse {
 .NOTES
     TODO: Add functionality to list all Eventhouses in the subscription. To do so fetch all workspaces 
     and then all eventhouses in each workspace.
+
+    Revsion History:
+    
+    - 2024-11-09 - FGE: Added DisplaName as Alias for EventhouseName
 #>
 
 #
@@ -56,7 +60,7 @@ function Get-RtiEventhouse {
         [Parameter(Mandatory=$true)]
         [string]$WorkspaceId,
 
-        [Alias("Name")]
+        [Alias("Name","DisplayName")]
         [string]$EventhouseName,
 
         [Alias("Id")]

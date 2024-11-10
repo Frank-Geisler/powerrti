@@ -37,6 +37,7 @@ function Set-RtiEventstream {
     Revsion History:
 
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
+    - 2024-11-09 - FGE: Added DisplaName as Alias for EventStreamNewName
 #>
 
 [CmdletBinding(SupportsShouldProcess)]
@@ -49,7 +50,7 @@ function Set-RtiEventstream {
         [Alias("Id")]
         [string]$EventstreamId, 
         
-        [Alias("NewName")]
+        [Alias("NewName","NewDisplayName")]
         [string]$EventstreamNewName,
 
         [ValidateLength(0, 256)]

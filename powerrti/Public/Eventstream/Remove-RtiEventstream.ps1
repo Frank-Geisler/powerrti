@@ -36,7 +36,7 @@ function Remove-RtiEventstream {
     Revsion History:
     
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
-
+    - 2024-11-09 - FGE: Added DisplaName as Alias for EventStreamName
 #>
 
 
@@ -50,7 +50,7 @@ function Remove-RtiEventstream {
         [Alias("Id")]
         [string]$EventstreamId,
 
-        [Alias("Name")]
+        [Alias("Name","DisplayName")]
         [string]$EventstreamName
 
     )

@@ -30,6 +30,7 @@ function New-RtiEventstream {
     Revsion History:
     
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
+    - 2024-11-09 - FGE: Added DisplaName as Alias for EventStreamName
 
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/eventstream/items/create-eventstream?tabs=HTTP
@@ -42,7 +43,7 @@ function New-RtiEventstream {
         [string]$WorkspaceID, 
         
         [Parameter(Mandatory=$true)]
-        [Alias("Name")]
+        [Alias("Name","DisplayName")]
         [string]$EventstreamName,
 
         [ValidateLength(0, 256)]

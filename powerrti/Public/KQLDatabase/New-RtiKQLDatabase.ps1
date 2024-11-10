@@ -33,11 +33,11 @@ function New-RtiKQLDatabase {
 
     This example will create a new KQLDatabase with the name 'MyKQLDatabase' and the description 'This is my KQLDatabase'.
 
-.NOTES
-    
+.NOTES    
         Revsion History:
         
         - 2024-11-07 - FGE: Implemented SupportShouldProcess
+        - 2024-11-09 - FGE: Added DisplaName as Alias for KQLDatabaseName
 #>
 
 [CmdletBinding(SupportsShouldProcess)]
@@ -50,7 +50,7 @@ function New-RtiKQLDatabase {
         [string]$EventhouseID, 
         
         [Parameter(Mandatory=$true)]
-        [Alias("Name")]
+        [Alias("Name", "DisplayName")]
         [string]$KQLDatabaseName,
 
         [ValidateLength(0, 256)]

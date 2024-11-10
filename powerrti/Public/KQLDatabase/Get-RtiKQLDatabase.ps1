@@ -45,6 +45,9 @@ function Get-RtiKQLDatabase {
     TODO: Add functionality to list all KQLDatabases. To do so fetch all workspaces and 
           then all KQLDatabases in each workspace.
 
+    Revision History:
+        - 2024-11-09 - FGE: Added DisplaName as Alias for KQLDatabaseName
+
 #>
 
 
@@ -53,7 +56,7 @@ function Get-RtiKQLDatabase {
         [Parameter(Mandatory=$true)]
         [string]$WorkspaceId,
 
-        [Alias("Name")]
+        [Alias("Name","DisplayName")]
         [string]$KQLDatabaseName,
 
         [Alias("Id")]

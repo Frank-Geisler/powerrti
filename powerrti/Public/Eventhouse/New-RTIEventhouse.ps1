@@ -30,6 +30,7 @@ function New-RtiEventhouse {
     Revsion History:
     
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
+    - 2024-11-09 - FGE: Added DisplaName as Alias for EventhouseName
 
 
 .LINK
@@ -43,7 +44,7 @@ function New-RtiEventhouse {
         [string]$WorkspaceID, 
         
         [Parameter(Mandatory=$true)]
-        [Alias("Name")]
+        [Alias("Name", "DisplayName")]
         [string]$EventhouseName,
 
         [ValidateLength(0, 256)]

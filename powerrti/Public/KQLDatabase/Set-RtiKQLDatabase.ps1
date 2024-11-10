@@ -40,6 +40,7 @@ function Set-RtiKQLDatabase {
     Revsion History:
     
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
+    - 2024-11-09 - FGE: Added DisplaName as Alias for KQLDatabaseName
 
 .LINK
  
@@ -55,7 +56,7 @@ function Set-RtiKQLDatabase {
         [Alias("Id")]
         [string]$KQLDatabaseId, 
         
-        [Alias("Name")]
+        [Alias("Name", "DisplayName")]
         [string]$KQLDatabaseName,
 
         [Alias("Description")]

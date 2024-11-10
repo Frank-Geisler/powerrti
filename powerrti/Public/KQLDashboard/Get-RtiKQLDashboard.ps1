@@ -27,6 +27,9 @@ function Get-RtiKQLDashboard {
 .NOTES
     TODO: Add functionality to list all KQLDashboards. To do so fetch all workspaces and 
           then all KQLDashboards in each workspace.
+
+    Revision History:
+        - 2024-11-09 - FGE: Added DisplaName as Alias for KQLDashboardName
 #>
 
 
@@ -35,7 +38,7 @@ function Get-RtiKQLDashboard {
         [Parameter(Mandatory=$true)]
         [string]$WorkspaceId,
 
-        [Alias("Name")]
+        [Alias("Name","DisplayName")]
         [string]$KQLDashboardName,
 
         [Alias("Id")]

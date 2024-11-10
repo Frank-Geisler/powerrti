@@ -38,6 +38,7 @@ function Set-RtiKQLQueryset {
     Revsion History:
     
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
+    - 2024-11-09 - FGE: Added NewDisplaName as Alias for KQLQuerysetNewName
 
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/KQLQueryset/items/create-KQLQueryset?tabs=HTTP
@@ -53,7 +54,7 @@ function Set-RtiKQLQueryset {
         [Alias("Id")]
         [string]$KQLQuerysetId, 
         
-        [Alias("NewName")]
+        [Alias("NewName", "NewDisplayName")]
         [string]$KQLQuerysetNewName,
 
         [ValidateLength(0, 256)]

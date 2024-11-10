@@ -47,6 +47,9 @@ function Get-RtiEventstream {
 .NOTES
     TODO: Add functionality to list all Eventhouses. To do so fetch all workspaces and 
           then all eventhouses in each workspace.
+
+    Revision History:
+        - 2024-11-09 - FGE: Added DisplaName as Alias for EventStreamName
 #>
 
 [CmdletBinding()]
@@ -54,7 +57,7 @@ function Get-RtiEventstream {
         [Parameter(Mandatory=$true)]
         [string]$WorkspaceId,
 
-        [Alias("Name")]
+        [Alias("Name", "DisplayName")]
         [string]$EventstreamName,
 
         [Alias("Id")]
