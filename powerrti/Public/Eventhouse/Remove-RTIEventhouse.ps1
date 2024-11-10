@@ -38,6 +38,7 @@ function Remove-RtiEventhouse {
     Revsion History:
     
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
+    - 2024-11-09 - FGE: Added DisplaName as Alias for EventhouseName
 
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/eventhouse/items/delete-eventhouse?tabs=HTTP
@@ -52,7 +53,7 @@ function Remove-RtiEventhouse {
         [Alias("Id")]
         [string]$EventhouseId,
 
-        [Alias("Name")]
+        [Alias("Name", "DisplayName")]
         [string]$EventhouseName
 
     )
