@@ -1,0 +1,29 @@
+name: Publish Module to PSGallery
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up PowerShell
+      uses: actions/setup-powershell@v2
+      with:
+        powershell-version: '7.4'      
+
+    - name: Install PowerShellGet
+      run: |
+        Install-Module -Name PowerShellGet -Force -Scope CurrentUser
+        Import-Module -Name PowerShellGet
+
+    - name: Publish Module
+      run: |
+        $PSGalleryApiKey = "${{ secrets.PSGALLERY_API_KEY }}"
+        Publish-Module -Path ./ -NuGetApiKey $PSGalleryApiKey
+      shell: pwsh
