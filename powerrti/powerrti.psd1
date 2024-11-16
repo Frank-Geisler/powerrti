@@ -93,7 +93,11 @@ CmdletsToExport = @(
     'Set-RtiEventhouse',
     'Set-RtiEventstream',
     'Set-RtiKQLDatabase',
-    'Set-RtiKQLQueryset'
+    'Set-RtiKQLQueryset',
+    'Add-RtiWorkspaceRoleAssignment',
+    'Get-RtiWorkspaceRoleAssignment',
+    'Get-RtiKQLDashboardDefinition',
+    'Get-RtiDebugInfo'
 )
 
 # Variables to export from this module
