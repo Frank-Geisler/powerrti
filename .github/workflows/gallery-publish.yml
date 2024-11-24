@@ -21,5 +21,5 @@ jobs:
       - name: Publish Module
         run: |
           $PSGalleryApiKey = "${{ secrets.PSGALLERY_API_KEY }}"
-          Publish-Module -Path ./ -NuGetApiKey $PSGalleryApiKey
+          Publish-Module -Path ./powerrti -NuGetApiKey $PSGalleryApiKey
         shell: pwsh
