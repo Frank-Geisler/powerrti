@@ -9,11 +9,11 @@ function Set-RtiEventhouse {
     Updates Properties of an existing Fabric Eventhouse
 
 .PARAMETER WorkspaceId
-    Id of the Fabric Workspace for which the Eventhouse should be updated. The value for WorkspaceId is a GUID. 
+    Id of the Fabric Workspace for which the Eventhouse should be updated. The value for WorkspaceId is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .PARAMETER EventhouseId
-    The Id of the Eventhouse to update. The value for EventhouseId is a GUID. 
+    The Id of the Eventhouse to update. The value for EventhouseId is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .PARAMETER EventhouseNewName
@@ -29,18 +29,18 @@ function Set-RtiEventhouse {
         -EventhouseNewName 'MyNewEventhouse' `
         -EventhouseDescription 'This is my new Eventhouse'
 
-    This example will update the Eventhouse with the Id '12345678-1234-1234-1234-123456789012' 
+    This example will update the Eventhouse with the Id '12345678-1234-1234-1234-123456789012'
     in the Workspace with the Id '12345678-1234-1234-1234-123456789012' to 
-    have the name 'MyNewEventhouse' and the description 
+    have the name 'MyNewEventhouse' and the description
     'This is my new Eventhouse'.
 
 .NOTES
     TODO: Add functionality to update Eventhouse properties using EventhouseName instead of EventhouseId
 
     Revsion History:
-    
+
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
-    - 2024-11-09 - FGE: Added NewDisplaName as Alias for EventhouseName    
+    - 2024-11-09 - FGE: Added NewDisplaName as Alias for EventhouseName
 
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/eventhouse/items/create-eventhouse?tabs=HTTP
@@ -50,12 +50,12 @@ function Set-RtiEventhouse {
     param (
 
         [Parameter(Mandatory=$true)]
-        [string]$WorkspaceId, 
+        [string]$WorkspaceId,
 
         [Parameter(Mandatory=$true)]
         [Alias("Id")]
-        [string]$EventhouseId, 
-        
+        [string]$EventhouseId,
+
         [Alias("NewName", "NewDisplayName")]
         [string]$EventhouseNewName,
 
@@ -87,7 +87,7 @@ begin {
                     -Depth 1
 
     # Create Eventhouse API URL
-    $eventhouseApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventhouses/$EventhouseId" 
+    $eventhouseApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventhouses/$EventhouseId"
     }
 
 process {

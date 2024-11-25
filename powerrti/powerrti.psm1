@@ -1,6 +1,6 @@
 <#
 .DESCRIPTION
-Powershell Modul that provides cmdlets to interact with the Real-Time Intelligence API 
+Powershell Modul that provides cmdlets to interact with the Real-Time Intelligence API
 of Microsoft Fabric.
 #>
 $scriptRoot = $PSScriptRoot + '\Public'

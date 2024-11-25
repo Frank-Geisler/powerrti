@@ -60,7 +60,7 @@ begin {
             -Depth 1
 
     # Create Workspace API URL
-    $WorkspaceApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces" 
+    $WorkspaceApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces"
     }
 
 process {

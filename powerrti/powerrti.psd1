@@ -74,7 +74,7 @@ PowerShellVersion = '7.1'
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @(
     'Connect-RtiAccount',
-    'Get-RtiEventhouse', 
+    'Get-RtiEventhouse',
     'Get-RtiEventstream',
     'Get-RtiKQLDashboard',
     'Get-RtiKQLDatabase',
@@ -85,7 +85,7 @@ CmdletsToExport = @(
     'New-RtiEventstream',
     'New-RtiKQLDashboard',
     'New-RtiKQLDatabase',
-    'New-RtiWorkspace', 
+    'New-RtiWorkspace',
     'Remove-RtiEventhouse',
     'Remove-RtiEventstream',
     'Remove-RtiKQLDatabase',

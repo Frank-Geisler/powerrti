@@ -11,19 +11,19 @@ function Get-RtiEventhouse {
     parameters cannot be used together.
 
 .PARAMETER WorkspaceId
-    Id of the Fabric Workspace for which the Eventhouses should be retrieved. The value for WorkspaceId is a GUID. 
+    Id of the Fabric Workspace for which the Eventhouses should be retrieved. The value for WorkspaceId is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .PARAMETER EventhouseName
-    The name of the Eventhouse to retrieve. This parameter cannot be used together with EventhouseID. 
+    The name of the Eventhouse to retrieve. This parameter cannot be used together with EventhouseID.
 
 .PARAMETER EventhouseId
-    The Id of the Eventhouse to retrieve. This parameter cannot be used together with EventhouseName. The value for WorkspaceId is a GUID. 
+    The Id of the Eventhouse to retrieve. This parameter cannot be used together with EventhouseName. The value for WorkspaceId is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .EXAMPLE
     Get-RTIEventhouse `
-        -WorkspaceId '12345678-1234-1234-1234-123456789012' 
+        -WorkspaceId '12345678-1234-1234-1234-123456789012'
 
     This example will give you all Eventhouses in the Workspace.
 
@@ -39,18 +39,19 @@ function Get-RtiEventhouse {
         -WorkspaceId '12345678-1234-1234-1234-123456789012' `
         -EventhouseId '12345678-1234-1234-1234-123456789012'
 
-    This example will give you all Information about the Eventhouse with the Id '12345678-1234-1234-1234-123456789012'. 
+    This example will give you all Information about the Eventhouse with the Id '12345678-1234-1234-1234-123456789012'.
 
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/eventhouse/items/list-eventhouses?tabs=HTTP
 
 .NOTES
-    TODO: Add functionality to list all Eventhouses in the subscription. To do so fetch all workspaces 
+    TODO: Add functionality to list all Eventhouses in the subscription. To do so fetch all workspaces
     and then all eventhouses in each workspace.
 
     Revsion History:
-    
+
     - 2024-11-09 - FGE: Added DisplaName as Alias for EventhouseName
+    - 2024-11-16 - FGE: Added Verbose Output
 #>
 
 #
@@ -69,34 +70,36 @@ function Get-RtiEventhouse {
 
 begin {
 
-    # Check if session is established - if not throw error
+    Write-Verbose "Checking if session is established. If not throw error"
     if ($null -eq $RTISession.headerParams) {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
     }
 
     # You can either use Name or WorkspaceID
+    Write-Verbose "Checking if EventhouseName and EventhouseID are used together. This is not allowed"
     if ($PSBoundParameters.ContainsKey("EventhouseName") -and $PSBoundParameters.ContainsKey("EventhouseID")) {
-        throw "Parameters EventhouseName and EventhouseID cannot be used together"    
+        throw "Parameters EventhouseName and EventhouseID cannot be used together"
     }
 
     # Create Eventhouse API
-    $eventhouseAPI = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventhouses" 
+    $eventhouseAPI = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventhouses"
+    Write-Verbose "Creating the URL for the Eventhouse API: $eventhouseAPI"
 
-    $eventhouseAPIEventhouseId = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventhouses/$EventhouseId" 
-
+    $eventhouseAPIEventhouseId = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventhouses/$EventhouseId"
+    Write-Verbose "Creating the URL for the Eventhouse API when the Id is used: $eventhouseAPIEventhouseId"
 }
 
 process {
 
     if ($PSBoundParameters.ContainsKey("EventhouseId")) {
-
+        Write-Verbose "Calling Eventhouse API with EventhouseId"
         $response = Invoke-RestMethod `
                         -Headers $RTISession.headerParams `
                         -Method GET `
                         -Uri $eventhouseAPIEventhouseId `
                         -ContentType "application/json"
 
-        # FGE: adding Members for convenience
+        Write-Verbose "Adding the member queryServiceUri"
         Add-Member `
             -MemberType NoteProperty `
             -Name 'queryServiceUri' `
@@ -104,6 +107,7 @@ process {
             -InputObject $response `
             -Force
 
+        Write-Verbose "Adding the member ingestionServiceUri"
         Add-Member `
             -MemberType NoteProperty `
             -Name 'ingestionServiceUri' `
@@ -111,6 +115,7 @@ process {
             -InputObject $response `
             -Force
 
+        Write-Verbose "Adding the member databasesItemIds"
         Add-Member `
             -MemberType NoteProperty `
             -Name 'databasesItemIds' `
@@ -118,17 +123,18 @@ process {
             -InputObject $response `
             -Force
 
+        Write-Verbose "Adding the member minimumConsumptionUnits"
         Add-Member `
             -MemberType NoteProperty `
             -Name 'minimumConsumptionUnits' `
             -Value $response.properties.minimumConsumptionUnits `
             -InputObject $response `
             -Force
-                
+
         $response
     }
     else {
-        # Call Workspace API
+        Write-Verbose "Calling Eventhouse API without EventhouseId"
         $response = Invoke-RestMethod `
                     -Headers $RTISession.headerParams `
                     -Method GET `
@@ -136,7 +142,7 @@ process {
                     -ContentType "application/json"
 
         foreach ($eventhouse in $response.value) {
-            # FGE: adding Members for convenience
+            Write-Verbose "Adding the member queryServiceUri"
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'queryServiceUri' `
@@ -144,6 +150,7 @@ process {
                 -InputObject $eventhouse `
                 -Force
 
+            Write-Verbose "Adding the member ingestionServiceUri"
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'ingestionServiceUri' `
@@ -151,6 +158,7 @@ process {
                 -InputObject $eventhouse `
                 -Force
 
+            Write-Verbose "Adding the member databasesItemIds"
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'databasesItemIds' `
@@ -158,6 +166,7 @@ process {
                 -InputObject $eventhouse `
                 -Force
 
+            Write-Verbose "Adding the member minimumConsumptionUnits"
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'minimumConsumptionUnits' `
@@ -167,10 +176,12 @@ process {
         }
 
         if ($PSBoundParameters.ContainsKey("EventhouseName")) {
+            Write-Verbose "Filtering the Eventhouse by EventhouseName"
             $response.value | `
                 Where-Object { $_.displayName -eq $EventhouseName }
         }
         else {
+            Write-Verbose "Returning all Eventhouses"
             $response.value
         }
     }

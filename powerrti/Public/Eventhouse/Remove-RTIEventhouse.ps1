@@ -9,11 +9,11 @@ function Remove-RtiEventhouse {
     Removes an existing Fabric Eventhouse
 
 .PARAMETER WorkspaceId
-    Id of the Fabric Workspace for which the Eventhouse should be deleted. The value for WorkspaceId is a GUID. 
+    Id of the Fabric Workspace for which the Eventhouse should be deleted. The value for WorkspaceId is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .PARAMETER EventhouseId
-    The Id of the Eventhouse to delete. The value for EventhouseId is a GUID. 
+    The Id of the Eventhouse to delete. The value for EventhouseId is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'. EventhouseId and EventhouseName cannot be used together.
 
 .PARAMETER EventhouseName
@@ -23,20 +23,20 @@ function Remove-RtiEventhouse {
     Remove-RtiEventhouse `
         -WorkspaceId '12345678-1234-1234-1234-123456789012' `
         -EventhouseId '12345678-1234-1234-1234-123456789012'
-        
-    This example will delete the Eventhouse with the Id '12345678-1234-1234-1234-123456789012' from 
+
+    This example will delete the Eventhouse with the Id '12345678-1234-1234-1234-123456789012' from
     the Workspace with the Id '12345678-1234-1234-1234-123456789012'.
 
 .EXAMPLE
     Remove-RtiEventhouse `
         -WorkspaceId '12345678-1234-1234-1234-123456789012' `
         -EventhouseName 'MyEventhouse'
-        
-    This example will delete the Eventhouse with the name 'MyEventhouse' from the Workspace with the 
+
+    This example will delete the Eventhouse with the name 'MyEventhouse' from the Workspace with the
     Id '12345678-1234-1234-1234-123456789012'.
 .NOTES
     Revsion History:
-    
+
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
     - 2024-11-09 - FGE: Added DisplaName as Alias for EventhouseName
 
@@ -48,8 +48,8 @@ function Remove-RtiEventhouse {
     param (
 
         [Parameter(Mandatory=$true)]
-        [string]$WorkspaceId, 
-        
+        [string]$WorkspaceId,
+
         [Alias("Id")]
         [string]$EventhouseId,
 
@@ -66,7 +66,7 @@ begin {
 
     # You can either use Name or WorkspaceID
     if ($PSBoundParameters.ContainsKey("EventhouseName") -and $PSBoundParameters.ContainsKey("EventhouseID")) {
-        throw "Parameters EventhouseName and EventhouseID cannot be used together"    
+        throw "Parameters EventhouseName and EventhouseID cannot be used together"
     }
 
     if ($PSBoundParameters.ContainsKey("EventhouseName")) {
@@ -78,7 +78,7 @@ begin {
     }
 
     # Create Eventhouse API URL
-    $eventhouseApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventhouses/$EventhouseId" 
+    $eventhouseApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventhouses/$EventhouseId"
 }
 
 process {

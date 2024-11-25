@@ -28,7 +28,7 @@ function New-RtiEventhouse {
 
 .NOTES
     Revsion History:
-    
+
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
     - 2024-11-09 - FGE: Added DisplaName as Alias for EventhouseName
 
@@ -41,8 +41,8 @@ function New-RtiEventhouse {
     param (
 
         [Parameter(Mandatory=$true)]
-        [string]$WorkspaceID, 
-        
+        [string]$WorkspaceID,
+
         [Parameter(Mandatory=$true)]
         [Alias("Name", "DisplayName")]
         [string]$EventhouseName,
@@ -53,7 +53,7 @@ function New-RtiEventhouse {
     )
 
 begin {
-    # Check if session is established - if not throw error
+    Write-Verbose "Checking if session is established. If not throw error"
     if ($null -eq $RTISession.headerParams) {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
     }
@@ -66,7 +66,7 @@ begin {
             -Depth 1
 
     # Create Eventhouse API URL
-    $eventhouseApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventhouses" 
+    $eventhouseApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventhouses"
     }
 
 process {

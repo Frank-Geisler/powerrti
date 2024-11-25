@@ -12,7 +12,7 @@ function Connect-RtiAccount {
 .PARAMETER TenantId
     The TenantId of the Azure Active Directory tenant you want to connect to
     and in which your Fabric Capacity is.
-    
+
 .EXAMPLE
     Connect-RTIAccount `
         -TenantID '12345678-1234-1234-1234-123456789012'
