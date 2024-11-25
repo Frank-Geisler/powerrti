@@ -6,11 +6,11 @@ function Set-RtiKQLQueryset {
     Updates Properties of an existing Fabric KQLQueryset
 
 .DESCRIPTION
-    Updates Properties of an existing Fabric KQLQueryset. The KQLQueryset is identified by 
+    Updates Properties of an existing Fabric KQLQueryset. The KQLQueryset is identified by
     the WorkspaceId and KQLQuerysetId.
 
 .PARAMETER WorkspaceId
-    Id of the Fabric Workspace for which the KQLQueryset should be updated. The value for WorkspaceId is a GUID. 
+    Id of the Fabric Workspace for which the KQLQueryset should be updated. The value for WorkspaceId is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'. This parameter is mandatory.
 
 .PARAMETER KQLQuerysetId
@@ -36,7 +36,7 @@ function Set-RtiKQLQueryset {
 .NOTES
 
     Revsion History:
-    
+
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
     - 2024-11-09 - FGE: Added NewDisplaName as Alias for KQLQuerysetNewName
 
@@ -48,12 +48,12 @@ function Set-RtiKQLQueryset {
     param (
 
         [Parameter(Mandatory=$true)]
-        [string]$WorkspaceId, 
+        [string]$WorkspaceId,
 
         [Parameter(Mandatory=$true)]
         [Alias("Id")]
-        [string]$KQLQuerysetId, 
-        
+        [string]$KQLQuerysetId,
+
         [Alias("NewName", "NewDisplayName")]
         [string]$KQLQuerysetNewName,
 
@@ -85,7 +85,7 @@ begin {
                     -Depth 1
 
     # Create KQLQueryset API URL
-    $KQLQuerysetApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLQuerysets/$KQLQuerysetId" 
+    $KQLQuerysetApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLQuerysets/$KQLQuerysetId"
     }
 
 process {

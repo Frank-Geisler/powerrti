@@ -8,8 +8,8 @@ function New-RtiEventstream {
 .DESCRIPTION
     Creates a new Fabric Eventstream
 
-.PARAMETER WorkspaceID  
-    Id of the Fabric Workspace for which the Eventstream should be created. The value for WorkspaceID is a GUID. 
+.PARAMETER WorkspaceID
+    Id of the Fabric Workspace for which the Eventstream should be created. The value for WorkspaceID is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .PARAMETER EventstreamName
@@ -28,7 +28,7 @@ function New-RtiEventstream {
 
 .NOTES
     Revsion History:
-    
+
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
     - 2024-11-09 - FGE: Added DisplaName as Alias for EventStreamName
 
@@ -40,8 +40,8 @@ function New-RtiEventstream {
     param (
 
         [Parameter(Mandatory=$true)]
-        [string]$WorkspaceID, 
-        
+        [string]$WorkspaceID,
+
         [Parameter(Mandatory=$true)]
         [Alias("Name","DisplayName")]
         [string]$EventstreamName,
@@ -66,7 +66,7 @@ begin {
             -Depth 1
 
     # Create Eventhouse API URL
-    $eventstreamApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventstreams" 
+    $eventstreamApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventstreams"
     }
 
 process {

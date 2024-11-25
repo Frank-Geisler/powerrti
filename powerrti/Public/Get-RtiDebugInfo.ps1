@@ -14,7 +14,7 @@ function Get-RtiDebugInfo {
     Get-RtiDebugInfo
 
     This example shows the current session object.
-    
+
 #>
 
 [CmdletBinding()]

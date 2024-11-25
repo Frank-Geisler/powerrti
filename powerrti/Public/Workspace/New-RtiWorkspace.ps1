@@ -9,7 +9,7 @@ function New-RtiWorkspace {
     Creates a new Fabric Workspace
 
 .PARAMETER CapacityID
-    Id of the Fabric Capacity for which the Workspace should be created. The value for CapacityID is a GUID. 
+    Id of the Fabric Capacity for which the Workspace should be created. The value for CapacityID is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .PARAMETER WorkspaceName
@@ -24,7 +24,7 @@ function New-RtiWorkspace {
         -WorkspaceName 'TestWorkspace' `
         -WorkspaceDescription 'This is a Test Workspace'
 
-    This example will create a new Workspace with the name 'TestWorkspace' and the description 'This is a test workspace'.	
+    This example will create a new Workspace with the name 'TestWorkspace' and the description 'This is a test workspace'.
 
 .NOTES
 
@@ -32,7 +32,7 @@ function New-RtiWorkspace {
 
 [CmdletBinding(SupportsShouldProcess)]
     param (
-        
+
         [Parameter(Mandatory=$true)]
         [string]$CapacityId,
 

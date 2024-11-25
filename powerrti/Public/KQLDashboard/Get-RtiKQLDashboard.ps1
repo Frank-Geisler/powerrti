@@ -11,21 +11,21 @@ function Get-RtiKQLDashboard {
     parameters cannot be used together.
 
 .PARAMETER WorkspaceId
-    Id of the Fabric Workspace for which the KQLDashboards should be retrieved. The value for WorkspaceId is a GUID. 
+    Id of the Fabric Workspace for which the KQLDashboards should be retrieved. The value for WorkspaceId is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .PARAMETER KQLDashboardName
     The name of the KQLDashboard to retrieve. This parameter cannot be used together with KQLDashboardID.
 
 .PARAMETER KQLDashboardID
-    The Id of the KQLDashboard to retrieve. This parameter cannot be used together with KQLDashboardName. The value for KQLDashboardID is a GUID. 
+    The Id of the KQLDashboard to retrieve. This parameter cannot be used together with KQLDashboardName. The value for KQLDashboardID is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .EXAMPLE
     Get-RTIKQLDashboard
 
 .NOTES
-    TODO: Add functionality to list all KQLDashboards. To do so fetch all workspaces and 
+    TODO: Add functionality to list all KQLDashboards. To do so fetch all workspaces and
           then all KQLDashboards in each workspace.
 
     Revision History:
@@ -54,13 +54,13 @@ begin {
 
     # You can either use Name or WorkspaceID
     if ($PSBoundParameters.ContainsKey("KQLDashboardName") -and $PSBoundParameters.ContainsKey("KQLDashboardId")) {
-        throw "Parameters KQLDashboardName and KQLDashboardId cannot be used together"    
+        throw "Parameters KQLDashboardName and KQLDashboardId cannot be used together"
     }
 
     # Create KQLDashboard API
-    $KQLDashboardAPI = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLDashboards" 
+    $KQLDashboardAPI = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLDashboards"
 
-    $KQLDashboardAPIKQLDashboardId = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLDashboards/$KQLDashboardId" 
+    $KQLDashboardAPIKQLDashboardId = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLDashboards/$KQLDashboardId"
 
 }
 
@@ -73,7 +73,7 @@ process {
                     -Method GET `
                     -Uri $KQLDashboardAPIKQLDashboardId `
                     -ContentType "application/json"
-                
+
         $response
     }
     else {

@@ -10,11 +10,11 @@ function New-RtiKQLDatabase {
     It will be created with the specified name and description.
 
 .PARAMETER  WorkspaceID
-    Id of the Fabric Workspace for which the KQLDatabase should be created. The value for WorkspaceID is a GUID. 
+    Id of the Fabric Workspace for which the KQLDatabase should be created. The value for WorkspaceID is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .PARAMETER  EventhouseID
-    Id of the Fabric Eventhouse for which the KQLDatabase should be created. The value for EventhouseID is a GUID. 
+    Id of the Fabric Eventhouse for which the KQLDatabase should be created. The value for EventhouseID is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .PARAMETER  KQLDatabaseName
@@ -33,22 +33,22 @@ function New-RtiKQLDatabase {
 
     This example will create a new KQLDatabase with the name 'MyKQLDatabase' and the description 'This is my KQLDatabase'.
 
-.NOTES    
-        Revsion History:
-        
-        - 2024-11-07 - FGE: Implemented SupportShouldProcess
-        - 2024-11-09 - FGE: Added DisplaName as Alias for KQLDatabaseName
+.NOTES
+    Revsion History:
+
+    - 2024-11-07 - FGE: Implemented SupportShouldProcess
+    - 2024-11-09 - FGE: Added DisplaName as Alias for KQLDatabaseName
 #>
 
 [CmdletBinding(SupportsShouldProcess)]
     param (
 
         [Parameter(Mandatory=$true)]
-        [string]$WorkspaceID, 
+        [string]$WorkspaceID,
 
         [Parameter(Mandatory=$true)]
-        [string]$EventhouseID, 
-        
+        [string]$EventhouseID,
+
         [Parameter(Mandatory=$true)]
         [Alias("Name", "DisplayName")]
         [string]$KQLDatabaseName,
@@ -71,12 +71,12 @@ begin {
         'description' = $KQLDatabaseDescription
         'creationPayload'= @{
                 'databaseType' = "ReadWrite";
-                'parentEventhouseItemId' = $EventhouseId} 
+                'parentEventhouseItemId' = $EventhouseId}
     } | ConvertTo-Json `
             -Depth 1
 
     # Create KQLDatabase API URL
-    $KQLDatabaseApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLDatabases" 
+    $KQLDatabaseApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLDatabases"
     }
 
 process {
@@ -95,7 +95,7 @@ process {
 }
 
 end {
-    
+
 }
 
 }

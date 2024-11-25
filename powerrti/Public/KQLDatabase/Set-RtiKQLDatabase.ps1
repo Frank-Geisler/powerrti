@@ -6,17 +6,17 @@ function Set-RtiKQLDatabase {
     Updates Properties of an existing Fabric KQLDatabase
 
 .DESCRIPTION
-    Updates Properties of an existing Fabric KQLDatabase. The KQLDatabase is updated 
+    Updates Properties of an existing Fabric KQLDatabase. The KQLDatabase is updated
     in the specified Workspace. The KQLDatabaseId is used to identify the KQLDatabase
-    that should be updated. The KQLDatabaseNewName and KQLDatabaseDescription are the 
+    that should be updated. The KQLDatabaseNewName and KQLDatabaseDescription are the
     properties that can be updated.
 
 .PARAMETER WorkspaceId
-    Id of the Fabric Workspace for which the KQLDatabase should be updated. The value for WorkspaceId is a GUID. 
+    Id of the Fabric Workspace for which the KQLDatabase should be updated. The value for WorkspaceId is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .PARAMETER KQLDatabaseId
-    The Id of the KQLDatabase to update. The value for KQLDatabaseId is a GUID. 
+    The Id of the KQLDatabase to update. The value for KQLDatabaseId is a GUID.
     An example of a GUID is '12345678-1234-123-1234-123456789012'.
 
 .PARAMETER KQLDatabaseNewName
@@ -38,31 +38,31 @@ function Set-RtiKQLDatabase {
 .NOTES
 
     Revsion History:
-    
+
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
     - 2024-11-09 - FGE: Added DisplaName as Alias for KQLDatabaseName
 
 .LINK
- 
+
 #>
 
 [CmdletBinding(SupportsShouldProcess)]
     param (
 
         [Parameter(Mandatory=$true)]
-        [string]$WorkspaceId, 
+        [string]$WorkspaceId,
 
         [Parameter(Mandatory=$true)]
         [Alias("Id")]
-        [string]$KQLDatabaseId, 
-        
+        [string]$KQLDatabaseId,
+
         [Alias("Name", "DisplayName")]
         [string]$KQLDatabaseName,
 
         [Alias("Description")]
         [ValidateLength(0, 256)]
         [string]$KQLDatabaseDescription
-        
+
     )
 
 begin {
@@ -87,7 +87,7 @@ begin {
                     -Depth 1
 
     # Create KQLDatabase API URL
-    $KQLDatabaseApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLDatabases/$KQLDatabaseId" 
+    $KQLDatabaseApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLDatabases/$KQLDatabaseId"
     }
 
 process {

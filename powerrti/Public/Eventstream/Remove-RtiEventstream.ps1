@@ -9,11 +9,11 @@ function Remove-RtiEventstream {
     Removes an existing Fabric Eventstream
 
 .PARAMETER WorkspaceId
-    Id of the Fabric Workspace for which the Eventstream should be deleted. The value for WorkspaceId is a GUID. 
+    Id of the Fabric Workspace for which the Eventstream should be deleted. The value for WorkspaceId is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .PARAMETER EventstreamId
-    The Id of the Eventstream to delete. The value for Eventstream is a GUID. 
+    The Id of the Eventstream to delete. The value for Eventstream is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .EXAMPLE
@@ -34,7 +34,7 @@ function Remove-RtiEventstream {
 .NOTES
 
     Revsion History:
-    
+
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
     - 2024-11-09 - FGE: Added DisplaName as Alias for EventStreamName
 #>
@@ -45,8 +45,8 @@ function Remove-RtiEventstream {
     param (
 
         [Parameter(Mandatory=$true)]
-        [string]$WorkspaceId, 
-        
+        [string]$WorkspaceId,
+
         [Alias("Id")]
         [string]$EventstreamId,
 
@@ -63,7 +63,7 @@ begin {
 
      # You can either use EventstreamName or EventstreamID
     if ($PSBoundParameters.ContainsKey("EventstreamId") -and $PSBoundParameters.ContainsKey("EventstreamName")) {
-        throw "Parameters EventstreamId and EventstreamName cannot be used together"    
+        throw "Parameters EventstreamId and EventstreamName cannot be used together"
     }
 
     if ($PSBoundParameters.ContainsKey("EventstreamName")) {
@@ -75,7 +75,7 @@ begin {
     }
 
     # Create Eventhouse API URL
-    $eventstreamApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventstreams/$EventstreamId" 
+    $eventstreamApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventstreams/$EventstreamId"
 
 }
 

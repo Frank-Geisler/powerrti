@@ -11,14 +11,14 @@ function Get-RtiKQLDashboardDefinition {
     This is provided as a JSON object.
 
 .PARAMETER WorkspaceId
-    Id of the Fabric Workspace in which the KQLDashboard exists. The value for WorkspaceId is a GUID. 
+    Id of the Fabric Workspace in which the KQLDashboard exists. The value for WorkspaceId is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .PARAMETER KQLDashboardName
     The name of the KQLDashboard to retrieve. This parameter cannot be used together with KQLDashboardID.
 
 .PARAMETER KQLDashboardID
-    The Id of the KQLDashboard to retrieve. This parameter cannot be used together with KQLDashboardName. The value for KQLDashboardID is a GUID. 
+    The Id of the KQLDashboard to retrieve. This parameter cannot be used together with KQLDashboardName. The value for KQLDashboardID is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .EXAMPLE
@@ -26,7 +26,7 @@ function Get-RtiKQLDashboardDefinition {
         -WorkspaceId "12345678-1234-1234-1234-123456789012" `
         -KQLDashboardName "MyKQLDashboard"
 
-    This example retrieves the KQLDashboard Definition for the KQLDashboard named "MyKQLDashboard" in the 
+    This example retrieves the KQLDashboard Definition for the KQLDashboard named "MyKQLDashboard" in the
     Workspace with the ID "12345678-1234-1234-1234-123456789012".
 
 .EXAMPLE
@@ -36,10 +36,10 @@ function Get-RtiKQLDashboardDefinition {
 
      $db[0].payload | `
         Set-Content `
-            -Path "C:\temp\mydashboard.json" 
+            -Path "C:\temp\mydashboard.json"
 
     This example retrieves the KQLDashboard Definition for the KQLDashboard named "MyKQLDashboard" in the
-    Workspace with the ID "12345678-1234-1234-1234-123456789012". 
+    Workspace with the ID "12345678-1234-1234-1234-123456789012".
     The definition is saved to a file named "mydashboard.json".
 
 
@@ -73,13 +73,13 @@ begin {
 
     # You can either use Name or WorkspaceID
     if ($PSBoundParameters.ContainsKey("KQLDashboardName") -and $PSBoundParameters.ContainsKey("KQLDashboardId")) {
-        throw "Parameters KQLDashboardName and KQLDashboardId cannot be used together"    
+        throw "Parameters KQLDashboardName and KQLDashboardId cannot be used together"
     }
 
     # Create KQLDashboard API
-    $KQLDashboardAPI = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLDashboards" 
+    $KQLDashboardAPI = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLDashboards"
 
-    $KQLDashboardAPIKQLDashboardId = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLDashboards/$KQLDashboardId/getDefinition" 
+    $KQLDashboardAPIKQLDashboardId = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLDashboards/$KQLDashboardId/getDefinition"
 
     $body = @{
     } | ConvertTo-Json `
@@ -97,7 +97,7 @@ process {
                     -Uri $KQLDashboardAPIKQLDashboardId `
                     -Body $null `
                     -ContentType "application/json"
-                
+
         $parts = $response.definition.parts
 
         foreach ($part in $parts) {

@@ -11,14 +11,14 @@ function Get-RtiEventstream {
     parameters cannot be used together.
 
 .PARAMETER WorkspaceId
-    Id of the Fabric Workspace for which the Eventstreams should be retrieved. The value for WorkspaceId is a GUID. 
+    Id of the Fabric Workspace for which the Eventstreams should be retrieved. The value for WorkspaceId is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .PARAMETER EventstreamName
     The name of the Eventstream to retrieve. This parameter cannot be used together with EventstreamID.
 
 .PARAMETER EventstreamId
-    The Id of the Eventstream to retrieve. This parameter cannot be used together with EventstreamName. The value for EventstreamId is a GUID. 
+    The Id of the Eventstream to retrieve. This parameter cannot be used together with EventstreamName. The value for EventstreamId is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .EXAMPLE
@@ -45,7 +45,7 @@ function Get-RtiEventstream {
     https://learn.microsoft.com/en-us/rest/api/fabric/eventstream/items/get-eventstream?tabs=HTTP
 
 .NOTES
-    TODO: Add functionality to list all Eventhouses. To do so fetch all workspaces and 
+    TODO: Add functionality to list all Eventhouses. To do so fetch all workspaces and
           then all eventhouses in each workspace.
 
     Revision History:
@@ -73,13 +73,13 @@ begin {
 
     # You can either use Name or WorkspaceID
     if ($PSBoundParameters.ContainsKey("EventstreamName") -and $PSBoundParameters.ContainsKey("EventstreamID")) {
-        throw "Parameters EventstreamName and EventstreamID cannot be used together"    
+        throw "Parameters EventstreamName and EventstreamID cannot be used together"
     }
 
     # Create Eventhouse API
-    $eventstreamApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventstreams" 
+    $eventstreamApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventstreams"
 
-    $eventstreamAPIEventstreamIdUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventstreams/$EventstreamId" 
+    $eventstreamAPIEventstreamIdUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventstreams/$EventstreamId"
 
 }
 
@@ -92,7 +92,7 @@ process {
                     -Method GET `
                     -Uri $eventstreamAPIEventstreamIdUrl `
                     -ContentType "application/json"
-                
+
         $response
     }
     else {

@@ -35,3 +35,5 @@ During the development of the module and the research I do I might pass some int
 - [about_Comment_Based_Help](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help?view=powershell-5.1)
 - [Examples of Comment-based Help](https://learn.microsoft.com/en-us/powershell/scripting/developer/help/examples-of-comment-based-help?view=powershell-7.4)
 - [Using PSScriptAnalyzer](https://learn.microsoft.com/en-us/powershell/utility-modules/psscriptanalyzer/using-scriptanalyzer?view=ps-modules)
+- [Querying Fabric KQL Database Using REST API](https://fabric.guru/querying-fabric-kql-database-using-rest-api)
+- [How to Use GitHub Action for GitHub Push in Your Workflows](https://cicube.io/workflow-hub/ad-m-github-push-action/#how-to-use-a-github-app-token-for-pushing-changes)

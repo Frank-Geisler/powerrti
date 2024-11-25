@@ -30,7 +30,7 @@ function Set-RtiEventhouse {
         -EventhouseDescription 'This is my new Eventhouse'
 
     This example will update the Eventhouse with the Id '12345678-1234-1234-1234-123456789012'
-    in the Workspace with the Id '12345678-1234-1234-1234-123456789012' to 
+    in the Workspace with the Id '12345678-1234-1234-1234-123456789012' to
     have the name 'MyNewEventhouse' and the description
     'This is my new Eventhouse'.
 

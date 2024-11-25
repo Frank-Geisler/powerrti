@@ -7,19 +7,19 @@ function Get-RtiKQLQueryset {
 
 .DESCRIPTION
     Retrieves Fabric KQLQuerysets. Without the KQLQuerysetName or KQLQuerysetId parameter,
-    all KQLQuerysets are returned in the given Workspace. If you want to retrieve a specific 
+    all KQLQuerysets are returned in the given Workspace. If you want to retrieve a specific
     KQLQueryset, you can use the KQLQuerysetName or KQLQuerysetId parameter. These parameters
     cannot be used together.
 
 .PARAMETER WorkspaceId
-    Id of the Fabric Workspace for which the KQLQuerysets should be retrieved. The value for WorkspaceId is a GUID. 
+    Id of the Fabric Workspace for which the KQLQuerysets should be retrieved. The value for WorkspaceId is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'. This parameter is mandatory.
 
 .PARAMETER KQLQuerysetName
     The name of the KQLQueryset to retrieve. This parameter cannot be used together with KQLQuerysetId.
 
 .PARAMETER KQLQuerysetId
-    The Id of the KQLQueryset to retrieve. This parameter cannot be used together with KQLQuerysetName. 
+    The Id of the KQLQueryset to retrieve. This parameter cannot be used together with KQLQuerysetName.
     The value for KQLQuerysetId is a GUID. An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .EXAMPLE
@@ -33,7 +33,7 @@ function Get-RtiKQLQueryset {
     Get-RtiKQLQueryset `
         -WorkspaceId '12345678-1234-1234-1234-123456789012'
 
-    This example will retrieve all KQLQuerysets in the workspace that is specified 
+    This example will retrieve all KQLQuerysets in the workspace that is specified
     by the WorkspaceId.
 
 .EXAMPLE
@@ -44,7 +44,7 @@ function Get-RtiKQLQueryset {
     This example will retrieve the KQLQueryset with the ID '12345678-1234-1234-1234-123456789012'.
 
 .NOTES
-    TODO: Add functionality to list all KQLQuerysets. To do so fetch all workspaces and 
+    TODO: Add functionality to list all KQLQuerysets. To do so fetch all workspaces and
         then all KQLQuerysets in each workspace.
 
     Revision History:
@@ -74,13 +74,13 @@ begin {
 
     # You can either use Name or WorkspaceID
     if ($PSBoundParameters.ContainsKey("KQLQuerysetName") -and $PSBoundParameters.ContainsKey("KQLQuerysetId")) {
-        throw "Parameters KQLQuerysetName and KQLQuerysetId cannot be used together"    
+        throw "Parameters KQLQuerysetName and KQLQuerysetId cannot be used together"
     }
 
     # Create KQLQueryset API
-    $KQLQuerysetAPI = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLQuerysets" 
+    $KQLQuerysetAPI = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLQuerysets"
 
-    $KQLQuerysetAPIKQLQuerysetId = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLQuerysets/$KQLQuerysetId" 
+    $KQLQuerysetAPIKQLQuerysetId = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLQuerysets/$KQLQuerysetId"
 
 }
 
@@ -93,7 +93,7 @@ process {
                     -Method GET `
                     -Uri $KQLQuerysetAPIKQLQuerysetId `
                     -ContentType "application/json"
-                
+
         $response
     }
     else {

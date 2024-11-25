@@ -11,7 +11,13 @@ Locale: en-US
 {{ Fill in the Description }}
 
 ## powerrti Cmdlets
+### [Add-RtiWorkspaceRoleAssignment](Add-RtiWorkspaceRoleAssignment.md)
+{{ Fill in the Description }}
+
 ### [Connect-RtiAccount](Connect-RtiAccount.md)
+{{ Fill in the Description }}
+
+### [Get-RtiDebugInfo](Get-RtiDebugInfo.md)
 {{ Fill in the Description }}
 
 ### [Get-RtiEventhouse](Get-RtiEventhouse.md)
@@ -23,6 +29,9 @@ Locale: en-US
 ### [Get-RtiKQLDashboard](Get-RtiKQLDashboard.md)
 {{ Fill in the Description }}
 
+### [Get-RtiKQLDashboardDefinition](Get-RtiKQLDashboardDefinition.md)
+{{ Fill in the Description }}
+
 ### [Get-RtiKQLDatabase](Get-RtiKQLDatabase.md)
 {{ Fill in the Description }}
 
@@ -30,6 +39,9 @@ Locale: en-US
 {{ Fill in the Description }}
 
 ### [Get-RtiWorkspace](Get-RtiWorkspace.md)
+{{ Fill in the Description }}
+
+### [Get-RtiWorkspaceRoleAssignment](Get-RtiWorkspaceRoleAssignment.md)
 {{ Fill in the Description }}
 
 ### [Invoke-RtiKQLCommand](Invoke-RtiKQLCommand.md)

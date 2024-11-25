@@ -9,18 +9,18 @@ function Remove-RtiKQLDatabase {
     Removes an existing Fabric Eventhouse. The Eventhouse is removed from the specified Workspace.
 
 .PARAMETER WorkspaceId
-    Id of the Fabric Workspace from which the Eventhouse should be removed. The value for WorkspaceId is a GUID. 
+    Id of the Fabric Workspace from which the Eventhouse should be removed. The value for WorkspaceId is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .PARAMETER EventhouseId
-    The Id of the Eventhouse to remove. The value for EventhouseId is a GUID. 
+    The Id of the Eventhouse to remove. The value for EventhouseId is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .EXAMPLE
     Remove-RtiEventhouse `
         -WorkspaceId '12345678-1234-1234-1234-123456789012' `
         -EventhouseId '12345678-1234-1234-1234-123456789012'
-        
+
     This example will remove the Eventhouse with the Id '12345678-1234-1234-1234-123456789012'.
 
 .NOTES
@@ -33,8 +33,8 @@ function Remove-RtiKQLDatabase {
     param (
 
         [Parameter(Mandatory=$true)]
-        [string]$WorkspaceId, 
-        
+        [string]$WorkspaceId,
+
         [Parameter(Mandatory=$true)]
         [Alias("Id")]
         [string]$KQLDatabaseId
@@ -48,7 +48,7 @@ begin {
     }
 
     # Create Eventhouse API URL
-    $eventhouseApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLDatabases/$KQLDatabaseId" 
+    $eventhouseApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLDatabases/$KQLDatabaseId"
 
     }
 

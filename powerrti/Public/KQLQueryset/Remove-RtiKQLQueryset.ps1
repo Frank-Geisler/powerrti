@@ -9,13 +9,13 @@ function Remove-RtiKQLQueryset {
     Removes an existing Fabric KQLQueryset. The Eventhouse is identified by the WorkspaceId and KQLQuerysetId.
 
 .PARAMETER WorkspaceId
-    Id of the Fabric Workspace for which the KQLQueryset should be removed. The value for WorkspaceId is a GUID. 
+    Id of the Fabric Workspace for which the KQLQueryset should be removed. The value for WorkspaceId is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'. This parameter is mandatory.
 
 .PARAMETER KQLQuerysetId
     The Id of the KQLQueryset to remove. The value for KQLQuerysetId is a GUID. An example of a GUID is '12345678-1234-1234-1234-123456789012'.
     This parameter is mandatory.
-    
+
 .EXAMPLE
     Remove-RtiKQLQueryset `
         -WorkspaceId '12345678-1234-1234-1234-123456789012' `
@@ -35,8 +35,8 @@ function Remove-RtiKQLQueryset {
     param (
 
         [Parameter(Mandatory=$true)]
-        [string]$WorkspaceId, 
-        
+        [string]$WorkspaceId,
+
         [Parameter(Mandatory=$true)]
         [Alias("Id")]
         [string]$KQLQuerysetId
@@ -50,7 +50,7 @@ begin {
     }
 
     # Create Eventhouse API URL
-    $eventhouseApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLQuerysets/$KQLQuerysetId" 
+    $eventhouseApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLQuerysets/$KQLQuerysetId"
 
     }
 

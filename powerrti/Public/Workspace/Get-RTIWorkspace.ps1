@@ -8,28 +8,28 @@ function Get-RtiWorkspace {
 .DESCRIPTION
     Retrieves Fabric Workspaces. Without the WorkspaceName or WorkspaceID parameter,
     all Workspaces are returned. If you want to retrieve a specific Workspace, you can
-    use the WorkspaceName, an CapacityID, a WorkspaceType, a WorkspaceState or the WorkspaceID 
+    use the WorkspaceName, an CapacityID, a WorkspaceType, a WorkspaceState or the WorkspaceID
     parameter. The WorkspaceId parameter has precedence over all other parameters because it
     is most specific.
 
 .PARAMETER WorkspaceId
-    Id of the Fabric Workspace to retrieve. The value for WorkspaceId is a GUID. 
+    Id of the Fabric Workspace to retrieve. The value for WorkspaceId is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .PARAMETER WorkspaceName
-    The name of the Workspace to retrieve. This parameter cannot be used together with WorkspaceID. 
+    The name of the Workspace to retrieve. This parameter cannot be used together with WorkspaceID.
 
 .PARAMETER WorkspaceCapacityId
-    The Id of the Capacity to retrieve. This parameter cannot be used together with WorkspaceID. 
-    The value for WorkspaceCapacityId is a GUID. An example of a GUID is '12345678-1234-1234-1234-123456789012'.    
+    The Id of the Capacity to retrieve. This parameter cannot be used together with WorkspaceID.
+    The value for WorkspaceCapacityId is a GUID. An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .PARAMETER WorkspaceType
-    The type of the Workspace to retrieve. This parameter cannot be used together with WorkspaceID. 
+    The type of the Workspace to retrieve. This parameter cannot be used together with WorkspaceID.
     The value for WorkspaceType is a string. An example of a string is 'Personal'. The values that
     can be used are 'Personal', 'Workspace' and 'Adminworkspace'.
 
 .PARAMETER WorkspaceState
-    The state of the Workspace to retrieve. This parameter cannot be used together with WorkspaceID. 
+    The state of the Workspace to retrieve. This parameter cannot be used together with WorkspaceID.
     The value for WorkspaceState is a string. An example of a string is 'active'. The values that
     can be used are 'active' and 'deleted'.
 
@@ -96,7 +96,6 @@ function Get-RtiWorkspace {
         [ValidateSet("active", "deleted")]
         [Alias("State")]
         [string]$WorkspaceState
-        
     )
 
 begin {
@@ -107,16 +106,16 @@ begin {
     }
 
     # WorkspaceID has to be used alone
-    if ($PSBoundParameters.ContainsKey("WorkspaceName") -and 
+    if ($PSBoundParameters.ContainsKey("WorkspaceName") -and
         ($PSBoundParameters.ContainsKey("WorkspaceID") `
         -or $PSBoundParameters.ContainsKey("WorkspaceCapcityId") `
         -or $PSBoundParameters.ContainsKey("WorkspaceType") `
         -or $PSBoundParameters.ContainsKey("WorkspaceState"))) {
-            throw "Parameters WorkspaceName, WorkspaceCapacityId, WorkspaceType or WorkspaceState and WorkspaceID cannot be used together!"    
+            throw "Parameters WorkspaceName, WorkspaceCapacityId, WorkspaceType or WorkspaceState and WorkspaceID cannot be used together!"
     }
 
     # Create Workspace API URL
-    $workspaceApiUrl = "$($RTISession.BaseFabricUrl)/v1/admin/workspaces" 
+    $workspaceApiUrl = "$($RTISession.BaseFabricUrl)/v1/admin/workspaces"
 
     # Create URL for WebAPI Call if WorkspaceID is provided
     if ($PSBoundParameters.ContainsKey("WorkspaceID")) {

@@ -9,7 +9,7 @@ function New-RtiEventhouse {
     Creates a new Fabric Eventhouse
 
 .PARAMETER WorkspaceID
-    Id of the Fabric Workspace for which the Eventhouse should be created. The value for WorkspaceID is a GUID. 
+    Id of the Fabric Workspace for which the Eventhouse should be created. The value for WorkspaceID is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .PARAMETER EventhouseName

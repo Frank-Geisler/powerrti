@@ -9,7 +9,7 @@ function New-RtiKQLDashboard {
     Creates a new Fabric KQLDashboard
 
 .PARAMETER WorkspaceID
-    Id of the Fabric Workspace for which the KQLDashboard should be created. The value for WorkspaceID is a GUID. 
+    Id of the Fabric Workspace for which the KQLDashboard should be created. The value for WorkspaceID is a GUID.
     An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 .PARAMETER KQLDashboardName
@@ -24,12 +24,12 @@ function New-RtiKQLDashboard {
         -KQLDashboardName 'MyKQLDashboard' `
         -KQLDashboardDescription 'This is my KQLDashboard'
 
-    This example will create a new KQLDashboard with the name 'MyKQLDashboard' and the description 'This is my KQLDashboard'.	
+    This example will create a new KQLDashboard with the name 'MyKQLDashboard' and the description 'This is my KQLDashboard'.
 
 .NOTES
 
     Revsion History:
-    
+
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
     - 2024-11-09 - FGE: Added DisplaName as Alias for KQLDashboardName
 #>
@@ -38,8 +38,8 @@ function New-RtiKQLDashboard {
     param (
 
         [Parameter(Mandatory=$true)]
-        [string]$WorkspaceID, 
-        
+        [string]$WorkspaceID,
+
         [Parameter(Mandatory=$true)]
         [Alias("Name", "DisplayName")]
         [string]$KQLDashboardName,
@@ -64,7 +64,7 @@ begin {
             -Depth 1
 
     # Create KQLDashboard API URL
-    $KQLDashboardApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLDashboards" 
+    $KQLDashboardApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLDashboards"
     }
 
 process {

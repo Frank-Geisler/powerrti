@@ -6,7 +6,7 @@ function Invoke-RtiKQLCommand {
     Executes a KQL command in a Kusto Database.
 
 .DESCRIPTION
-    Executes a KQL command in a Kusto Database. The KQL command is executed in the Kusto Database 
+    Executes a KQL command in a Kusto Database. The KQL command is executed in the Kusto Database
     that is specified by the KQLDatabaseName or KQLDatabaseId parameter. The KQL command is executed
     in the context of the Fabric Real-Time Intelligence session that is established by the
     Connect-RTISession cmdlet.
