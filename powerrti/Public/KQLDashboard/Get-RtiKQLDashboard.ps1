@@ -30,6 +30,7 @@ function Get-RtiKQLDashboard {
 
     Revision History:
         - 2024-11-09 - FGE: Added DisplaName as Alias for KQLDashboardName
+        - 2024-12-08 - FGE: Added Verbose Output
 #>
 
 
@@ -47,12 +48,12 @@ function Get-RtiKQLDashboard {
 
 begin {
 
-    # Check if session is established - if not throw error
+    Write-Verbose "Check if session is established - if not throw error"
     if ($null -eq $RTISession.headerParams) {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
     }
 
-    # You can either use Name or WorkspaceID
+    Write-Verbode "You can either use Name or WorkspaceID"
     if ($PSBoundParameters.ContainsKey("KQLDashboardName") -and $PSBoundParameters.ContainsKey("KQLDashboardId")) {
         throw "Parameters KQLDashboardName and KQLDashboardId cannot be used together"
     }
@@ -67,7 +68,14 @@ begin {
 process {
 
     if ($PSBoundParameters.ContainsKey("KQLDashboardId")) {
-
+        Write-Verbose "Get KQLDashboard with ID $KQLDashboardId"
+        Write-Verbose "Calling KQLDashboard API with KQLDashboardId"
+        Write-Verbose "--------------------------------------------"
+        Write-Verbose "Sending the following values to the Eventstream API:"
+        Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+        Write-Verbose "Method: GET"
+        Write-Verbose "URI: $KQLDashboardAPIKQLDashboardId"
+        Write-Verbose "ContentType: application/json"
         $response = Invoke-RestMethod `
                     -Headers $RTISession.headerParams `
                     -Method GET `
@@ -77,7 +85,13 @@ process {
         $response
     }
     else {
-        # Call Workspace API
+        Write-Verbose "Calling KQLDashboard API"
+        Write-Verbose "------------------------"
+        Write-Verbose "Sending the following values to the Eventstream API:"
+        Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+        Write-Verbose "Method: GET"
+        Write-Verbose "URI: $KQLDashboardAPI"
+        Write-Verbose "ContentType: application/json"
         $response = Invoke-RestMethod `
                     -Headers $RTISession.headerParams `
                     -Method GET `
@@ -85,10 +99,12 @@ process {
                     -ContentType "application/json"
 
         if ($PSBoundParameters.ContainsKey("KQLDashboardName")) {
+            Write-Verbose "Filtering KQLDashboards by name. Name: $KQLDashboardName"
             $response.value | `
                 Where-Object { $_.displayName -eq $KQLDashboardName }
         }
         else {
+            Write-Verbose "Returning all KQLDashboards"
             $response.value
         }
     }

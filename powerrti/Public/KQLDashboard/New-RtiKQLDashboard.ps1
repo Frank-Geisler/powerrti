@@ -32,6 +32,7 @@ function New-RtiKQLDashboard {
 
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
     - 2024-11-09 - FGE: Added DisplaName as Alias for KQLDashboardName
+    - 2024-12-08 - FGE: Added Verbose Output
 #>
 
 [CmdletBinding(SupportsShouldProcess)]
@@ -51,12 +52,12 @@ function New-RtiKQLDashboard {
     )
 
 begin {
-    # Check if session is established - if not throw error
+    Write-Verbose "Check if session is established - if not throw error"
     if ($null -eq $RTISession.headerParams) {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
     }
 
-    # Create body of request
+    Write-Verbose "Create body of request"
     $body = @{
         'displayName' = $KQLDashboardName
         'description' = $KQLDashboardDescription
@@ -70,7 +71,14 @@ begin {
 process {
 
     if($PSCmdlet.ShouldProcess($KQLDashboardName)) {
-        # Call KQLDashboard API
+        Write-Verbose "Calling KQLDashboard API"
+        Write-Verbose "------------------------"
+        Write-Verbose "Sending the following values to the KQLDashboard API:"
+        Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+        Write-Verbose "Method: POST"
+        Write-Verbose "URI: $KQLDashboardApiUrl"
+        Write-Verbose "Body of request: $body"
+        Write-Verbose "ContentType: application/json"
         $response = Invoke-RestMethod `
                             -Headers $RTISession.headerParams `
                             -Method POST `

@@ -47,6 +47,7 @@ function Get-RtiKQLDashboardDefinition {
 
     Revision History:
         - 2024-11-16 - FGE: First version
+        - 2024-12-08 - FGE: Added Verbose Output
 #>
 
 
@@ -66,12 +67,12 @@ function Get-RtiKQLDashboardDefinition {
 
 begin {
 
-    # Check if session is established - if not throw error
+    Write-Verbose "Check if session is established - if not throw error"
     if ($null -eq $RTISession.headerParams) {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
     }
 
-    # You can either use Name or WorkspaceID
+    Write-Verbose "You can either use Name or WorkspaceID"
     if ($PSBoundParameters.ContainsKey("KQLDashboardName") -and $PSBoundParameters.ContainsKey("KQLDashboardId")) {
         throw "Parameters KQLDashboardName and KQLDashboardId cannot be used together"
     }
@@ -81,16 +82,20 @@ begin {
 
     $KQLDashboardAPIKQLDashboardId = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLDashboards/$KQLDashboardId/getDefinition"
 
-    $body = @{
-    } | ConvertTo-Json `
-            -Depth 1
-
 }
 
 process {
 
     if ($PSBoundParameters.ContainsKey("KQLDashboardId")) {
-
+        Write-Verbose "Get KQLDashboardDefinition with ID $KQLDashboardId"
+        Write-Verbose "Calling KQLDashboard API with KQLDashboardId"
+        Write-Verbose "--------------------------------------------"
+        Write-Verbose "Sending the following values to the KQLDashboard API:"
+        Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+        Write-Verbose "Method: POST"
+        Write-Verbose "URI: $KQLDashboardAPIKQLDashboardId"
+        Write-Verbose "Body of request: $$null"
+        Write-Verbose "ContentType: application/json"
         $response = Invoke-RestMethod `
                     -Headers $RTISession.headerParams `
                     -Method POST `
@@ -99,11 +104,13 @@ process {
                     -ContentType "application/json"
 
         $parts = $response.definition.parts
+        Write-Verbose "Decoding the payload of the parts: $parts"
 
         foreach ($part in $parts) {
             $bytes = [System.Convert]::FromBase64String($part.payload)
+            Write-Verbose "Returned bytes for part $part.name: $bytes"
             $decodedText = [System.Text.Encoding]::UTF8.GetString($bytes)
-
+            Write-Verbose "decodedText for part $part.name: $decodedText"
             $part.payload = $decodedText
         }
 
