@@ -39,7 +39,8 @@ function Remove-RtiEventhouse {
 
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
     - 2024-11-09 - FGE: Added DisplaName as Alias for EventhouseName
-
+    - 2024-11-27 - FGE: Added Verbose Output
+    
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/eventhouse/items/delete-eventhouse?tabs=HTTP
 #>
@@ -59,22 +60,24 @@ function Remove-RtiEventhouse {
     )
 
 begin {
-    # Check if session is established - if not throw error
+    Write-Verbose "Check if session is established - if not throw error"
     if ($null -eq $RTISession.headerParams) {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
     }
 
-    # You can either use Name or WorkspaceID
+    Write-Verbose "Check if EventhouseName and EventhouseID are used together. This is not allowed"
     if ($PSBoundParameters.ContainsKey("EventhouseName") -and $PSBoundParameters.ContainsKey("EventhouseID")) {
         throw "Parameters EventhouseName and EventhouseID cannot be used together"
     }
 
     if ($PSBoundParameters.ContainsKey("EventhouseName")) {
+        Write-Verbose "Eventhouse Name $EventhouseName is used. Get Eventhouse ID from Eventhouse Name"
         $eh = Get-RtiEventhouse `
                     -WorkspaceId $WorkspaceId `
                     -EventhouseName $EventhouseName
 
         $EventhouseId = $eh.id
+        Write-Verbose "Eventhouse ID is $EventhouseId"
     }
 
     # Create Eventhouse API URL
@@ -83,7 +86,13 @@ begin {
 
 process {
 
-    # Call Eventhouse API
+    Write-Verbose "Calling Eventhouse API with EventhouseId"
+    Write-Verbose "----------------------------------------"
+    Write-Verbose "Sending the following values to the Eventhouse API:"
+    Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+    Write-Verbose "Method: DELETE"
+    Write-Verbose "URI: $eventhouseApiUrl"
+    Write-Verbose "ContentType: application/json"
     if($PSCmdlet.ShouldProcess($EventhouseName)) {
         $response = Invoke-RestMethod `
                             -Headers $RTISession.headerParams `

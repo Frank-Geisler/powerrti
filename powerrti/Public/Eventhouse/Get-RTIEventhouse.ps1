@@ -41,6 +41,15 @@ function Get-RtiEventhouse {
 
     This example will give you all Information about the Eventhouse with the Id '12345678-1234-1234-1234-123456789012'.
 
+    .EXAMPLE
+    Get-RTIEventhouse `
+        -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+        -EventhouseId '12345678-1234-1234-1234-123456789012' `
+        -Verbose
+
+    This example will give you all Information about the Eventhouse with the Id '12345678-1234-1234-1234-123456789012'.
+    It will also give you verbose output which is useful for debugging.
+
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/eventhouse/items/list-eventhouses?tabs=HTTP
 
@@ -52,6 +61,7 @@ function Get-RtiEventhouse {
 
     - 2024-11-09 - FGE: Added DisplaName as Alias for EventhouseName
     - 2024-11-16 - FGE: Added Verbose Output
+    - 2024-11-27 - FGE: Added more Verbose Output
 #>
 
 #
@@ -87,19 +97,26 @@ begin {
 
     $eventhouseAPIEventhouseId = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventhouses/$EventhouseId"
     Write-Verbose "Creating the URL for the Eventhouse API when the Id is used: $eventhouseAPIEventhouseId"
+
 }
 
 process {
 
     if ($PSBoundParameters.ContainsKey("EventhouseId")) {
         Write-Verbose "Calling Eventhouse API with EventhouseId"
+        Write-Verbose "----------------------------------------"
+        Write-Verbose "Sending the following values to the Eventhouse API:"
+        Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+        Write-Verbose "Method: GET"
+        Write-Verbose "URI: $eventhouseAPIEventhouseId"
+        Write-Verbose "ContentType: application/json"
         $response = Invoke-RestMethod `
                         -Headers $RTISession.headerParams `
                         -Method GET `
                         -Uri $eventhouseAPIEventhouseId `
                         -ContentType "application/json"
 
-        Write-Verbose "Adding the member queryServiceUri"
+        Write-Verbose "Adding the member queryServiceUri: $($response.properties.queryServiceUri)"
         Add-Member `
             -MemberType NoteProperty `
             -Name 'queryServiceUri' `
@@ -107,7 +124,7 @@ process {
             -InputObject $response `
             -Force
 
-        Write-Verbose "Adding the member ingestionServiceUri"
+        Write-Verbose "Adding the member ingestionServiceUri: $($response.properties.ingestionServiceUri)"
         Add-Member `
             -MemberType NoteProperty `
             -Name 'ingestionServiceUri' `
@@ -115,7 +132,7 @@ process {
             -InputObject $response `
             -Force
 
-        Write-Verbose "Adding the member databasesItemIds"
+        Write-Verbose "Adding the member databasesItemIds: $($response.properties.databasesItemIds)"
         Add-Member `
             -MemberType NoteProperty `
             -Name 'databasesItemIds' `
@@ -123,7 +140,7 @@ process {
             -InputObject $response `
             -Force
 
-        Write-Verbose "Adding the member minimumConsumptionUnits"
+        Write-Verbose "Adding the member minimumConsumptionUnits: $($response.properties.minimumConsumptionUnits)"
         Add-Member `
             -MemberType NoteProperty `
             -Name 'minimumConsumptionUnits' `
@@ -135,6 +152,12 @@ process {
     }
     else {
         Write-Verbose "Calling Eventhouse API without EventhouseId"
+        Write-Verbose "-------------------------------------------"
+        Write-Verbose "Sending the following values to the Eventhouse API:"
+        Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+        Write-Verbose "Method: GET"
+        Write-Verbose "URI: $eventhouseAPI"
+        Write-Verbose "ContentType: application/json"
         $response = Invoke-RestMethod `
                     -Headers $RTISession.headerParams `
                     -Method GET `
@@ -142,7 +165,7 @@ process {
                     -ContentType "application/json"
 
         foreach ($eventhouse in $response.value) {
-            Write-Verbose "Adding the member queryServiceUri"
+            Write-Verbose "Adding the member queryServiceUri: $($eventhouse.properties.queryServiceUri)"
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'queryServiceUri' `
@@ -150,7 +173,7 @@ process {
                 -InputObject $eventhouse `
                 -Force
 
-            Write-Verbose "Adding the member ingestionServiceUri"
+            Write-Verbose "Adding the member ingestionServiceUri: $($eventhouse.properties.ingestionServiceUri)"
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'ingestionServiceUri' `
@@ -158,7 +181,7 @@ process {
                 -InputObject $eventhouse `
                 -Force
 
-            Write-Verbose "Adding the member databasesItemIds"
+            Write-Verbose "Adding the member databasesItemIds: $($eventhouse.properties.databasesItemIds)"
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'databasesItemIds' `
@@ -166,7 +189,7 @@ process {
                 -InputObject $eventhouse `
                 -Force
 
-            Write-Verbose "Adding the member minimumConsumptionUnits"
+            Write-Verbose "Adding the member minimumConsumptionUnits: $($eventhouse.properties.minimumConsumptionUnits)"
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'minimumConsumptionUnits' `
@@ -176,7 +199,7 @@ process {
         }
 
         if ($PSBoundParameters.ContainsKey("EventhouseName")) {
-            Write-Verbose "Filtering the Eventhouse by EventhouseName"
+            Write-Verbose "Filtering the Eventhouse by EventhouseName: $EventhouseName"
             $response.value | `
                 Where-Object { $_.displayName -eq $EventhouseName }
         }

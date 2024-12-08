@@ -34,6 +34,19 @@ function Set-RtiEventhouse {
     have the name 'MyNewEventhouse' and the description
     'This is my new Eventhouse'.
 
+.EXAMPLE
+    Set-RtiEventhouse `
+        -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+        -EventhouseId '12345678-1234-1234-1234-123456789012' `
+        -EventhouseNewName 'MyNewEventhouse' `
+        -EventhouseDescription 'This is my new Eventhouse' `
+        -Verbose
+
+    This example will update the Eventhouse with the Id '12345678-1234-1234-1234-123456789012'
+    in the Workspace with the Id '12345678-1234-1234-1234-123456789012' to
+    have the name 'MyNewEventhouse' and the description 'This is my new Eventhouse'. 
+    It will also give you verbose output which is useful for debugging.
+
 .NOTES
     TODO: Add functionality to update Eventhouse properties using EventhouseName instead of EventhouseId
 
@@ -41,6 +54,7 @@ function Set-RtiEventhouse {
 
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
     - 2024-11-09 - FGE: Added NewDisplaName as Alias for EventhouseName
+    - 2024-11-27 - FGE: Added Verbose Output
 
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/eventhouse/items/create-eventhouse?tabs=HTTP
@@ -66,7 +80,7 @@ function Set-RtiEventhouse {
     )
 
 begin {
-    # Check if session is established - if not throw error
+    Write-Verbose "Check if session is established - if not throw error"
     if ($null -eq $RTISession.headerParams) {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
     }
@@ -74,11 +88,13 @@ begin {
     # Create body of request
     $body = @{}
 
-    if ($PSBoundParameters.ContainsKey("EventhouseName")) {
+    if ($PSBoundParameters.ContainsKey("EventhouseNewName")) {
+        Write-Verbose "New name found for Eventhouse. New name is: $EventhouseNewName"
         $body["displayName"] = $EventhouseNewName
     }
 
     if ($PSBoundParameters.ContainsKey("EventhouseDescription")) {
+        Write-Verbose "Description found for Eventhouse. Description is: $EventhouseDescription"
         $body["description"] = $EventhouseDescription
     }
 
@@ -92,17 +108,24 @@ begin {
 
 process {
 
-    # Call Eventhouse API
-        if($PSCmdlet.ShouldProcess($EventhouseId)) {
-            $response = Invoke-RestMethod `
-                                -Headers $RTISession.headerParams `
-                                -Method PATCH `
-                                -Uri $eventhouseApiUrl `
-                                -Body ($body) `
-                                -ContentType "application/json"
+    Write-Verbose "Calling Eventhouse API with EventhouseId"
+    Write-Verbose "----------------------------------------"
+    Write-Verbose "Sending the following values to the Eventhouse API:"
+    Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+    Write-Verbose "Method: PATCH"
+    Write-Verbose "URI: $eventhouseApiUrl"
+    Write-Verbose "Body of request: $body"
+    Write-Verbose "ContentType: application/json"
+    if($PSCmdlet.ShouldProcess($EventhouseId)) {
+        $response = Invoke-RestMethod `
+                            -Headers $RTISession.headerParams `
+                            -Method PATCH `
+                            -Uri $eventhouseApiUrl `
+                            -Body ($body) `
+                            -ContentType "application/json"
 
-            $response
-        }
+        $response
+    }
 }
 
 end {}

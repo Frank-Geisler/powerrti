@@ -26,11 +26,22 @@ function New-RtiEventhouse {
 
     This example will create a new Eventhouse with the name 'MyEventhouse' and the description 'This is my Eventhouse'.
 
+.EXAMPLE
+    New-RtiEventhouse `
+        -WorkspaceID '12345678-1234-1234-1234-123456789012' `
+        -EventhouseName 'MyEventhouse' `
+        -EventhouseDescription 'This is my Eventhouse' `
+        -Verbose
+
+    This example will create a new Eventhouse with the name 'MyEventhouse' and the description 'This is my Eventhouse'. 
+    It will also give you verbose output which is useful for debugging.
+
 .NOTES
     Revsion History:
 
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
     - 2024-11-09 - FGE: Added DisplaName as Alias for EventhouseName
+    - 2024-11-27 - FGE: Added Verbose Output
 
 
 .LINK
@@ -71,7 +82,14 @@ begin {
 
 process {
 
-    # Call Eventhouse API
+    Write-Verbose "Calling Eventhouse API"
+    Write-Verbose "----------------------"
+    Write-Verbose "Sending the following values to the Eventhouse API:"
+    Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+    Write-Verbose "Method: POST"
+    Write-Verbose "URI: $eventhouseApiUrl"
+    Write-Verbose "Body of request: $body"
+    Write-Verbose "ContentType: application/json"
     if($PSCmdlet.ShouldProcess($EventhouseName)) {
         $response = Invoke-RestMethod `
                             -Headers $RTISession.headerParams `
