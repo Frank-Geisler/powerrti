@@ -47,6 +47,7 @@ function Get-RtiKQLDatabase {
 
     Revision History:
         - 2024-11-09 - FGE: Added DisplaName as Alias for KQLDatabaseName
+        - 2024-12-08 - FGE: Added Verbose Output
 
 #>
 
@@ -65,12 +66,12 @@ function Get-RtiKQLDatabase {
 
 begin {
 
-    # Check if session is established - if not throw error
+    Write-Verbose "Check if session is established - if not throw error"
     if ($null -eq $RTISession.headerParams) {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
     }
 
-    # You can either use Name or WorkspaceID
+    Write-Verbose "You can either use KQLDatabaseName or KQLDatabaseID not both. If both are used throw error"
     if ($PSBoundParameters.ContainsKey("KQLDatabaseName") -and $PSBoundParameters.ContainsKey("KQLDatabaseId")) {
         throw "Parameters KQLDatabaseName and KQLDatabaseId cannot be used together"
     }
@@ -85,14 +86,21 @@ begin {
 process {
 
     if ($PSBoundParameters.ContainsKey("KQLDatabaseId")) {
-
+        Write-Verbose "Calling KQLDatabase API with KQLDatabaseId : $KQLDatabaseId"
+        Write-Verbose "-------------------------------------------------------------------------"
+        Write-Verbose "Sending the following values to the KQLDatabase API:"
+        Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+        Write-Verbose "Method: GET"
+        Write-Verbose "URI: $KQLDatabaseAPIKQLDatabaseId"
+        Write-Verbose "ContentType: application/json"
         $response = Invoke-RestMethod `
                     -Headers $RTISession.headerParams `
                     -Method GET `
                     -Uri $KQLDatabaseAPIKQLDatabaseId `
                     -ContentType "application/json"
 
-        # FGE: adding Members for convenience
+        Write-Verbose "Adding Members to the Output object for convenience"
+        Write-Verbose "Adding Member parentEventhouseItemId with value $($response.properties.parentEventhouseItemId)"
         Add-Member `
             -MemberType NoteProperty `
             -Name 'parentEventhouseItemId' `
@@ -100,6 +108,7 @@ process {
             -InputObject $response `
             -Force
 
+        Write-Verbose "Adding Member queryServiceUri with value $($response.properties.queryServiceUri)"
         Add-Member `
             -MemberType NoteProperty `
             -Name 'queryServiceUri' `
@@ -107,6 +116,7 @@ process {
             -InputObject $response `
             -Force
 
+        Write-Verbose "Adding Member ingestionServiceUri with value $($response.properties.ingestionServiceUri)"
         Add-Member `
             -MemberType NoteProperty `
             -Name 'ingestionServiceUri' `
@@ -114,6 +124,7 @@ process {
             -InputObject $response `
             -Force
 
+        Write-Verbose "Adding Member databaseType with value $($response.properties.databaseType)"    
         Add-Member `
             -MemberType NoteProperty `
             -Name 'databaseType' `
@@ -121,6 +132,7 @@ process {
             -InputObject $response `
             -Force
 
+        Write-Verbose "Adding Member oneLakeStandardStoragePeriod with value $($response.properties.oneLakeStandardStoragePeriod)"
         Add-Member `
             -MemberType NoteProperty `
             -Name 'oneLakeStandardStoragePeriod' `
@@ -128,6 +140,7 @@ process {
             -InputObject $response `
             -Force
 
+        Write-Verbose "Adding Member oneLakeCachingPeriod with value $($response.properties.oneLakeCachingPeriod)"
         Add-Member `
             -MemberType NoteProperty `
             -Name 'oneLakeCachingPeriod' `
@@ -138,15 +151,30 @@ process {
         $response
     }
     else {
-        # Call Workspace API
+        Write-Verbose "Calling KQLDatabase API"
+        Write-Verbose "-----------------------"
+        Write-Verbose "Sending the following values to the KQLDatabase API:"
+        Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+        Write-Verbose "Method: GET"
+        Write-Verbose "URI: $KQLDatabaseAPI"
+        Write-Verbose "ContentType: application/json"      
         $response = Invoke-RestMethod `
                     -Headers $RTISession.headerParams `
                     -Method GET `
                     -Uri $KQLDatabaseAPI `
                     -ContentType "application/json"
 
-        # FGE: adding Members for convenience
+        Write-Verbose "Adding Members to the Output object for convenience"
         foreach ($kqlDatabase in $response.value) {
+            Write-Verbose "Adding Member parentEventhouseItemId with value $($response.properties.parentEventhouseItemId)"
+            Add-Member `
+                -MemberType NoteProperty `
+                -Name 'parentEventhouseItemId' `
+                -Value $response.properties.parentEventhouseItemId `
+                -InputObject $response `
+                -Force
+
+            Write-Verbose "Adding Member queryServiceUri with value $($kqlDatabase.properties.queryServiceUri)"
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'queryServiceUri' `
@@ -154,13 +182,14 @@ process {
                 -InputObject $kqlDatabase `
                 -Force
 
+            Write-Verbose "Adding Member ingestionServiceUri with value $($kqlDatabase.properties.ingestionServiceUri)"
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'ingestionServiceUri' `
                 -Value $kqlDatabase.properties.ingestionServiceUri `
                 -InputObject $kqlDatabase `
                 -Force
-
+            Write-Verbose "Adding Member databaseType with value $($kqlDatabase.properties.databaseType)"
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'databaseType' `
@@ -168,6 +197,7 @@ process {
                 -InputObject $kqlDatabase `
                 -Force
 
+            Write-Verbose "Adding Member oneLakeStandardStoragePeriod with value $($kqlDatabase.properties.oneLakeStandardStoragePeriod)"
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'oneLakeStandardStoragePeriod' `
@@ -175,6 +205,7 @@ process {
                 -InputObject $kqlDatabase `
                 -Force
 
+            Write-Verbose "Adding Member oneLakeCachingPeriod with value $($kqlDatabase.properties.oneLakeCachingPeriod)"
             Add-Member `
                 -MemberType NoteProperty `
                 -Name 'oneLakeCachingPeriod' `
@@ -184,10 +215,12 @@ process {
         }
 
         if ($PSBoundParameters.ContainsKey("KQLDatabaseName")) {
+            Write-Verbose "Filtering KQLDatabases by name. Name: $KQLDatabaseName"
             $response.value | `
                 Where-Object { $_.displayName -eq $KQLDatabaseName }
         }
         else {
+            Write-Verbose "Returning all KQLDatabases"
             $response.value
         }
     }

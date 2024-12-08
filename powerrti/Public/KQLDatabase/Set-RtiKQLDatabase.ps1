@@ -19,7 +19,7 @@ function Set-RtiKQLDatabase {
     The Id of the KQLDatabase to update. The value for KQLDatabaseId is a GUID.
     An example of a GUID is '12345678-1234-123-1234-123456789012'.
 
-.PARAMETER KQLDatabaseNewName
+.PARAMETER NewKQLDatabaseName
     The new name of the KQLDatabase.
 
 .PARAMETER KQLDatabaseDescription
@@ -41,6 +41,8 @@ function Set-RtiKQLDatabase {
 
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
     - 2024-11-09 - FGE: Added DisplaName as Alias for KQLDatabaseName
+    - 2024-12-08 - FGE: Added Verbose Output
+                        Renamed Parameter KQLDatabaseName to NewKQLDatabaseNewName  
 
 .LINK
 
@@ -56,8 +58,8 @@ function Set-RtiKQLDatabase {
         [Alias("Id")]
         [string]$KQLDatabaseId,
 
-        [Alias("Name", "DisplayName")]
-        [string]$KQLDatabaseName,
+        [Alias("NewName", "NewDisplayName")]
+        [string]$NewKQLDatabaseName,
 
         [Alias("Description")]
         [ValidateLength(0, 256)]
@@ -66,16 +68,16 @@ function Set-RtiKQLDatabase {
     )
 
 begin {
-    # Check if session is established - if not throw error
+    Write-Verbose "Check if session is established - if not throw error"
     if ($null -eq $RTISession.headerParams) {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
     }
 
-    # Create body of request
+    Write-Verbose "Create body of request"
     $body = @{}
 
-    if ($PSBoundParameters.ContainsKey("KQLDatabaseName")) {
-        $body["displayName"] = $KQLDatabaseName
+    if ($PSBoundParameters.ContainsKey("NewKQLDatabaseName")) {
+        $body["displayName"] = $NewKQLDatabaseName
     }
 
     if ($PSBoundParameters.ContainsKey("KQLDatabaseDescription")) {
@@ -92,8 +94,15 @@ begin {
 
 process {
 
-    # Call KQLDatabase API
-    if($PSCmdlet.ShouldProcess($EventhouseName)) {
+    if($PSCmdlet.ShouldProcess($KQLDatabaseId)) {
+        Write-Verbose "Calling KQLDatabase API with KQLDatabaseId $KQLDatabaseId"
+        Write-Verbose "------------------------------------------------------------------------------------"
+        Write-Verbose "Sending the following values to the KQLDatabase API:"
+        Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+        Write-Verbose "Method: PATCH"
+        Write-Verbose "URI: $KQLDatabaseApiUrl"
+        Write-Verbose "Body of request: $body"
+        Write-Verbose "ContentType: application/json"
         $response = Invoke-RestMethod `
                             -Headers $RTISession.headerParams `
                             -Method PATCH `

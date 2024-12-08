@@ -26,6 +26,10 @@ function Remove-RtiKQLDatabase {
 .NOTES
     TODO: Add functionality to remove Eventhouse by name.
 
+    Revsion History:
+
+    - 2024-12-08 - FGE: Added Verbose Output    
+
 #>
 
 
@@ -42,12 +46,12 @@ function Remove-RtiKQLDatabase {
     )
 
 begin {
-    # Check if session is established - if not throw error
+    Write-Verbose "Check if session is established - if not throw error"
     if ($null -eq $RTISession.headerParams) {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
     }
 
-    # Create Eventhouse API URL
+    Write-Verbose "Create Eventhouse API URL"
     $eventhouseApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLDatabases/$KQLDatabaseId"
 
     }
@@ -55,7 +59,13 @@ begin {
 process {
 
     if($PSCmdlet.ShouldProcess($KQLDatabaseId)) {
-        # Call Eventhouse API
+        Write-Verbose "Calling KQLDatabase API"
+        Write-Verbose "-----------------------"
+        Write-Verbose "Sending the following values to the Eventstream API:"
+        Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+        Write-Verbose "Method: DELETE"
+        Write-Verbose "URI: $eventhouseApiUrl"
+        Write-Verbose "ContentType: application/json"
         $response = Invoke-RestMethod `
                             -Headers $RTISession.headerParams `
                             -Method DELETE `
