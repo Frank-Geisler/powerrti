@@ -50,6 +50,7 @@ function Get-RtiEventstream {
 
     Revision History:
         - 2024-11-09 - FGE: Added DisplaName as Alias for EventStreamName
+        - 2024-11-27 - FGE: Added Verbose Output
 #>
 
 [CmdletBinding()]
@@ -66,12 +67,12 @@ function Get-RtiEventstream {
 
 begin {
 
-    # Check if session is established - if not throw error
+    Write-Verbose "Check if session is established - if not throw error"
     if ($null -eq $RTISession.headerParams) {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
     }
 
-    # You can either use Name or WorkspaceID
+    Write-Verbose "You can either use Name or WorkspaceID not both. If both are used throw error"
     if ($PSBoundParameters.ContainsKey("EventstreamName") -and $PSBoundParameters.ContainsKey("EventstreamID")) {
         throw "Parameters EventstreamName and EventstreamID cannot be used together"
     }
@@ -86,7 +87,14 @@ begin {
 process {
 
     if ($PSBoundParameters.ContainsKey("EventstreamId")) {
-
+        Write-Verbose "Calling Eventstream API with EventstreamId"
+        Write-Verbose "------------------------------------------"
+        Write-Verbose "Sending the following values to the Eventstream API:"
+        Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+        Write-Verbose "Method: PATCH"
+        Write-Verbose "URI: $eventstreamAPIEventstreamIdUrl"
+        Write-Verbose "Body of request: $body"
+        Write-Verbose "ContentType: application/json"
         $response = Invoke-RestMethod `
                     -Headers $RTISession.headerParams `
                     -Method GET `
@@ -96,18 +104,27 @@ process {
         $response
     }
     else {
-        # Call Workspace API
-        $response = Invoke-RestMethod `
-                    -Headers $RTISession.headerParams `
-                    -Method GET `
-                    -Uri $eventstreamApiUrl `
-                    -ContentType "application/json"
+            Write-Verbose "Calling Eventstream API"
+            Write-Verbose "-----------------------"
+            Write-Verbose "Sending the following values to the Eventstream API:"
+            Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+            Write-Verbose "Method: PATCH"
+            Write-Verbose "URI: $eventstreamApiUrl"
+            Write-Verbose "Body of request: $body"
+            Write-Verbose "ContentType: application/json"
+            $response = Invoke-RestMethod `
+                        -Headers $RTISession.headerParams `
+                        -Method GET `
+                        -Uri $eventstreamApiUrl `
+                        -ContentType "application/json"
 
         if ($PSBoundParameters.ContainsKey("EventstreamName")) {
+            Write-Verbose "Filtering Eventstream with name $EventstreamName"
             $response.value | `
                 Where-Object { $_.displayName -eq $EventstreamName }
         }
         else {
+            Write-Verbose "Returning all Eventstreams"
             $response.value
         }
     }

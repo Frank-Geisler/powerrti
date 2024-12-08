@@ -38,6 +38,9 @@ function Set-RtiEventstream {
 
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
     - 2024-11-09 - FGE: Added DisplaName as Alias for EventStreamNewName
+    - 2024-12-08 - FGE: Added Verbose Output
+                        Added Aliases for EventstreamNewName and EventstreamDescription
+                        Corrected typo in EventstreamNewName Variable
 #>
 
 [CmdletBinding(SupportsShouldProcess)]
@@ -54,25 +57,27 @@ function Set-RtiEventstream {
         [string]$EventstreamNewName,
 
         [ValidateLength(0, 256)]
-        [Alias("Description")]
+        [Alias("Description","NewDescription", "EventstreamNewDescription")]
         [string]$EventstreamDescription
 
     )
 
 begin {
-    # Check if session is established - if not throw error
+    Write-Verbose "Check if session is established - if not throw error"
     if ($null -eq $RTISession.headerParams) {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
     }
 
-    # Create body of request
+    Write-Verbose "Create body of request"
     $body = @{}
 
-    if ($PSBoundParameters.ContainsKey("EventstreamName")) {
-        $body["displayName"] = $EventstreamName
+    if ($PSBoundParameters.ContainsKey("EventstreamNewName")) {
+        Write-Verbose "Setting EventstreamNewName: $EventstreamNewName"
+        $body["displayName"] = $EventstreamNewName
     }
 
     if ($PSBoundParameters.ContainsKey("EventstreamDescription")) {
+        Write-Verbose "Setting EventstreamDescription: $EventstreamDescription"
         $body["description"] = $EventstreamDescription
     }
 
@@ -86,8 +91,15 @@ begin {
 
 process {
 
-    # Call Eventstream API
     if($PSCmdlet.ShouldProcess($EventhouseName)) {
+        Write-Verbose "Calling Eventstream API with EventstreamId"
+        Write-Verbose "------------------------------------------"
+        Write-Verbose "Sending the following values to the Eventstream API:"
+        Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+        Write-Verbose "Method: PATCH"
+        Write-Verbose "URI: $EventstreamApiUrl"
+        Write-Verbose "Body of request: $body"
+        Write-Verbose "ContentType: application/json"
         $response = Invoke-RestMethod `
                             -Headers $RTISession.headerParams `
                             -Method PATCH `

@@ -37,6 +37,7 @@ function Remove-RtiEventstream {
 
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
     - 2024-11-09 - FGE: Added DisplaName as Alias for EventStreamName
+    - 2024-12-08 - FGE: Added Verbose Output
 #>
 
 
@@ -56,25 +57,27 @@ function Remove-RtiEventstream {
     )
 
 begin {
-    # Check if session is established - if not throw error
+    Write-Verbose "Check if session is established - if not throw error"
     if ($null -eq $RTISession.headerParams) {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
     }
 
-     # You can either use EventstreamName or EventstreamID
+    Write-Verbose "You can either use Name or WorkspaceID not both. If both are used throw error"
     if ($PSBoundParameters.ContainsKey("EventstreamId") -and $PSBoundParameters.ContainsKey("EventstreamName")) {
         throw "Parameters EventstreamId and EventstreamName cannot be used together"
     }
 
     if ($PSBoundParameters.ContainsKey("EventstreamName")) {
+        Write-Verbose "The name $EventstreamName was provided. Fetching EventstreamId."
+
         $eh = Get-RtiEventstream `
                     -WorkspaceId $WorkspaceId `
                     -EventstreamName $EventstreamName
 
         $EventstreamId = $eh.id
+        Write-Verbose "EventstreamId: $EventstreamId"
     }
 
-    # Create Eventhouse API URL
     $eventstreamApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/eventstreams/$EventstreamId"
 
 }
@@ -83,6 +86,13 @@ process {
 
     # Call Eventstream API
     if($PSCmdlet.ShouldProcess($EventstreamName)) {
+        Write-Verbose "Calling Eventstream API with EventstreamId"
+        Write-Verbose "------------------------------------------"
+        Write-Verbose "Sending the following values to the Eventstream API:"
+        Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+        Write-Verbose "Method: DELETE"
+        Write-Verbose "URI: $eventstreamApiUrl"
+        Write-Verbose "ContentType: application/json"
         $response = Invoke-RestMethod `
                             -Headers $RTISession.headerParams `
                             -Method DELETE `

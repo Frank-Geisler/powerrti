@@ -31,6 +31,7 @@ function New-RtiEventstream {
 
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
     - 2024-11-09 - FGE: Added DisplaName as Alias for EventStreamName
+    - 2024-11-30 - FGE: Added Verbose Output
 
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/eventstream/items/create-eventstream?tabs=HTTP
@@ -53,12 +54,12 @@ function New-RtiEventstream {
     )
 
 begin {
-    # Check if session is established - if not throw error
+    Write-Verbose "Check if session is established - if not throw error"
     if ($null -eq $RTISession.headerParams) {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
     }
 
-    # Create body of request
+    Write-Verbose "Create body of request"
     $body = @{
     'displayName' = $EventstreamName
     'description' = $EventstreamDescription
