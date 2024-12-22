@@ -13,6 +13,12 @@ function Connect-RtiAccount {
     The TenantId of the Azure Active Directory tenant you want to connect to
     and in which your Fabric Capacity is.
 
+.NOTES
+
+    Revsion History:
+
+    - 2024-12-22 - FGE: Added Verbose Output
+
 .EXAMPLE
     Connect-RTIAccount `
         -TenantID '12345678-1234-1234-1234-123456789012'
@@ -32,16 +38,19 @@ begin {
 }
 
 process {
+    Write-Verbose "Connect to Azure Account"
     Connect-AzAccount `
             -TenantId $TenantId | `
                 Out-Null
 
-    # Get authentication token
+    Write-Verbose "Get authentication token"
     $RTISession.FabricToken = (Get-AzAccessToken `
                                     -ResourceUrl $RTISession.BaseFabricUrl).Token
+    Write-Verbose "Token: $($RTISession.FabricToken)"
 
-    # Setup headers for API calls
+    Write-Verbose "Setup headers for API calls"
     $RTISession.HeaderParams = @{'Authorization'="Bearer {0}" -f $RTISession.FabricToken}
+    Write-Verbose "HeaderParams: $($RTISession.HeaderParams)"
 }
 
 end {

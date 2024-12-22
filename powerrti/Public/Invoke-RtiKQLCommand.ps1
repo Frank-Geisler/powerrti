@@ -35,6 +35,12 @@ function Invoke-RtiKQLCommand {
     This example will create a table named 'MyTable' with a column named 'MyColumn' in
     the KQLDatabase 'MyKQLDatabase'.
 
+.NOTES
+
+    Revsion History:
+
+    - 2024-12-22 - FGE: Added Verbose Output    
+
 #>
 
 [CmdletBinding()]
@@ -51,29 +57,32 @@ function Invoke-RtiKQLCommand {
 
 begin {
 
-    # Check if session is established - if not throw error
+    Write-Verbose "Check if session is established - if not throw error"
     if ($null -eq $RTISession.headerParams) {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
     }
 
+    Write-Verbose "Check if KQLDatabaseName and KQLDatabaseId are used together"
     if ($PSBoundParameters.ContainsKey("KQLDatabaseName") -and $PSBoundParameters.ContainsKey("KQLDatabaseId")) {
         throw "Parameters KQLDatabaseName and KQLDatabaseId cannot be used together"
     }
 
-    # FGE: Get Kusto Database
+    Write-Verbose "Get Kusto Database"
     if ($PSBoundParameters.ContainsKey("KQLDatabaseName")) {
+        Write-Verbose "Getting Kusto Database by Name: $KQLDatabaseName"
         $kustDB = Get-RtiKQLDatabase `
                         -WorkspaceId $WorkspaceId `
                         -KQLDatabaseName $KQLDatabaseName
     }
 
     if ($PSBoundParameters.ContainsKey("KQLDatabaseId")) {
-        Write-Warning "Getting Kusto Database by Id"
+        Write-Verbose "Getting Kusto Database by Id: $KQLDatabaseId"
         $kustDB = Get-RtiKQLDatabase `
                         -WorkspaceId $WorkspaceId `
                         -KQLDatabaseId $KQLDatabaseId
     }
 
+    Write-Verbose "Check if Kusto Database was found"
     if ($null -eq $kustDB) {
         throw "Kusto Database not found"
     }
@@ -81,30 +90,39 @@ begin {
 
 process {
 
-    # Authenticate against Kusto
+    Write-Verbose "Authenticate against Kusto"
     $kustoToken = (Get-AzAccessToken `
                         -ResourceUrl $RTISession.KustoURL).Token
 
     $headerParams = @{'Authorization'="Bearer {0}" -f $kustoToken}
 
-    # FGE: Generate the query API URL
+    Write-Verbose "Generate the query API URL"
     $queryAPI = "$($kustDB.queryServiceUri)/v1/rest/mgmt"
 
     $KQLCommand = $KQLCommand | Out-String
 
-    # FGE: It is crucial to have the .execute database script <| in the beginning, otherwise
-    #     the Kusto API will not execute the script.
+    Write-Verbose "It is crucial to have the .execute database script <| in the beginning, otherwise the Kusto API will not execute the script."
     if (-not ($KQLCommand -match "\.execute database script <\|")) {
         $KQLCommand = ".execute database script <| $KQLCommand"
     }
 
-    # Create body of the request
+    Write-Verbose "The KQL-Command is: $KQLCommand"
+
+    Write-Verbose "Create body of the request"
     $body = @{
     'csl' = $KQLCommand;
     'db'= $kustDB.displayName
     } | ConvertTo-Json -Depth 1
 
-    # Call Kusto API to run entities creation script
+    Write-Verbose "Calling Query API"
+    Write-Verbose "-----------------"
+    Write-Verbose "Sending the following values to the Query API:"
+    Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+    Write-Verbose "Method: POST"
+    Write-Verbose "URI: $queryAPI"
+    Write-Verbose "Body of request: $body"    
+    Write-Verbose "ContentType: application/json"
+
     Invoke-RestMethod `
         -Headers $headerParams `
         -Method POST `
