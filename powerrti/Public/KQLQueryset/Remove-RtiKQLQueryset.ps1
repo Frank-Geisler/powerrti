@@ -22,11 +22,12 @@ function Remove-RtiKQLQueryset {
         -KQLQuerysetId '12345678-1234-1234-1234-123456789012'
 
 .NOTES
-    TODO: Add functionality to remove Eventhouse by name.
+    TODO: Add functionality to remove KQLQueryset by name.
 
     Revsion History:
 
-    - 2024-11-07 - FGE: Implemented SupportShouldProcess
+    - 2024-11-07 - FGE: Implemented SupportShouldProcess    
+    - 2024-12-22 - FGE: Added Verbose Output
 
 #>
 
@@ -44,24 +45,30 @@ function Remove-RtiKQLQueryset {
     )
 
 begin {
-    # Check if session is established - if not throw error
+    Write-Verbose "Check if session is established - if not throw error"
     if ($null -eq $RTISession.headerParams) {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
     }
 
-    # Create Eventhouse API URL
-    $eventhouseApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLQuerysets/$KQLQuerysetId"
-
+    # Create KQLQueryset API URL
+    $querysetApiUrl = "$($RTISession.BaseFabricUrl)/v1/workspaces/$WorkspaceId/KQLQuerysets/$KQLQuerysetId"
     }
 
 process {
 
     # Call KQL Queryset API
     if($PSCmdlet.ShouldProcess($KQLQuerysetId)) {
+        Write-Verbose "Calling KQLQueryset API"
+        Write-Verbose "-----------------------"
+        Write-Verbose "Sending the following values to the KQLQueryset API:"
+        Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+        Write-Verbose "Method: DELETE"
+        Write-Verbose "URI: $querysetApiUrl"
+        Write-Verbose "ContentType: application/json"
         $response = Invoke-RestMethod `
                             -Headers $RTISession.headerParams `
                             -Method DELETE `
-                            -Uri $eventhouseApiUrl `
+                            -Uri $querysetApiUrl `
                             -ContentType "application/json"
 
         $response

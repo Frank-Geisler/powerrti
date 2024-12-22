@@ -49,7 +49,7 @@ function Get-RtiKQLQueryset {
 
     Revision History:
         - 2024-11-09 - FGE: Added DisplaName as Alias for KQLQuerysetName
-
+        - 2024-12-22 - FGE: Added Verbose Output
 #>
 
 
@@ -67,12 +67,12 @@ function Get-RtiKQLQueryset {
 
 begin {
 
-    # Check if session is established - if not throw error
+    Write-Verbose "Check if session is established - if not throw error"
     if ($null -eq $RTISession.headerParams) {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
     }
 
-    # You can either use Name or WorkspaceID
+    Write-Verbose "You can either use Name or WorkspaceID"
     if ($PSBoundParameters.ContainsKey("KQLQuerysetName") -and $PSBoundParameters.ContainsKey("KQLQuerysetId")) {
         throw "Parameters KQLQuerysetName and KQLQuerysetId cannot be used together"
     }
@@ -86,8 +86,15 @@ begin {
 
 process {
 
+    
     if ($PSBoundParameters.ContainsKey("KQLQuerysetId")) {
-
+        Write-Verbose "Calling KQLQueryset API with KQLQuerysetId $KQLQuerysetId"
+        Write-Verbose "------------------------------------------------------------------------------------"
+        Write-Verbose "Sending the following values to the KQLQueryset API:"
+        Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+        Write-Verbose "Method: GET"
+        Write-Verbose "URI: $KQLQuerysetAPIKQLQuerysetId"
+        Write-Verbose "ContentType: application/json"
         $response = Invoke-RestMethod `
                     -Headers $RTISession.headerParams `
                     -Method GET `
@@ -97,7 +104,13 @@ process {
         $response
     }
     else {
-        # Call Workspace API
+        Write-Verbose "Calling KQLQueryset API"
+        Write-Verbose "------------------------------------------------------------------------------------"
+        Write-Verbose "Sending the following values to the KQLQueryset API:"
+        Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+        Write-Verbose "Method: GET"
+        Write-Verbose "URI: $KQLQuerysetAPI"
+        Write-Verbose "ContentType: application/json"
         $response = Invoke-RestMethod `
                     -Headers $RTISession.headerParams `
                     -Method GET `
@@ -105,10 +118,12 @@ process {
                     -ContentType "application/json"
 
         if ($PSBoundParameters.ContainsKey("KQLQuerysetName")) {
+            Write-Verbose "Filtering KQLQuerysets by name. Name: $KQLQuerysetName"
             $response.value | `
                 Where-Object { $_.displayName -eq $KQLQuerysetName }
         }
         else {
+            Write-Verbose "Returning all KQLQuerysets"
             $response.value
         }
     }

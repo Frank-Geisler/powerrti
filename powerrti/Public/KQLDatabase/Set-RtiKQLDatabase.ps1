@@ -29,7 +29,7 @@ function Set-RtiKQLDatabase {
     Set-RtiKQLDatabase `
         -WorkspaceId '12345678-1234-1234-1234-123456789012' `
         -KQLDatabaseId '12345678-1234-1234-1234-123456789012' `
-        -KQLDatabaseNewName 'MyNewKQLDatabase' `
+        -NewKQLDatabaseNewName 'MyNewKQLDatabase' `
         -KQLDatabaseDescription 'This is my new KQLDatabase'
 
     This example will update the KQLDatabase with the Id '12345678-1234-1234-1234-123456789012'.

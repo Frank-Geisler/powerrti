@@ -39,6 +39,7 @@ function Set-RtiKQLQueryset {
 
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
     - 2024-11-09 - FGE: Added NewDisplaName as Alias for KQLQuerysetNewName
+    - 2024-12-22 - FGE: Added Verbose Output
 
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/KQLQueryset/items/create-KQLQueryset?tabs=HTTP
@@ -60,16 +61,15 @@ function Set-RtiKQLQueryset {
         [ValidateLength(0, 256)]
         [Alias("Description")]
         [string]$KQLQuerysetDescription
-
     )
 
 begin {
-    # Check if session is established - if not throw error
+    Write-Verbose "Check if session is established - if not throw error"
     if ($null -eq $RTISession.headerParams) {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
     }
 
-    # Create body of request
+    Write-Verbose "Create body of request"
     $body = @{}
 
     if ($PSBoundParameters.ContainsKey("KQLQuerysetName")) {
@@ -92,6 +92,14 @@ process {
 
     # Call KQLQueryset API
         if($PSCmdlet.ShouldProcess($KQLQuerysetId)) {
+            Write-Verbose "Calling KQLQueryset API with KQLQuerysetId $KQLQuerysetId"
+            Write-Verbose "---------------------------------------------------------"
+            Write-Verbose "Sending the following values to the KQLQueryset API:"
+            Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+            Write-Verbose "Method: PATCH"
+            Write-Verbose "URI: $KQLQuerysetApiUrl"
+            Write-Verbose "Body of request: $body"
+            Write-Verbose "ContentType: application/json"
             $response = Invoke-RestMethod `
                                 -Headers $RTISession.headerParams `
                                 -Method PATCH `
