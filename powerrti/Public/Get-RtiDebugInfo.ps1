@@ -15,6 +15,12 @@ function Get-RtiDebugInfo {
 
     This example shows the current session object.
 
+.NOTES
+
+    Revsion History:
+
+    - 2024-12-22 - FGE: Added Verbose Output    
+
 #>
 
 [CmdletBinding()]
@@ -26,6 +32,7 @@ begin {
 }
 
 process {
+    Write-Verbose "Show current session object"
     $RTISession
 }
 

@@ -13,15 +13,15 @@ function Connect-RtiAccount {
     The TenantId of the Azure Active Directory tenant you want to connect to
     and in which your Fabric Capacity is.
 
+.EXAMPLE
+    Connect-RTIAccount `
+        -TenantID '12345678-1234-1234-1234-123456789012'
+
 .NOTES
 
     Revsion History:
 
     - 2024-12-22 - FGE: Added Verbose Output
-
-.EXAMPLE
-    Connect-RTIAccount `
-        -TenantID '12345678-1234-1234-1234-123456789012'
 
 .LINK
     Connect-AzAccount https://learn.microsoft.com/de-de/powershell/module/az.accounts/connect-azaccount?view=azps-12.4.0
