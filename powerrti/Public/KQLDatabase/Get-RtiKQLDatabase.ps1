@@ -157,7 +157,7 @@ process {
         Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
         Write-Verbose "Method: GET"
         Write-Verbose "URI: $KQLDatabaseAPI"
-        Write-Verbose "ContentType: application/json"      
+        Write-Verbose "ContentType: application/json"
         $response = Invoke-RestMethod `
                     -Headers $RTISession.headerParams `
                     -Method GET `

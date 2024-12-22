@@ -42,7 +42,7 @@ function Set-RtiKQLDatabase {
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
     - 2024-11-09 - FGE: Added DisplaName as Alias for KQLDatabaseName
     - 2024-12-08 - FGE: Added Verbose Output
-                        Renamed Parameter KQLDatabaseName to NewKQLDatabaseNewName  
+                        Renamed Parameter KQLDatabaseName to NewKQLDatabaseNewName
 
 .LINK
 

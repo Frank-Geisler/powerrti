@@ -120,7 +120,7 @@ process {
     Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
     Write-Verbose "Method: POST"
     Write-Verbose "URI: $queryAPI"
-    Write-Verbose "Body of request: $body"    
+    Write-Verbose "Body of request: $body"
     Write-Verbose "ContentType: application/json"
 
     Invoke-RestMethod `

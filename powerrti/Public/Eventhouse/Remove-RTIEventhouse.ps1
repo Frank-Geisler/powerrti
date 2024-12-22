@@ -40,7 +40,7 @@ function Remove-RtiEventhouse {
     - 2024-11-07 - FGE: Implemented SupportShouldProcess
     - 2024-11-09 - FGE: Added DisplaName as Alias for EventhouseName
     - 2024-11-27 - FGE: Added Verbose Output
-    
+
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/eventhouse/items/delete-eventhouse?tabs=HTTP
 #>
