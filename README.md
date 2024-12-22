@@ -30,7 +30,7 @@ We warmly welcome contributions from the community! Your expertise and insights 
 
 5. **Address Feedback:** Our maintainers and community members will review your PR. Please be open to feedback and responsive to requested changes.
 
-For more detailed guidelines, including style conventions, code quality standards, and testing procedures, refer to the documentation [Contributing to PowerRTI](./documentation/Contributing.md) file.
+For more detailed guidelines, including style conventions, code quality standards, and testing procedures, refer to the documentation [Contributing to PowerRTI](./documentation/contributing.md) file.
 
 ## Generating the documentation
 
