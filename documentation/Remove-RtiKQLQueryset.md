@@ -60,7 +60,7 @@ Accept wildcard characters: False
 
 ### -WorkspaceId
 Id of the Fabric Workspace for which the KQLQueryset should be removed.
-The value for WorkspaceId is a GUID. 
+The value for WorkspaceId is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 This parameter is mandatory.
 
@@ -115,10 +115,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
-TODO: Add functionality to remove Eventhouse by name.
+TODO: Add functionality to remove KQLQueryset by name.
 
 Revsion History:
 
-- 2024-11-07 - FGE: Implemented SupportShouldProcess
+- 2024-11-07 - FGE: Implemented SupportShouldProcess    
+- 2024-12-22 - FGE: Added Verbose Output
 
 ## RELATED LINKS

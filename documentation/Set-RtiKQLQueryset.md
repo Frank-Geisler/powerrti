@@ -13,7 +13,7 @@ Set-RtiKQLQueryset [-WorkspaceId] <String> [-KQLQuerysetId] <String> [[-KQLQuery
 
 ## DESCRIPTION
 Updates Properties of an existing Fabric KQLQueryset.
-The KQLQueryset is identified by 
+The KQLQueryset is identified by
 the WorkspaceId and KQLQuerysetId.
 
 ## EXAMPLES
@@ -99,7 +99,7 @@ Accept wildcard characters: False
 
 ### -WorkspaceId
 Id of the Fabric Workspace for which the KQLQueryset should be updated.
-The value for WorkspaceId is a GUID. 
+The value for WorkspaceId is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 This parameter is mandatory.
 
@@ -158,6 +158,7 @@ Revsion History:
 
 - 2024-11-07 - FGE: Implemented SupportShouldProcess
 - 2024-11-09 - FGE: Added NewDisplaName as Alias for KQLQuerysetNewName
+- 2024-12-22 - FGE: Added Verbose Output
 
 ## RELATED LINKS
 

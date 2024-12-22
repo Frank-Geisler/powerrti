@@ -12,7 +12,7 @@ Get-RtiKQLDatabase [-WorkspaceId] <String> [[-KQLDatabaseName] <String>] [[-KQLD
 
 ## DESCRIPTION
 Retrieves Fabric KQLDatabases.
-Without the KQLDatabaseName or KQLDatabaseID parameter, 
+Without the KQLDatabaseName or KQLDatabaseID parameter,
 all KQLDatabases are returned.
 If you want to retrieve a specific KQLDatabase, you can
 use the KQLDatabaseName or KQLDatabaseID parameter.
@@ -34,7 +34,7 @@ This example will retrieve the KQLDatabase with the name 'MyKQLDatabase'.
 Get-RTIKQLDatabase
 ```
 
-This example will retrieve all KQLDatabases in the workspace that is specified 
+This example will retrieve all KQLDatabases in the workspace that is specified
 by the WorkspaceId.
 
 ### EXAMPLE 3
@@ -50,7 +50,7 @@ This example will retrieve the KQLDatabase with the ID '12345678-1234-1234-1234-
 
 ### -KQLDatabaseId
 The Id of the KQLDatabase to retrieve.
-This parameter cannot be used together with KQLDatabaseName. 
+This parameter cannot be used together with KQLDatabaseName.
 The value for KQLDatabaseID is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
@@ -99,7 +99,7 @@ Accept wildcard characters: False
 
 ### -WorkspaceId
 Id of the Fabric Workspace for which the KQLDatabases should be retrieved.
-The value for WorkspaceId is a GUID. 
+The value for WorkspaceId is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
@@ -123,10 +123,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 TODO: Add functionality to list all KQLDatabases.
-To do so fetch all workspaces and 
+To do so fetch all workspaces and
       then all KQLDatabases in each workspace.
 
 Revision History:
     - 2024-11-09 - FGE: Added DisplaName as Alias for KQLDatabaseName
+    - 2024-12-08 - FGE: Added Verbose Output
 
 ## RELATED LINKS

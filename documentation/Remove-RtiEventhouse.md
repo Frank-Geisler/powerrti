@@ -20,26 +20,26 @@ Removes an existing Fabric Eventhouse
 Remove-RtiEventhouse `
     -WorkspaceId '12345678-1234-1234-1234-123456789012' `
     -EventhouseId '12345678-1234-1234-1234-123456789012'
-    
-This example will delete the Eventhouse with the Id '12345678-1234-1234-1234-123456789012' from 
-the Workspace with the Id '12345678-1234-1234-1234-123456789012'.
 ```
+
+This example will delete the Eventhouse with the Id '12345678-1234-1234-1234-123456789012' from
+the Workspace with the Id '12345678-1234-1234-1234-123456789012'.
 
 ### EXAMPLE 2
 ```
 Remove-RtiEventhouse `
     -WorkspaceId '12345678-1234-1234-1234-123456789012' `
     -EventhouseName 'MyEventhouse'
-    
-This example will delete the Eventhouse with the name 'MyEventhouse' from the Workspace with the 
-Id '12345678-1234-1234-1234-123456789012'.
 ```
+
+This example will delete the Eventhouse with the name 'MyEventhouse' from the Workspace with the
+Id '12345678-1234-1234-1234-123456789012'.
 
 ## PARAMETERS
 
 ### -EventhouseId
 The Id of the Eventhouse to delete.
-The value for EventhouseId is a GUID. 
+The value for EventhouseId is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 EventhouseId and EventhouseName cannot be used together.
 
@@ -88,7 +88,7 @@ Accept wildcard characters: False
 
 ### -WorkspaceId
 Id of the Fabric Workspace for which the Eventhouse should be deleted.
-The value for WorkspaceId is a GUID. 
+The value for WorkspaceId is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
@@ -146,6 +146,7 @@ Revsion History:
 
 - 2024-11-07 - FGE: Implemented SupportShouldProcess
 - 2024-11-09 - FGE: Added DisplaName as Alias for EventhouseName
+- 2024-11-27 - FGE: Added Verbose Output
 
 ## RELATED LINKS
 

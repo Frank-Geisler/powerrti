@@ -11,15 +11,20 @@ Get-RtiDebugInfo [-ProgressAction <ActionPreference>] [<CommonParameters>]
 
 ## DESCRIPTION
 Shows internal debug information about the current session.
+It is useful for troubleshooting purposes.
+It will show you the current session object.
+This includes the bearer token.
+This can be useful
+for connecting to the REST API directly via Postman.
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+Get-RtiDebugInfo
 ```
 
-{{ Add example description here }}
+This example shows the current session object.
 
 ## PARAMETERS
 

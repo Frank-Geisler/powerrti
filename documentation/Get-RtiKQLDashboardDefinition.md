@@ -11,18 +11,36 @@ Get-RtiKQLDashboardDefinition [-WorkspaceId] <String> [[-KQLDashboardName] <Stri
 ```
 
 ## DESCRIPTION
-Retrieves the Definition of Fabric KQLDashboards.
-Without the KQLDashboardName or KQLDashboardID parameter, all KQLDashboards are returned.
-If you want to retrieve a specific KQLDashboard, you can use the KQLDashboardName or KQLDashboardID parameter.
-These
-parameters cannot be used together.
+Retrieves the Definition of the Fabric KQLDashboard that is specified by the KQLDashboardName or KQLDashboardID.
+The KQLDashboard Definition contains the parts of the KQLDashboard, which are the visualizations and their configuration.
+This is provided as a JSON object.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-Get-RtiKQLDashboardDefinition
+Get-RtiKQLDashboardDefinition `
+    -WorkspaceId "12345678-1234-1234-1234-123456789012" `
+    -KQLDashboardName "MyKQLDashboard"
 ```
+
+This example retrieves the KQLDashboard Definition for the KQLDashboard named "MyKQLDashboard" in the
+Workspace with the ID "12345678-1234-1234-1234-123456789012".
+
+### EXAMPLE 2
+```
+$db = Get-RtiKQLDashboardDefinition `
+        -WorkspaceId "12345678-1234-1234-1234-123456789012" `
+        -KQLDashboardName "MyKQLDashboard"
+```
+
+$db\[0\].payload | \`
+    Set-Content \`
+        -Path "C:\temp\mydashboard.json"
+
+This example retrieves the KQLDashboard Definition for the KQLDashboard named "MyKQLDashboard" in the
+Workspace with the ID "12345678-1234-1234-1234-123456789012".
+The definition is saved to a file named "mydashboard.json".
 
 ## PARAMETERS
 
@@ -44,7 +62,7 @@ Accept wildcard characters: False
 ### -KQLDashboardId
 The Id of the KQLDashboard to retrieve.
 This parameter cannot be used together with KQLDashboardName.
-The value for KQLDashboardID is a GUID. 
+The value for KQLDashboardID is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
@@ -91,8 +109,8 @@ Accept wildcard characters: False
 ```
 
 ### -WorkspaceId
-Id of the Fabric Workspace for which the KQLDashboards should be retrieved.
-The value for WorkspaceId is a GUID. 
+Id of the Fabric Workspace in which the KQLDashboard exists.
+The value for WorkspaceId is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
@@ -115,11 +133,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
-TODO: Add functionality to list all KQLDashboards.
-To do so fetch all workspaces and 
-      then all KQLDashboards in each workspace.
-
 Revision History:
-    - 2024-11-09 - FGE: Added DisplaName as Alias for KQLDashboardName
+    - 2024-11-16 - FGE: First version
+    - 2024-12-08 - FGE: Added Verbose Output
 
 ## RELATED LINKS

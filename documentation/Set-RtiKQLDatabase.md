@@ -6,18 +6,18 @@ Updates Properties of an existing Fabric KQLDatabase
 ## SYNTAX
 
 ```
-Set-RtiKQLDatabase [-WorkspaceId] <String> [-KQLDatabaseId] <String> [[-KQLDatabaseName] <String>]
+Set-RtiKQLDatabase [-WorkspaceId] <String> [-KQLDatabaseId] <String> [[-NewKQLDatabaseName] <String>]
  [[-KQLDatabaseDescription] <String>] [-ProgressAction <ActionPreference>] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Updates Properties of an existing Fabric KQLDatabase.
-The KQLDatabase is updated 
+The KQLDatabase is updated
 in the specified Workspace.
 The KQLDatabaseId is used to identify the KQLDatabase
 that should be updated.
-The KQLDatabaseNewName and KQLDatabaseDescription are the 
+The KQLDatabaseNewName and KQLDatabaseDescription are the
 properties that can be updated.
 
 ## EXAMPLES
@@ -27,7 +27,7 @@ properties that can be updated.
 Set-RtiKQLDatabase `
     -WorkspaceId '12345678-1234-1234-1234-123456789012' `
     -KQLDatabaseId '12345678-1234-1234-1234-123456789012' `
-    -KQLDatabaseNewName 'MyNewKQLDatabase' `
+    -NewKQLDatabaseNewName 'MyNewKQLDatabase' `
     -KQLDatabaseDescription 'This is my new KQLDatabase'
 ```
 
@@ -54,7 +54,7 @@ Accept wildcard characters: False
 
 ### -KQLDatabaseId
 The Id of the KQLDatabase to update.
-The value for KQLDatabaseId is a GUID. 
+The value for KQLDatabaseId is a GUID.
 An example of a GUID is '12345678-1234-123-1234-123456789012'.
 
 ```yaml
@@ -69,13 +69,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -KQLDatabaseName
-{{ Fill KQLDatabaseName Description }}
+### -NewKQLDatabaseName
+The new name of the KQLDatabase.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: Name, DisplayName
+Aliases: NewName, NewDisplayName
 
 Required: False
 Position: 3
@@ -101,7 +101,7 @@ Accept wildcard characters: False
 
 ### -WorkspaceId
 Id of the Fabric Workspace for which the KQLDatabase should be updated.
-The value for WorkspaceId is a GUID. 
+The value for WorkspaceId is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
@@ -159,5 +159,7 @@ Revsion History:
 
 - 2024-11-07 - FGE: Implemented SupportShouldProcess
 - 2024-11-09 - FGE: Added DisplaName as Alias for KQLDatabaseName
+- 2024-12-08 - FGE: Added Verbose Output
+                    Renamed Parameter KQLDatabaseName to NewKQLDatabaseNewName
 
 ## RELATED LINKS

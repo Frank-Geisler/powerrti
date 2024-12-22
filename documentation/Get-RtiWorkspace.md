@@ -16,7 +16,7 @@ Retrieves Fabric Workspaces.
 Without the WorkspaceName or WorkspaceID parameter,
 all Workspaces are returned.
 If you want to retrieve a specific Workspace, you can
-use the WorkspaceName, an CapacityID, a WorkspaceType, a WorkspaceState or the WorkspaceID 
+use the WorkspaceName, an CapacityID, a WorkspaceType, a WorkspaceState or the WorkspaceID
 parameter.
 The WorkspaceId parameter has precedence over all other parameters because it
 is most specific.
@@ -89,7 +89,7 @@ Accept wildcard characters: False
 
 ### -WorkspaceCapacityId
 The Id of the Capacity to retrieve.
-This parameter cannot be used together with WorkspaceID. 
+This parameter cannot be used together with WorkspaceID.
 The value for WorkspaceCapacityId is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
@@ -107,7 +107,7 @@ Accept wildcard characters: False
 
 ### -WorkspaceId
 Id of the Fabric Workspace to retrieve.
-The value for WorkspaceId is a GUID. 
+The value for WorkspaceId is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
@@ -140,7 +140,7 @@ Accept wildcard characters: False
 
 ### -WorkspaceState
 The state of the Workspace to retrieve.
-This parameter cannot be used together with WorkspaceID. 
+This parameter cannot be used together with WorkspaceID.
 The value for WorkspaceState is a string.
 An example of a string is 'active'.
 The values that
@@ -160,7 +160,7 @@ Accept wildcard characters: False
 
 ### -WorkspaceType
 The type of the Workspace to retrieve.
-This parameter cannot be used together with WorkspaceID. 
+This parameter cannot be used together with WorkspaceID.
 The value for WorkspaceType is a string.
 An example of a string is 'Personal'.
 The values that
@@ -186,6 +186,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+Revsion History:
+
+- 2024-12-22 - FGE: Added Verbose Output
 
 ## RELATED LINKS
 

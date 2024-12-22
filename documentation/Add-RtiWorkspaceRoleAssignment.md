@@ -1,40 +1,40 @@
-# New-RtiKQLDatabase
+# Add-RtiWorkspaceRoleAssignment
 
 ## SYNOPSIS
-Creates a new Fabric KQLDatabase
+Adds a role assignment to a user in a workspace.
 
 ## SYNTAX
 
 ```
-New-RtiKQLDatabase [-WorkspaceID] <String> [-EventhouseID] <String> [-KQLDatabaseName] <String>
- [[-KQLDatabaseDescription] <String>] [-ProgressAction <ActionPreference>] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Add-RtiWorkspaceRoleAssignment [-WorkspaceId] <String> [-principalId] <String> [-Role] <String>
+ [-ProgressAction <ActionPreference>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Creates a new Fabric KQLDatabase.
-The KQLDatabase is created in the specified Workspace and Eventhouse.
-It will be created with the specified name and description.
+Adds a role assignment to a user in a workspace.
+The User is identified by the principalId and the role is
+identified by the Role parameter.
+The Workspace is identified by the WorkspaceId.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-New-RtiKQLDatabase `
-    -WorkspaceID '12345678-1234-1234-1234-123456789012' `
-    -EventhouseID '12345678-1234-1234-1234-123456789012' `
-    -KQLDatabaseName 'MyKQLDatabase' `
-    -KQLDatabaseDescription 'This is my KQLDatabase'
+Add-RtiWorkspaceRoleAssignment `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+    -PrincipalId '12345678-1234-1234-1234-123456789012' `
+    -Role 'Admin'
 ```
-
-This example will create a new KQLDatabase with the name 'MyKQLDatabase' and the description 'This is my KQLDatabase'.
 
 ## PARAMETERS
 
-### -EventhouseID
-Id of the Fabric Eventhouse for which the KQLDatabase should be created.
-The value for EventhouseID is a GUID.
+### -principalId
+Id of the principal for which the role assignment should be added.
+The value for PrincipalId is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
+This parameter is mandatory.
+At the
+moment only principal type 'User' is supported.
 
 ```yaml
 Type: System.String
@@ -43,38 +43,6 @@ Aliases:
 
 Required: True
 Position: 2
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -KQLDatabaseDescription
-The description of the KQLDatabase to create.
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases: Description
-
-Required: False
-Position: 4
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -KQLDatabaseName
-The name of the KQLDatabase to create.
-The name must be unique within the eventhouse and is a
-mandatory parameter.
-
-```yaml
-Type: System.String
-Parameter Sets: (All)
-Aliases: Name, DisplayName
-
-Required: True
-Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -95,15 +63,34 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -WorkspaceID
-Id of the Fabric Workspace for which the KQLDatabase should be created.
-The value for WorkspaceID is a GUID.
-An example of a GUID is '12345678-1234-1234-1234-123456789012'.
+### -Role
+The role to assign to the principal.
+The value for Role is a string.
+An example of a string is 'Admin'.
+The values that can be used are 'Admin', 'Contributor', 'Member' and 'Viewer'.
 
 ```yaml
 Type: System.String
 Parameter Sets: (All)
 Aliases:
+
+Required: True
+Position: 3
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WorkspaceId
+Id of the Fabric Workspace for which the role assignment should be added.
+The value for WorkspaceId is a GUID.
+An example of a GUID is '12345678-1234-1234-1234-123456789012'.
+This parameter is mandatory.
+
+```yaml
+Type: System.String
+Parameter Sets: (All)
+Aliases: Id
 
 Required: True
 Position: 1
@@ -151,10 +138,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
-Revsion History:
-
-- 2024-11-07 - FGE: Implemented SupportShouldProcess
-- 2024-11-09 - FGE: Added DisplaName as Alias for KQLDatabaseName
-- 2024-12-08 - FGE: Added Verbose Output
+TODO: Add functionallity to add role assignments to groups.
+TODO: Add functionallity to add a user by SPN.
 
 ## RELATED LINKS
+
+[https://learn.microsoft.com/en-us/rest/api/fabric/core/workspaces/add-workspace-role-assignment?tabs=HTTP](https://learn.microsoft.com/en-us/rest/api/fabric/core/workspaces/add-workspace-role-assignment?tabs=HTTP)
+

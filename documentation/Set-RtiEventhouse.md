@@ -25,10 +25,25 @@ Set-RtiEventhouse `
     -EventhouseDescription 'This is my new Eventhouse'
 ```
 
-This example will update the Eventhouse with the Id '12345678-1234-1234-1234-123456789012' 
-in the Workspace with the Id '12345678-1234-1234-1234-123456789012' to 
-have the name 'MyNewEventhouse' and the description 
+This example will update the Eventhouse with the Id '12345678-1234-1234-1234-123456789012'
+in the Workspace with the Id '12345678-1234-1234-1234-123456789012' to
+have the name 'MyNewEventhouse' and the description
 'This is my new Eventhouse'.
+
+### EXAMPLE 2
+```
+Set-RtiEventhouse `
+    -WorkspaceId '12345678-1234-1234-1234-123456789012' `
+    -EventhouseId '12345678-1234-1234-1234-123456789012' `
+    -EventhouseNewName 'MyNewEventhouse' `
+    -EventhouseDescription 'This is my new Eventhouse' `
+    -Verbose
+```
+
+This example will update the Eventhouse with the Id '12345678-1234-1234-1234-123456789012'
+in the Workspace with the Id '12345678-1234-1234-1234-123456789012' to
+have the name 'MyNewEventhouse' and the description 'This is my new Eventhouse'. 
+It will also give you verbose output which is useful for debugging.
 
 ## PARAMETERS
 
@@ -49,7 +64,7 @@ Accept wildcard characters: False
 
 ### -EventhouseId
 The Id of the Eventhouse to update.
-The value for EventhouseId is a GUID. 
+The value for EventhouseId is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
@@ -96,7 +111,7 @@ Accept wildcard characters: False
 
 ### -WorkspaceId
 Id of the Fabric Workspace for which the Eventhouse should be updated.
-The value for WorkspaceId is a GUID. 
+The value for WorkspaceId is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
@@ -156,6 +171,7 @@ Revsion History:
 
 - 2024-11-07 - FGE: Implemented SupportShouldProcess
 - 2024-11-09 - FGE: Added NewDisplaName as Alias for EventhouseName
+- 2024-11-27 - FGE: Added Verbose Output
 
 ## RELATED LINKS
 

@@ -12,10 +12,10 @@ Invoke-RtiKQLCommand [[-WorkspaceId] <String>] [[-KQLDatabaseName] <String>] [[-
 
 ## DESCRIPTION
 Executes a KQL command in a Kusto Database.
-The KQL command is executed in the Kusto Database 
+The KQL command is executed in the Kusto Database
 that is specified by the KQLDatabaseName or KQLDatabaseId parameter.
-The KQL command is executed 
-in the context of the Fabric Real-Time Intelligence session that is established by the 
+The KQL command is executed
+in the context of the Fabric Real-Time Intelligence session that is established by the
 Connect-RTISession cmdlet.
 
 ## EXAMPLES
@@ -28,13 +28,13 @@ Invoke-RtiKQLCommand `
     -KQLCommand '.create table MyTable (MyColumn: string)'
 ```
 
-This example will create a table named 'MyTable' with a column named 'MyColumn' in 
+This example will create a table named 'MyTable' with a column named 'MyColumn' in
 the KQLDatabase 'MyKQLDatabase'.
 
 ## PARAMETERS
 
 ### -KQLCommand
-The KQL command that should be executed in the Kusto Database. 
+The KQL command that should be executed in the Kusto Database.
 The KQL command is a string.
 An example of a string is '.create table MyTable (MyColumn: string)'.
 
@@ -52,7 +52,7 @@ Accept wildcard characters: False
 
 ### -KQLDatabaseId
 The Id of the KQLDatabase in which the KQL command should be executed.
-This parameter cannot be used together with KQLDatabaseName. 
+This parameter cannot be used together with KQLDatabaseName.
 The value for KQLDatabaseId is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
@@ -101,7 +101,7 @@ Accept wildcard characters: False
 
 ### -WorkspaceId
 Id of the Fabric Workspace for which the KQL command should be executed.
-The value for WorkspaceId is a GUID. 
+The value for WorkspaceId is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
@@ -124,5 +124,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+Revsion History:
+
+- 2024-12-22 - FGE: Added Verbose Output
 
 ## RELATED LINKS

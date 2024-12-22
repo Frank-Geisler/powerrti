@@ -35,7 +35,7 @@ The new description of the Eventstream.
 ```yaml
 Type: System.String
 Parameter Sets: (All)
-Aliases: Description
+Aliases: Description, NewDescription, EventstreamNewDescription
 
 Required: False
 Position: 4
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 
 ### -EventstreamId
 The Id of the Eventstream to update.
-The value for EventstreamId is a GUID. 
+The value for EventstreamId is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
@@ -93,7 +93,7 @@ Accept wildcard characters: False
 
 ### -WorkspaceId
 Id of the Fabric Workspace for which the Eventstream should be updated.
-The value for WorkspaceId is a GUID. 
+The value for WorkspaceId is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
@@ -153,5 +153,8 @@ Revsion History:
 
 - 2024-11-07 - FGE: Implemented SupportShouldProcess
 - 2024-11-09 - FGE: Added DisplaName as Alias for EventStreamNewName
+- 2024-12-08 - FGE: Added Verbose Output
+                    Added Aliases for EventstreamNewName and EventstreamDescription
+                    Corrected typo in EventstreamNewName Variable
 
 ## RELATED LINKS

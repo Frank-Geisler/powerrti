@@ -29,7 +29,7 @@ This example will create a new Workspace with the name 'TestWorkspace' and the d
 
 ### -CapacityId
 Id of the Fabric Capacity for which the Workspace should be created.
-The value for CapacityID is a GUID. 
+The value for CapacityID is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
@@ -129,5 +129,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+Revsion History:
+
+- 2024-12-22 - FGE: Added Verbose Output
 
 ## RELATED LINKS

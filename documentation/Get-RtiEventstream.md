@@ -50,7 +50,7 @@ This example will give you all Information about the Eventstream with the Id '12
 ### -EventstreamId
 The Id of the Eventstream to retrieve.
 This parameter cannot be used together with EventstreamName.
-The value for EventstreamId is a GUID. 
+The value for EventstreamId is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
@@ -98,7 +98,7 @@ Accept wildcard characters: False
 
 ### -WorkspaceId
 Id of the Fabric Workspace for which the Eventstreams should be retrieved.
-The value for WorkspaceId is a GUID. 
+The value for WorkspaceId is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
@@ -122,11 +122,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 TODO: Add functionality to list all Eventhouses.
-To do so fetch all workspaces and 
+To do so fetch all workspaces and
       then all eventhouses in each workspace.
 
 Revision History:
     - 2024-11-09 - FGE: Added DisplaName as Alias for EventStreamName
+    - 2024-11-27 - FGE: Added Verbose Output
 
 ## RELATED LINKS
 

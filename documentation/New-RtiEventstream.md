@@ -74,7 +74,7 @@ Accept wildcard characters: False
 
 ### -WorkspaceID
 Id of the Fabric Workspace for which the Eventstream should be created.
-The value for WorkspaceID is a GUID. 
+The value for WorkspaceID is a GUID.
 An example of a GUID is '12345678-1234-1234-1234-123456789012'.
 
 ```yaml
@@ -132,6 +132,7 @@ Revsion History:
 
 - 2024-11-07 - FGE: Implemented SupportShouldProcess
 - 2024-11-09 - FGE: Added DisplaName as Alias for EventStreamName
+- 2024-11-30 - FGE: Added Verbose Output
 
 ## RELATED LINKS
 
