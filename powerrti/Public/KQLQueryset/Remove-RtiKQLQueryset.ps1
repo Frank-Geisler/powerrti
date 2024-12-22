@@ -26,7 +26,7 @@ function Remove-RtiKQLQueryset {
 
     Revsion History:
 
-    - 2024-11-07 - FGE: Implemented SupportShouldProcess    
+    - 2024-11-07 - FGE: Implemented SupportShouldProcess
     - 2024-12-22 - FGE: Added Verbose Output
 
 #>

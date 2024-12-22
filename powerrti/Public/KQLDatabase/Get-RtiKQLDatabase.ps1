@@ -124,7 +124,7 @@ process {
             -InputObject $response `
             -Force
 
-        Write-Verbose "Adding Member databaseType with value $($response.properties.databaseType)"    
+        Write-Verbose "Adding Member databaseType with value $($response.properties.databaseType)"
         Add-Member `
             -MemberType NoteProperty `
             -Name 'databaseType' `

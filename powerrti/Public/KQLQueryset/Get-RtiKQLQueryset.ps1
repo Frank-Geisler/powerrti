@@ -86,7 +86,6 @@ begin {
 
 process {
 
-    
     if ($PSBoundParameters.ContainsKey("KQLQuerysetId")) {
         Write-Verbose "Calling KQLQueryset API with KQLQuerysetId $KQLQuerysetId"
         Write-Verbose "------------------------------------------------------------------------------------"

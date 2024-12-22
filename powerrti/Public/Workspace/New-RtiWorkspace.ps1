@@ -74,7 +74,7 @@ process {
         Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
         Write-Verbose "Method: POST"
         Write-Verbose "URI: $WorkspaceApiUrl"
-        Write-Verbose "Body of request: $body"       
+        Write-Verbose "Body of request: $body"
         Write-Verbose "ContentType: application/json"
         $response = Invoke-RestMethod `
                             -Headers $RTISession.headerParams `

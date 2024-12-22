@@ -19,7 +19,7 @@ function Get-RtiDebugInfo {
 
     Revsion History:
 
-    - 2024-12-22 - FGE: Added Verbose Output    
+    - 2024-12-22 - FGE: Added Verbose Output
 
 #>
 

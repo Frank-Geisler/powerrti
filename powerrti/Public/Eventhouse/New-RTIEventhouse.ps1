@@ -33,7 +33,7 @@ function New-RtiEventhouse {
         -EventhouseDescription 'This is my Eventhouse' `
         -Verbose
 
-    This example will create a new Eventhouse with the name 'MyEventhouse' and the description 'This is my Eventhouse'. 
+    This example will create a new Eventhouse with the name 'MyEventhouse' and the description 'This is my Eventhouse'.
     It will also give you verbose output which is useful for debugging.
 
 .NOTES

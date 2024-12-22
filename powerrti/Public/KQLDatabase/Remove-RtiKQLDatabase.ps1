@@ -28,7 +28,7 @@ function Remove-RtiKQLDatabase {
 
     Revsion History:
 
-    - 2024-12-08 - FGE: Added Verbose Output    
+    - 2024-12-08 - FGE: Added Verbose Output
 
 #>
 
@@ -42,7 +42,6 @@ function Remove-RtiKQLDatabase {
         [Parameter(Mandatory=$true)]
         [Alias("Id")]
         [string]$KQLDatabaseId
-
     )
 
 begin {
