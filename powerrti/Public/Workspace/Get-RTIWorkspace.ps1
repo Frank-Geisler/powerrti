@@ -68,6 +68,11 @@ function Get-RtiWorkspace {
 
     This example will retrieve the Workspaces with the state 'active'.
 
+.NOTES
+
+    Revsion History:
+
+    - 2024-12-22 - FGE: Added Verbose Output
 
 .LINK
     https://learn.microsoft.com/en-us/rest/api/fabric/admin/workspaces/get-workspace?tabs=HTTP
@@ -100,12 +105,12 @@ function Get-RtiWorkspace {
 
 begin {
 
-    # Check if session is established - if not throw error
+    Write-Verbose "Check if session is established - if not throw error"
     if ($null -eq $RTISession.headerParams) {
         throw "No session established to Fabric Real-Time Intelligence. Please run Connect-RTISession"
     }
 
-    # WorkspaceID has to be used alone
+    Write-Verbose "WorkspaceID has to be used alone"
     if ($PSBoundParameters.ContainsKey("WorkspaceName") -and
         ($PSBoundParameters.ContainsKey("WorkspaceID") `
         -or $PSBoundParameters.ContainsKey("WorkspaceCapcityId") `
@@ -122,8 +127,7 @@ begin {
         $workspaceApiUrlId = $workspaceApiUrl + '/' + $WorkspaceID
     }
 
-    # FGE: If there are any parameters, we need to filter the API call, the
-    #     URL will be constructed here
+    Write-Verbose "If there are any parameters, we need to filter the API call, the URL will be constructed here."
     $workspaceApiFilter = $workspaceApiUrl
 
     if ($PSBoundParameters.ContainsKey("WorkspaceName")) {
@@ -141,15 +145,21 @@ begin {
     if ($PSBoundParameters.ContainsKey("WorkspaceState")) {
         $workspaceApiFilter = $workspaceApiFilter + "?state=$WorkspaceState"
     }
+    Write-Verbose "Workspace API URL: $workspaceApiFilter"
 
 }
 
 process {
 
-    # FGE: Providing a WorkspaceID is so specific that this will have
-    #      precedence over any other parameter
+    Write-Verbose "Providing a WorkspaceID is so specific that this will have precedence over any other parameter"
     if ($PSBoundParameters.ContainsKey("WorkspaceID")) {
-
+        Write-Verbose "Calling Workspace API with WorkspaceId $WorkspaceId"
+        Write-Verbose "---------------------------------------------------"
+        Write-Verbose "Sending the following values to the Workspace API:"
+        Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+        Write-Verbose "Method: GET"
+        Write-Verbose "URI: $workspaceApiUrlId"
+        Write-Verbose "ContentType: application/json"
         # Call Workspace API for WorkspaceID
         $response = Invoke-RestMethod `
                     -Headers $RTISession.headerParams `
@@ -160,8 +170,13 @@ process {
         $response
     }
     else {
-
-        # Call Workspace API for WorkspaceID
+        Write-Verbose "Calling Workspace API with Filter"
+        Write-Verbose "---------------------------------"
+        Write-Verbose "Sending the following values to the Workspace API:"
+        Write-Verbose "Headers: $($Rtisession.headerParams | Format-List | Out-String)"
+        Write-Verbose "Method: GET"
+        Write-Verbose "URI: $workspaceApiFilter"
+        Write-Verbose "ContentType: application/json"
         $response = Invoke-RestMethod `
                     -Headers $RTISession.headerParams `
                     -Method GET `
