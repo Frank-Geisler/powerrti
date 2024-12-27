@@ -62,6 +62,7 @@ During the development of the module and the research I do I might pass some int
 - [How to Use GitHub Action for GitHub Push in Your Workflows](https://cicube.io/workflow-hub/ad-m-github-push-action/#how-to-use-a-github-app-token-for-pushing-changes)
 - [Shields.io](https://shields.io)
 - [shields.io Snippets](https://marketplace.visualstudio.com/items?itemName=relliv.shieldsio-snippets)
+- [How to use Custom Objects (PSCustomObject) in PowerShell?](https://www.sharepointdiary.com/2021/08/custom-objects-in-powershell.html)
 
 ## Questions
 
