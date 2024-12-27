@@ -16,6 +16,8 @@ Welcome to Power-RTI! This is a PowerShell Module that can help automate creatin
 </p>
 <!-- markdownlint-enable MD033 -->
 
+Sending KQL Commands to a KQL-Database is a little bit complex so I wrote an article on how to do this. The article can be found [here](./documentation/querying-a-kql-database.md).
+
 ## Contribution Guidelines
 
 We warmly welcome contributions from the community! Your expertise and insights help keep this library robust, up-to-date, and relevant. To contribute:

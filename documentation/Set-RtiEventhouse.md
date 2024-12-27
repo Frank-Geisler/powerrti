@@ -42,7 +42,7 @@ Set-RtiEventhouse `
 
 This example will update the Eventhouse with the Id '12345678-1234-1234-1234-123456789012'
 in the Workspace with the Id '12345678-1234-1234-1234-123456789012' to
-have the name 'MyNewEventhouse' and the description 'This is my new Eventhouse'. 
+have the name 'MyNewEventhouse' and the description 'This is my new Eventhouse'.
 It will also give you verbose output which is useful for debugging.
 
 ## PARAMETERS
